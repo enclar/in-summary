@@ -4,6 +4,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const accountController = require("./controllers/accountController");
+
 // MongoDB Connection
 mongoose.connect(process.env.mongoURI)
 
@@ -14,6 +16,8 @@ const port = process.env.port
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/accounts", accountController);
 
 // Routes
 // test route
