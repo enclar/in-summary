@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+    // setting up navigationg
+    const navigate = useNavigate();
+
     // setting up state
     const [loginDetails, setLoginDetails] = useState({
         email: "",
@@ -12,9 +18,41 @@ const Login = () => {
         setLoginDetails({...loginDetails, [`${field}`]: event.target.value});
     };
 
+    // function to handle login
+    const handleLogin = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch("/api/staff/login", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginDetails)
+            });
+            
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("successfully logged in:", data);
+                navigate("/home");
+            } else {
+                console.log("server error:", data.error);
+                toast.error(data.error, {toastId: "login-fail-msg"});
+            }
+        } catch (error) {
+            console.log("client error:", error);
+        }
+    };
+
     return (
         <div id="login" className="my-24">
-            <form className="flex flex-col items-center gap-3">
+            <form
+                className="flex flex-col items-center gap-3"
+                method="post"
+                autoComplete="off"
+                onSubmit={() => handleLogin(event)}
+            >
                 <legend className="mb-5 text-stone-600 font-bold">
                     too long; read later
                 </legend>
@@ -42,6 +80,7 @@ const Login = () => {
                     login
                 </button>
             </form>
+            <ToastContainer />
         </div>
     )
 }
