@@ -2,7 +2,7 @@ const seedStaff = [
     {
         firstName: "Anne",
         lastName: "Lee",
-        email: "ann_lee@mail.com",
+        email: "anne_lee@mail.com",
         password: "welcome123",
         access: 0,
     },

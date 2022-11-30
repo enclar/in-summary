@@ -31,5 +31,24 @@ router.get("/seed", async (req, res) => {
     res.status(201).json(staff);
 });
 
+// login route
+router.post("/login", async (req, res) => {
+    try {
+        const staff = await Staff.findOne({ email: req.body.email }).exec();
+        if (staff.length === 0) {
+            res.status(400).json({ error: "No account associated with this email" });
+        } else {
+            const loginPass = bcrypt.compareSync(req.body.password, staff.password);
+            if (loginPass) {
+                res.status(200).json(staff);
+            } else {
+                res.status(400).json({ error: "Wrong password" });
+            }
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 // Export
 module.exports = router;

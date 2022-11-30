@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const accountSchema = new mongoose.Schema(
+const staffSchema = new mongoose.Schema(
     {
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
@@ -11,6 +11,6 @@ const accountSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const Account = mongoose.model("Account", accountSchema);
+const Staff = mongoose.model("Staff", staffSchema);
 
-module.exports = Account;
+module.exports = Staff;
