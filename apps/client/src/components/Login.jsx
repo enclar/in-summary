@@ -35,7 +35,8 @@ const Login = () => {
 
             if (response.ok) {
                 console.log("successfully logged in:", data);
-                navigate("/home");
+                // navigate("/home");
+                toast.success("Successfully logged in!", {toastId: "login-pass-msg"});
             } else {
                 console.log("server error:", data.error);
                 toast.error(data.error, {toastId: "login-fail-msg"});
@@ -76,7 +77,10 @@ const Login = () => {
                         onChange={() => handleTyping(event, "password")}
                     />
                 </label>
-                <button className="mt-5 px-4 py-1 rounded-full bg-stone-600 text-slate-100 ">
+                <button
+                    id="login-btn"
+                    className="mt-5 px-4 py-1 rounded-full bg-stone-600 text-slate-100 "
+                >
                     login
                 </button>
             </form>
