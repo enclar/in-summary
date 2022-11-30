@@ -1,4 +1,4 @@
-describe("login functionality spec", () => {
+describe("login spec", () => {
   it("visit login page", () => {
     cy.visit("localhost:5173/login");
   })

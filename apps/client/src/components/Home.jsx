@@ -6,7 +6,7 @@ const Home = () => {
         <div id="home">
             {
                 !currUser ?
-                <h1>please log in to view the home page</h1> :
+                <h1 id="no-login-msg">please log in to view this page</h1> :
                 <h1>you are logged in!</h1>
             }
         </div>
