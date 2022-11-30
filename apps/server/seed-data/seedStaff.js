@@ -1,3 +1,5 @@
+const Staff = require("../models/Staff");
+
 const seedStaff = [
     {
         firstName: "Anne",
@@ -5,6 +7,7 @@ const seedStaff = [
         email: "anne_lee@mail.com",
         password: "welcome123",
         access: 0,
+        type: "staff"
     },
     {
         firstName: "Jack",
@@ -12,6 +15,7 @@ const seedStaff = [
         email: "jack_ng@mail.com",
         password: "welcome123",
         access: 0,
+        type: "staff"
     },
     {
         firstName: "Clare",
@@ -19,6 +23,7 @@ const seedStaff = [
         email: "clare_lee@mail.com",
         password: "welcome123",
         access: 0,
+        type: "staff"
     },
     {
         firstName: "Joyce",
@@ -26,6 +31,7 @@ const seedStaff = [
         email: "joyce_wong@mail.com",
         password: "welcome123",
         access: 1,
+        type: "staff"
     },
     {
         firstName: "Christopher",
@@ -33,6 +39,7 @@ const seedStaff = [
         email: "chris_teo@mail.com",
         password: "welcome123",
         access: 1,
+        type: "staff"
     }
 ];
 
