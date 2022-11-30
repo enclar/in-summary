@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import dashboardReducer from "./reducer/dashboardReducer";
 import Login from "./components/Login";
+import Home from "./components/Home";
 
 export const DataContext = createContext();
 
@@ -17,6 +18,7 @@ const App = () => {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/login" element={<Login />} />
+                        <Route path="/home" element={<Home />} />
                     </Routes>
                 </BrowserRouter>
             </DataContext.Provider>

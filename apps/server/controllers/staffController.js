@@ -35,7 +35,7 @@ router.get("/seed", async (req, res) => {
 router.post("/login", async (req, res) => {
     try {
         const staff = await Staff.findOne({ email: req.body.email }).exec();
-        if (staff.length === 0) {
+        if (Object.keys(staff).length === 0) {
             res.status(400).json({ error: "No account associated with this email" });
         } else {
             const loginPass = bcrypt.compareSync(req.body.password, staff.password);
@@ -46,7 +46,7 @@ router.post("/login", async (req, res) => {
             }
         }
     } catch (error) {
-        res.status(500).json({ error: error });
+        res.status(500).json({ error: "No account associated with this email" });
     }
 });
 
