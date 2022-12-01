@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 const Navbar = () => {
     // defining variables
@@ -6,20 +6,34 @@ const Navbar = () => {
 
     // function to determine what navbar to be shown
     const getNavbar = () => {
-        if (currUser.type === "staff") {
+        if (currUser.accountType === "staff") {
             return (
-                <nav>
-                </nav>
+                <div>
+                    <Link>Projects</Link>
+                    <Link>Calendar</Link>
+                    <Link>Admin</Link>
+                    <Link>Profile</Link>
+                    <Link>Logout</Link>
+                </div>
             )
-        } else if (currUser.type === "vendor") {
+        } else if (currUser.accountType === "vendor") {
             return (
-                <nav>
-                </nav>
+                <div>
+                    <Link>Projects</Link>
+                    <Link>Calendar</Link>
+                    <Link>Requests</Link>
+                    <Link>Profile</Link>
+                    <Link>Logout</Link>
+                </div>
             )
-        } else if (currUser.type === "client") {
+        } else if (currUser.accountType === "client") {
             return (
-                <nav>
-                </nav>
+                <div>
+                    <Link>Projects</Link>
+                    <Link>Calendar</Link>
+                    <Link>Profile</Link>
+                    <Link>Logout</Link>
+                </div>
             )
         }
     };
@@ -29,7 +43,12 @@ const Navbar = () => {
     return (
         <>
             <header id="navbar">
-                {navbar}
+                <nav>
+                    <h1>
+                        tl; dr
+                    </h1>
+                    {navbar}
+                </nav>
             </header>
             <Outlet />
         </>

@@ -23,7 +23,7 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch("/api/staff/login", {
+            const response = await fetch("/api/users/login", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -35,8 +35,9 @@ const Login = () => {
 
             if (response.ok) {
                 console.log("successfully logged in:", data);
+                localStorage.setItem("currUser", JSON.stringify(data));
                 // navigate("/home");
-                toast.success("Successfully logged in!", {toastId: "login-pass-msg"});
+                // toast.success("Successfully logged in!", {toastId: "login-pass-msg"});
             } else {
                 console.log("server error:", data.error);
                 toast.error(data.error, {toastId: "login-fail-msg"});
