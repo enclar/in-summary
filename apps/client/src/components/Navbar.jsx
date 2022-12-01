@@ -6,7 +6,7 @@ const Navbar = () => {
 
     // function to determine what navbar to be shown
     const getNavbar = () => {
-        if (currUser.accountType === "staff") {
+        if (currUser?.accountType === "staff") {
             return (
                 <>
                     <Link>projects</Link>
@@ -16,7 +16,7 @@ const Navbar = () => {
                     <Link>logout</Link>
                 </>
             )
-        } else if (currUser.accountType === "vendor") {
+        } else if (currUser?.accountType === "vendor") {
             return (
                 <>
                     <Link>projects</Link>
@@ -26,13 +26,19 @@ const Navbar = () => {
                     <Link>logout</Link>
                 </>
             )
-        } else if (currUser.accountType === "client") {
+        } else if (currUser?.accountType === "client") {
             return (
                 <>
                     <Link>projects</Link>
                     <Link>calendar</Link>
                     <Link>profile</Link>
                     <Link>logout</Link>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <Link to="/login">login</Link>
                 </>
             )
         }
@@ -51,9 +57,14 @@ const Navbar = () => {
                         tl; dr
                     </h1>
                     <div className="flex flex-col items-end gap-1">
-                        <p id="navbar-hello-msg" className="text-large">
-                            hello {currUser?.username?.toLowerCase()}!
-                        </p>
+                        {
+                            currUser ?
+                            <p id="navbar-hello-msg" className="text-large">
+                                hello {currUser?.username?.toLowerCase()}!
+                            </p>
+                            :
+                            <></>
+                        }
                         <div id="navbar-tabs" className="flex gap-4">
                             {navbar}
                         </div>
