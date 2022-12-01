@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Enquiry = () => {
+    // setting up navigation
+    const navigate = useNavigate();
+
     // setting up state
     const [enquiry, setEnquiry] = useState({
         name: "",
@@ -13,6 +19,33 @@ const Enquiry = () => {
     // function to handle typing in inputs
     const handleTyping = (event, field) => {
         setEnquiry({...enquiry, [`${field}`]: event.target.value})
+    };
+
+    // function to handle enquiry submission
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch("/api/enquiries/add", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginDetails)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("successfully submitted enquiry")
+                toast.success("Your enquiry has been submitted!", {toastId: "enquiry-submitted-msg"});
+            } else {
+                console.log("server error:", data.error);
+                toast.success("Unable to submit your enquiry, please try again", {toastId: "enquiry-submitted-msg"});
+            }
+        } catch (error) {
+            console.log("client error:", error);
+        }
     };
 
     return (
@@ -28,7 +61,8 @@ const Enquiry = () => {
                     hello!
                 </p>
                 <p className="text-sky-900 text-center text-m tracking-wider">
-                    let us know what you're looking for and we'll follow up soon
+                    thank you for enquiring with us!<br/>
+                    let us know what you're looking for and we'll reach out to arrange a meeting soon
                 </p>
             </div>
             <form
@@ -40,7 +74,7 @@ const Enquiry = () => {
                     <input
                         required
                         id="enquiry-name-input"
-                        className="bg-slate-100 px-1"
+                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
                         value={enquiry.name}
                         onChange={() => handleTyping(event, "name")}
                     />
@@ -51,7 +85,7 @@ const Enquiry = () => {
                         required
                         type="email"
                         id="enquiry-email-input"
-                        className="bg-slate-100 px-1"
+                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
                         value={enquiry.email}
                         onChange={() => handleTyping(event, "email")}
                     />
@@ -61,7 +95,7 @@ const Enquiry = () => {
                     <input
                         required
                         id="enquiry-contact-input"
-                        className="bg-slate-100 px-1"
+                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
                         value={enquiry.contactNumber}
                         onChange={() => handleTyping(event, "contactNumber")}
                     />
@@ -72,7 +106,7 @@ const Enquiry = () => {
                         required
                         type="date"
                         id="enquiry-contact-input"
-                        className="bg-slate-100 text-slate-900 px-1"
+                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
                     />
                 </label>
                 <label className="text-slate-50 flex flex-col">
@@ -80,9 +114,9 @@ const Enquiry = () => {
                     <textarea
                         required
                         id="enquiry-contact-input"
-                        className="bg-slate-100 px-1"
-                        value={enquiry.contactNumber}
-                        onChange={() => handleTyping(event, "contactNumber")}
+                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
+                        value={enquiry.description}
+                        onChange={() => handleTyping(event, "description")}
                     />
                 </label>
                 <button
@@ -91,6 +125,16 @@ const Enquiry = () => {
                     submit enquiry
                 </button>
             </form>
+            <p className="text-sky-900 text-center text-m tracking-wider">
+                click{" "}
+                <span
+                    className="underline hover:text-sky-600 hover:cursor-pointer"
+                    onClick={() => navigate("/login")}
+                >
+                    here
+                </span>
+                {" "}to log in if you're an existing client!
+            </p>
         </div>
     )
 }
