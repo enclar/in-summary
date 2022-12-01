@@ -31,7 +31,7 @@ describe("does login work spec", () => {
     cy.get("#login-email-input").type("anne_lee@mail.com");
     cy.get("#login-password-input").type("welcome123{enter}");
 
-    cy.url().should('include', '/home');
-    cy.get('#navbar-hello-msg').contains('anne lee');
+    cy.url().should("include", "/home");
+    cy.get("#navbar-hello-msg").contains("anne lee");
   })
 })
