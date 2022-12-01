@@ -142,6 +142,7 @@ const Enquiry = () => {
             <p className="text-sky-900 text-center text-m tracking-wider">
                 click{" "}
                 <span
+                    id="go-to-login"
                     className="underline hover:text-sky-600 hover:cursor-pointer"
                     onClick={() => navigate("/login")}
                 >

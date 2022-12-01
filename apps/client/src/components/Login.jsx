@@ -56,7 +56,10 @@ const Login = () => {
                 autoComplete="off"
                 onSubmit={() => handleLogin(event)}
             >
-                <legend className="mb-5 text-stone-600 font-bold">
+                <legend
+                    id="login-legend"
+                    className="mb-5 text-stone-600 font-bold"
+                >
                     too long; read later
                 </legend>
                 <label className="flex flex-col">

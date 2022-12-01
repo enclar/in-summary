@@ -12,4 +12,11 @@ describe('empty spec', () => {
     cy.checkToastMessage("enquiry-success-msg", "Your enquiry has been submitted!");
     cy.get("#enquiry-name-input").should("have.value", "");
   })
+
+  it("reroute to the login page", () => {
+    cy.get("#go-to-login").click();
+
+    cy.url().should("include", "/login");
+    cy.get("#login-legend").contains("too long; read later");
+  })
 })
