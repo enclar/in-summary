@@ -1,4 +1,4 @@
-describe('home spec', () => {
+describe("home spec", () => {
   it("home page restricted without login", () => {
     cy.visit("localhost:5173/home");
 
