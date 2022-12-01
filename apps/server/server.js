@@ -4,7 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const staffController = require("./controllers/staffController");
+const userController = require("./controllers/userController");
 
 // MongoDB Connection
 mongoose.connect(process.env.mongoURI)
@@ -17,7 +17,7 @@ const port = process.env.port
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/staff", staffController);
+app.use("/api/users", userController);
 
 // Routes
 // test route
