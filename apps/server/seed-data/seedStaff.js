@@ -2,43 +2,38 @@ const Staff = require("../models/Staff");
 
 const seedStaff = [
     {
-        firstName: "Anne",
-        lastName: "Lee",
+        username: "Anne Lee",
         email: "anne_lee@mail.com",
         password: "welcome123",
-        access: 0,
+        admin: false,
         type: "staff"
     },
     {
-        firstName: "Jack",
-        lastName: "Ng",
+        username: "Jack Ng",
         email: "jack_ng@mail.com",
         password: "welcome123",
-        access: 0,
+        admin: false,
         type: "staff"
     },
     {
-        firstName: "Clare",
-        lastName: "Lee",
+        username: "Clare Lee",
         email: "clare_lee@mail.com",
         password: "welcome123",
-        access: 0,
+        admin: true,
         type: "staff"
     },
     {
-        firstName: "Joyce",
-        lastName: "Wong",
+        username: "Joyce Wong",
         email: "joyce_wong@mail.com",
         password: "welcome123",
-        access: 1,
+        admin: true,
         type: "staff"
     },
     {
-        firstName: "Christopher",
-        lastName: "Teo",
+        username: "Chris Teo",
         email: "chris_teo@mail.com",
         password: "welcome123",
-        access: 1,
+        admin: true,
         type: "staff"
     }
 ];
