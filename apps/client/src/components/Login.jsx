@@ -36,7 +36,7 @@ const Login = () => {
             if (response.ok) {
                 console.log("successfully logged in:", data);
                 localStorage.setItem("currUser", JSON.stringify(data));
-                // navigate("/home");
+                navigate("/home");
                 // toast.success("Successfully logged in!", {toastId: "login-pass-msg"});
             } else {
                 console.log("server error:", data.error);
@@ -50,6 +50,7 @@ const Login = () => {
     return (
         <div id="login" className="my-24">
             <form
+                id="login-form"
                 className="flex flex-col items-center gap-3"
                 method="post"
                 autoComplete="off"

@@ -1,4 +1,4 @@
-describe("login spec", () => {
+describe("does login work spec", () => {
   it("visit login page", () => {
     cy.visit("localhost:5173/login");
   })
@@ -10,11 +10,28 @@ describe("login spec", () => {
 
   it("check for login fail with wrong password", () => {
     cy.get("#login-btn").click();
-    cy.checkToastMessage("login-fail-msg", "Wrong password").wait(6500);;
+
+    cy.checkToastMessage("login-fail-msg", "Wrong password").wait(6500);
   })
 
-  it("check for login pass with correct password", () => {
-    cy.get("#login-password-input").clear().type("welcome123{enter}");
-    cy.checkToastMessage("login-pass-msg", "Successfully logged in!");
+  it("check for login fail with non-existent account", () => {
+    cy.get("#login-email-input").clear();
+    cy.get("#login-password-input").clear();
+
+    cy.get("#login-email-input").type("ann_lee@mail.com");
+    cy.get("#login-password-input").type("welcome123{enter}");
+
+    cy.checkToastMessage("login-fail-msg", "No account associated with this email").wait(6500);
+  })
+
+  it("check for staff login pass", () => {
+    cy.get("#login-email-input").clear();
+    cy.get("#login-password-input").clear();
+
+    cy.get("#login-email-input").type("anne_lee@mail.com");
+    cy.get("#login-password-input").type("welcome123{enter}");
+
+    cy.url().should('include', '/home');
+    cy.get('#navbar-hello-msg').contains('anne lee');
   })
 })

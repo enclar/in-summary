@@ -8,32 +8,32 @@ const Navbar = () => {
     const getNavbar = () => {
         if (currUser.accountType === "staff") {
             return (
-                <div>
-                    <Link>Projects</Link>
-                    <Link>Calendar</Link>
-                    <Link>Admin</Link>
-                    <Link>Profile</Link>
-                    <Link>Logout</Link>
-                </div>
+                <>
+                    <Link>projects</Link>
+                    <Link>calendar</Link>
+                    <Link>admin</Link>
+                    <Link>profile</Link>
+                    <Link>logout</Link>
+                </>
             )
         } else if (currUser.accountType === "vendor") {
             return (
-                <div>
-                    <Link>Projects</Link>
-                    <Link>Calendar</Link>
-                    <Link>Requests</Link>
-                    <Link>Profile</Link>
-                    <Link>Logout</Link>
-                </div>
+                <>
+                    <Link>projects</Link>
+                    <Link>calendar</Link>
+                    <Link>requests</Link>
+                    <Link>profile</Link>
+                    <Link>logout</Link>
+                </>
             )
         } else if (currUser.accountType === "client") {
             return (
-                <div>
-                    <Link>Projects</Link>
-                    <Link>Calendar</Link>
-                    <Link>Profile</Link>
-                    <Link>Logout</Link>
-                </div>
+                <>
+                    <Link>projects</Link>
+                    <Link>calendar</Link>
+                    <Link>profile</Link>
+                    <Link>logout</Link>
+                </>
             )
         }
     };
@@ -42,12 +42,22 @@ const Navbar = () => {
 
     return (
         <>
-            <header id="navbar">
-                <nav>
-                    <h1>
+            <header
+                id="navbar"
+                className="px-12 py-6 bg-slate-300"
+            >
+                <nav className="flex justify-between items-center">
+                    <h1 className="text-3xl tracking-widest">
                         tl; dr
                     </h1>
-                    {navbar}
+                    <div className="flex flex-col items-end gap-1">
+                        <p id="navbar-hello-msg" className="text-large">
+                            hello {currUser?.username?.toLowerCase()}!
+                        </p>
+                        <div id="navbar-tabs" className="flex gap-4">
+                            {navbar}
+                        </div>
+                    </div>
                 </nav>
             </header>
             <Outlet />
