@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import dashboardReducer from "./reducer/dashboardReducer";
 
+import Landing from "./components/Landing";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -19,6 +20,7 @@ const App = () => {
             <DataContext.Provider value={{ dashboard, dispatch }}>
                 <BrowserRouter>
                     <Routes>
+                        <Route path="/" element={<Landing />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/" element={<Navbar />}>
                             <Route path="/home" element={<Home />} />
