@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import dashboardReducer from "./reducer/dashboardReducer";
 
 import Landing from "./components/Landing";
+import Enquiry from "./components/Enquiry";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -22,6 +23,7 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Landing />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/enquiry" element={<Enquiry />} />
                         <Route path="/" element={<Navbar />}>
                             <Route path="/home" element={<Home />} />
                         </Route>
