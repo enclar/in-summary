@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const userController = require("./controllers/userController");
+const enquiryController = require("./controllers/enquiryController");
 
 // MongoDB Connection
 mongoose.connect(process.env.mongoURI)
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/users", userController);
+app.use("/api/enquiries", enquiryController);
 
 // Routes
 // test route

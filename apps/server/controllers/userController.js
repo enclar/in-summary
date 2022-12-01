@@ -15,7 +15,7 @@ const saltRounds = 10;
 // Routes
 // test route
 router.get("/test", (req, res) => {
-    res.json({ msg: "test route for staff controller"})
+    res.json({ msg: "test route for user controller"})
 });
 
 // seed route

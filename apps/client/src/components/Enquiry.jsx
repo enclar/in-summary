@@ -86,7 +86,7 @@ const Enquiry = () => {
                     />
                 </label>
                 <button
-                    className="bg-slate-500 text-slate-50 mt-10 py-1 px-4 rounded-full hover:bg-slate-200 hover:text-slate-500"
+                    className="bg-slate-500 text-slate-50 mt-10 py-1 px-4 rounded-full tracking-wider hover:bg-slate-200 hover:text-slate-500"
                 >
                     submit enquiry
                 </button>

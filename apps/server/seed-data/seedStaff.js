@@ -1,5 +1,3 @@
-const Staff = require("../models/users/Staff")
-
 const seedStaff = [
     {
         username: "Anne Lee",
