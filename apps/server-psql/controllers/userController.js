@@ -2,7 +2,9 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const { PrismaClient } = require("@prisma/client");
+
 const seedStaff = require("../seed-data/seedStaff");
+const seedExternalUsers = require("../seed-data/seedExternalUsers")
 
 // Variables
 const router = express.Router();
@@ -16,6 +18,13 @@ const encryptedStaff = seedStaff.map((staff) => (
     }
 ));
 
+const encryptedExternalUsers = seedExternalUsers.map((user) => (
+    {
+        ...user,
+        password: bcrypt.hashSync(user.password, saltRounds)
+    }
+));
+
 // Routes
 // test route
 router.get("/test", (req, res) => {
@@ -25,10 +34,17 @@ router.get("/test", (req, res) => {
 // seed route
 router.get("/seed", async (req, res) => {
     await prisma.staff.deleteMany();
+    await prisma.externalUsers.deleteMany();
+
     const staff = await prisma.staff.createMany({
         data: encryptedStaff
     });
-    res.status(201).json(staff);
+
+    const externalUsers = await prisma.externalUsers.createMany({
+        data: encryptedExternalUsers,
+    });
+
+    res.status(201).json({ staff: staff, externalUsers: externalUsers });
 });
 
 // get all users
@@ -49,7 +65,7 @@ router.post("/login", async (req, res) => {
                 email: req.body.email,
             }
         });
-        
+
         if (!staff) {
             res.status(400).json({ error: "No account associated with this email" });
         } else {
