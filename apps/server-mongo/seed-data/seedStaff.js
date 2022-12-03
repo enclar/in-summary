@@ -5,7 +5,7 @@ const seedStaff = [
         password: "welcome123",
         contact: "90081221",
         admin: false,
-        type: "staff"
+        accountType: "staff"
     },
     {
         username: "Jack Ng",
@@ -13,7 +13,7 @@ const seedStaff = [
         password: "welcome123",
         contact: "90081221",
         admin: false,
-        type: "staff"
+        accountType: "staff"
     },
     {
         username: "Clare Lee",
@@ -21,7 +21,7 @@ const seedStaff = [
         password: "welcome123",
         contact: "90081221",
         admin: true,
-        type: "staff"
+        accountType: "staff"
     },
     {
         username: "Joyce Wong",
@@ -29,7 +29,7 @@ const seedStaff = [
         password: "welcome123",
         contact: "90081221",
         admin: true,
-        type: "staff"
+        accountType: "staff"
     },
     {
         username: "Chris Teo",
@@ -37,7 +37,7 @@ const seedStaff = [
         password: "welcome123",
         contact: "90081221",
         admin: true,
-        type: "staff"
+        accountType: "staff"
     }
 ];
 
