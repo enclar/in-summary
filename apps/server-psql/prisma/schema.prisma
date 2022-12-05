@@ -8,24 +8,36 @@ datasource db {
 }
 
 model staff {
-  staff_id    Int      @id @default(autoincrement())
-  created_at  DateTime @default(now()) @db.Timestamp(6)
-  username    String   @db.VarChar(255)
-  email       String   @unique @db.VarChar(255)
-  password    String   @db.VarChar(255)
-  contact     String   @db.VarChar(255)
-  admin       Boolean  @default(false)
-  accountType String   @db.VarChar(255)
+  id         Int       @id @default(autoincrement())
+  created_at DateTime  @default(now()) @db.Timestamp(6)
+  username   String    @db.VarChar(255)
+  email      String    @unique @db.VarChar(255)
+  password   String    @db.VarChar(255)
+  contact    Int[]
+  admin      Boolean   @default(false)
+  accType    String    @db.VarChar(255)
+  phonebook  phonebook @relation(fields: [contact], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model externalUsers {
-  id          Int      @id(map: "external-users_pkey") @default(autoincrement())
-  created_at  DateTime @default(now()) @db.Timestamp(6)
-  username    String   @db.VarChar(255)
-  email       String   @unique @db.VarChar(255)
-  password    String   @db.VarChar(255)
-  company     Boolean  @default(false)
-  details     Json     @db.Json
-  admin       Boolean  @default(false)
-  accountType String   @db.VarChar(255)
+model extUsers {
+  id         Int       @id @default(autoincrement())
+  created_at DateTime  @default(now()) @db.Timestamp(6)
+  username   String    @db.VarChar(255)
+  email      String    @unique @db.VarChar(255)
+  password   String    @db.VarChar(255)
+  contact    Int[]
+  admin      Boolean   @default(false)
+  accType    String    @db.VarChar(255)
+  company    Boolean   @default(false)
+  phonebook  phonebook @relation(fields: [contact], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model phonebook {
+  id             Int        @id @default(autoincrement())
+  created_at     DateTime   @default(now()) @db.Timestamp(6)
+  name           String     @db.VarChar(255)
+  contact_number String     @db.VarChar(255)
+  tag            String     @db.VarChar(255)
+  extUsers       extUsers[]
+  staff          staff[]
 }
