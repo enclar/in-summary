@@ -11,7 +11,7 @@ model staff {
   staff_id    Int      @id @default(autoincrement())
   created_at  DateTime @default(now()) @db.Timestamp(6)
   username    String   @db.VarChar(255)
-  email       String   @db.VarChar(255)
+  email       String   @unique @db.VarChar(255)
   password    String   @db.VarChar(255)
   contact     String   @db.VarChar(255)
   admin       Boolean  @default(false)
@@ -22,10 +22,10 @@ model externalUsers {
   id          Int      @id(map: "external-users_pkey") @default(autoincrement())
   created_at  DateTime @default(now()) @db.Timestamp(6)
   username    String   @db.VarChar(255)
-  email       String   @db.VarChar(255)
+  email       String   @unique @db.VarChar(255)
   password    String   @db.VarChar(255)
   company     Boolean  @default(false)
-  details     Json     @db.Json
+  details     Json[]   @db.Json
   admin       Boolean  @default(false)
   accountType String   @db.VarChar(255)
 }

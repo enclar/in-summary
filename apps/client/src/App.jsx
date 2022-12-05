@@ -3,11 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import dashboardReducer from "./reducer/dashboardReducer";
 
-import Landing from "./components/Landing";
-import Enquiry from "./components/Enquiry";
-import Login from "./components/Login";
+import Landing from "./pages/Landing";
+import Enquiry from "./pages/Enquiry";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
 
 export const DataContext = createContext();
 
