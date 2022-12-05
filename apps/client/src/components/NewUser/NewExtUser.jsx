@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 const NewExtUser = () => {
     const [contact, setContact] = useState({
         name: "",
-        number: ""
+        contact: ""
     });
 
     const handleTyping = (event, field) => {
@@ -67,8 +67,8 @@ const NewExtUser = () => {
                     contact number:
                     <input
                         className="bg-slate-100 px-1 w-auto"
-                        value={contact.number}
-                        onChange={() => handleTyping(event, "number")}
+                        value={contact.contact}
+                        onChange={() => handleTyping(event, "contact")}
                     />
                 </label>
             </section>

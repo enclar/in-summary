@@ -25,7 +25,7 @@ model externalUsers {
   email       String   @unique @db.VarChar(255)
   password    String   @db.VarChar(255)
   company     Boolean  @default(false)
-  details     Json[]   @db.Json
+  details     Json     @db.Json
   admin       Boolean  @default(false)
   accountType String   @db.VarChar(255)
 }
