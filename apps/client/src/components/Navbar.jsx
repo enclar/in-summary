@@ -7,9 +7,9 @@ const Navbar = () => {
     // mapping custom widgets
     const widgets = ["weekly review", "projects", "enquiries", "to-do list"];
 
-    const widgetMap = widgets?.map((widget) => {
+    const widgetMap = widgets?.map((widget, index) => {
         return (
-            <label className="flex gap-1">
+            <label className="flex gap-1" key={index}>
                 <input type="checkbox" />
                 {widget}
             </label>
