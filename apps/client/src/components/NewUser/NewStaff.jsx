@@ -51,7 +51,7 @@ const NewStaff = () => {
                 />
                 admin
             </label>
-            <button className="bg-sky-900 px-8 py-2 mt-10 rounded-full text-slate-50 hover:text-sky-200">
+            <button className="bg-sky-900 px-8 py-2 mt-8 rounded-full text-slate-50 hover:text-sky-200">
                 create account
             </button>
         </form>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NewStaff from "../components/NewUser/NewStaff";
+import NewExtUser from "../components/NewUser/NewExtUser";
 
 const NewUser = () => {
     const [accType, setAccType] = useState("staff");
@@ -25,7 +26,7 @@ const NewUser = () => {
             {
                 accType === "staff" ?
                 <NewStaff /> :
-                <h1>Form to Create External User</h1>
+                <NewExtUser />
             }
         </div>
     )
