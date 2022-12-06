@@ -7,37 +7,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model staff {
-  id         Int       @id @default(autoincrement())
-  created_at DateTime  @default(now()) @db.Timestamp(6)
-  username   String    @db.VarChar(255)
-  email      String    @unique @db.VarChar(255)
-  password   String    @db.VarChar(255)
-  contact    Int[]
-  admin      Boolean   @default(false)
-  accType    String    @db.VarChar(255)
-  phonebook  phonebook @relation(fields: [contact], references: [id], onDelete: NoAction, onUpdate: NoAction)
+model accounts {
+  account_id      Int      @id @default(autoincrement())
+  email           String   @unique @db.VarChar(255)
+  password        String   @db.VarChar(255)
+  account_type    String   @db.VarChar(255)
+  company         Boolean? @default(false)
+  admin           Boolean? @default(false)
+  contact_details Int
+  contacts        contacts @relation(fields: [contact_details], references: [contact_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_contact")
 }
 
-model extUsers {
-  id         Int       @id @default(autoincrement())
-  created_at DateTime  @default(now()) @db.Timestamp(6)
-  username   String    @db.VarChar(255)
-  email      String    @unique @db.VarChar(255)
-  password   String    @db.VarChar(255)
-  contact    Int[]
-  admin      Boolean   @default(false)
-  accType    String    @db.VarChar(255)
-  company    Boolean   @default(false)
-  phonebook  phonebook @relation(fields: [contact], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model phonebook {
-  id             Int        @id @default(autoincrement())
-  created_at     DateTime   @default(now()) @db.Timestamp(6)
-  name           String     @db.VarChar(255)
-  contact_number String     @db.VarChar(255)
-  tag            String     @db.VarChar(255)
-  extUsers       extUsers[]
-  staff          staff[]
+model contacts {
+  contact_id     Int        @id @default(autoincrement())
+  contact_name   String     @db.VarChar(255)
+  contact_number String     @db.VarChar(15)
+  category       String     @db.VarChar(255)
+  nationality    String?    @db.VarChar(255)
+  accounts       accounts[]
 }

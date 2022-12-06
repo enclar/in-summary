@@ -3,25 +3,19 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { PrismaClient } = require("@prisma/client");
 
-const seedStaff = require("../seed-data/seedStaff");
-const seedExternalUsers = require("../seed-data/seedExternalUsers")
+const seedContacts = require("../seed-data/seedContacts");
+const seedAccounts = require("../seed-data/seedAccounts");
 
 // Variables
 const router = express.Router();
 const prisma = new PrismaClient();
 const saltRounds = 10;
 
-const encryptedStaff = seedStaff.map((staff) => (
+// Account Encryption
+const encryptedAccounts = seedAccounts.map((account) => (
     {
-        ...staff,
-        password: bcrypt.hashSync(staff.password, saltRounds)
-    }
-));
-
-const encryptedExternalUsers = seedExternalUsers.map((user) => (
-    {
-        ...user,
-        password: bcrypt.hashSync(user.password, saltRounds)
+        ...account,
+        password: bcrypt.hashSync(account.password, saltRounds)
     }
 ));
 
@@ -31,40 +25,24 @@ router.get("/test", (req, res) => {
     res.json({ msg: "psql user controller test route" })
 });
 
-// seed route
-router.get("/seed", async (req, res) => {
-    await prisma.staff.deleteMany();
-    await prisma.externalUsers.deleteMany();
-
-    const staff = await prisma.staff.createMany({
-        data: encryptedStaff
-    });
-
-    const externalUsers = await prisma.externalUsers.createMany({
-        data: encryptedExternalUsers,
-    });
-
-    res.status(201).json({ staff: staff, externalUsers: externalUsers });
+// seed contacts
+router.get("/seed-contacts", async (req, res) => {
+    await prisma.contacts.deleteMany();
+    const contacts = await prisma.contacts.createMany(
+        { data: seedContacts }
+    );
+    res.status(201).json(contacts);
 });
 
-// get all staff
-router.get("/all-staff", async (req, res) => {
-    try {
-        const allStaff = await prisma.staff.findMany();
-        res.json(allStaff);
-    } catch (error) {
-        res.json(error);
-    }
-});
+// seed phonebook
+router.get("/seed-pb", async (req, res) => {
+    await prisma.phonebook.deleteMany();
 
-// get all external users
-router.get("/all-ext", async (req, res) => {
-    try {
-        const allExtUsers = await prisma.externalUsers.findMany();
-        res.json(allExtUsers);
-    } catch (error) {
-        res.json(error);
-    }
+    const contacts = await prisma.phonebook.createMany({
+        data: seedPhonebook
+    });
+
+    res.status(201).json(contacts);
 });
 
 // login route
