@@ -8,15 +8,16 @@ datasource db {
 }
 
 model accounts {
-  account_id      Int      @id @default(autoincrement())
-  username        String   @db.VarChar(255)
-  email           String   @unique @db.VarChar(255)
-  password        String   @db.VarChar(255)
-  account_type    String   @db.VarChar(255)
-  company         Boolean? @default(false)
-  admin           Boolean? @default(false)
+  account_id      Int         @id @default(autoincrement())
+  username        String      @db.VarChar(255)
+  email           String      @unique @db.VarChar(255)
+  password        String      @db.VarChar(255)
+  account_type    String      @db.VarChar(255)
+  company         Boolean?    @default(false)
+  admin           Boolean?    @default(false)
   contact_details Int
-  contacts        contacts @relation(fields: [contact_details], references: [contact_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_contact")
+  contacts        contacts    @relation(fields: [contact_details], references: [contact_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_contact")
+  enquiries       enquiries[]
 }
 
 model contacts {
@@ -26,4 +27,16 @@ model contacts {
   category       String     @db.VarChar(255)
   nationality    String?    @db.VarChar(255)
   accounts       accounts[]
+}
+
+model enquiries {
+  enquiry_id        Int       @id @default(autoincrement())
+  name              String    @db.VarChar(255)
+  email             String    @db.VarChar(255)
+  contact_number    String    @db.VarChar(15)
+  event_date        String    @db.VarChar(255)
+  event_type        String    @db.VarChar(255)
+  event_description String    @db.VarChar(255)
+  follow_up         Int?
+  accounts          accounts? @relation(fields: [follow_up], references: [account_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_follow_up")
 }

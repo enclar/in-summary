@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,54 +7,12 @@ const Enquiry = () => {
     // setting up navigation
     const navigate = useNavigate();
 
-    // setting up state
-    const [enquiry, setEnquiry] = useState({
-        name: "",
-        email: "",
-        contactNumber: "",
-        eventDate: "",
-        description: ""
-    });
-
-    // function to handle typing in inputs
-    const handleTyping = (event, field) => {
-        setEnquiry({...enquiry, [`${field}`]: event.target.value})
-    };
+    // setting up react hook form
+    const { register, handleSubmit } = useForm();
 
     // function to handle enquiry submission
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
-            const response = await fetch("/api/enquiries/add", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(enquiry)
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                console.log("successfully submitted enquiry")
-                toast.success("Your enquiry has been submitted!", {toastId: "enquiry-success-msg"});
-
-                setEnquiry({
-                    name: "",
-                    email: "",
-                    contactNumber: "",
-                    eventDate: "",
-                    description: ""
-                });
-
-            } else {
-                console.log("server error:", data.error);
-                toast.error("Unable to submit your enquiry, please try again", {toastId: "enquiry-failed-msg"});
-            }
-        } catch (error) {
-            console.log("client error:", error);
-        }
+    const onSubmit = async (data) => {
+        console.log("enquiry:", data);
     };
 
     return (
@@ -77,8 +35,9 @@ const Enquiry = () => {
             <form
                 id="enquiry-form"
                 className="bg-sky-900 px-20 py-10 rounded-xl flex flex-col items-center justify-center gap-5"
+                autoComplete="off"
                 method="post"
-                onSubmit={() => handleSubmit(event)}
+                onSubmit={handleSubmit(onSubmit)}
             >
                 <label className="text-slate-50 flex flex-col">
                     name:
@@ -86,8 +45,7 @@ const Enquiry = () => {
                         required
                         id="enquiry-name-input"
                         className="bg-slate-100 text-slate-500 p-1 tracking-wide"
-                        value={enquiry.name}
-                        onChange={() => handleTyping(event, "name")}
+                        {...register("name")}
                     />
                 </label>
                 <label className="text-slate-50 flex flex-col">
@@ -97,8 +55,7 @@ const Enquiry = () => {
                         type="email"
                         id="enquiry-email-input"
                         className="bg-slate-100 text-slate-500 p-1 tracking-wide"
-                        value={enquiry.email}
-                        onChange={() => handleTyping(event, "email")}
+                        {...register("email")}
                     />
                 </label>
                 <label className="text-slate-50 flex flex-col">
@@ -107,29 +64,37 @@ const Enquiry = () => {
                         required
                         id="enquiry-contact-input"
                         className="bg-slate-100 text-slate-500 p-1 tracking-wide"
-                        value={enquiry.contactNumber}
-                        onChange={() => handleTyping(event, "contactNumber")}
+                        {...register("contact_number")}
                     />
                 </label>
-                <label className="text-slate-50 flex flex-col">
-                    event date:
-                    <input
-                        required
-                        type="date"
-                        id="enquiry-date-input"
-                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
-                        value={enquiry?.eventDate?.slice(0, 10)}
-                        onChange={() => handleTyping(event, "eventDate")}
-                    />
-                </label>
+                <div className="flex gap-7">
+                    <label className="text-slate-50 flex flex-col">
+                        event date:
+                        <input
+                            required
+                            type="date"
+                            id="enquiry-date-input"
+                            className="bg-slate-100 w-32 pl-1 text-slate-500"
+                            {...register("event_date")}
+                        />
+                    </label>
+                    <label className="text-slate-50 flex flex-col">
+                        event type:
+                        <select className="bg-slate-100 text-slate-500 p-1 tracking-wide">
+                            <option>wedding</option>
+                            <option>corporate</option>
+                            <option>party</option>
+                            <option>others</option>
+                        </select>
+                    </label>
+                </div>
                 <label className="text-slate-50 flex flex-col">
                     event description:
                     <textarea
                         required
                         id="enquiry-description-input"
-                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
-                        value={enquiry.description}
-                        onChange={() => handleTyping(event, "description")}
+                        className="bg-slate-100 w-64 h-36 text-slate-500 p-1 tracking-wide"
+                        {...register("event-description")}
                     />
                 </label>
                 <button
