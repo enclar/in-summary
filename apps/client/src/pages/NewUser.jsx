@@ -1,9 +1,6 @@
-import { useState } from "react";
 import NewContact from "../components/NewUser/NewContact";
 
 const NewUser = () => {
-    const [accType, setAccType] = useState("staff");
-
     return (
         <div
             id="new-user"

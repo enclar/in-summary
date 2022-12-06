@@ -9,7 +9,7 @@ const NewContact = () => {
     const methods = useForm();
     const register = methods.register
 
-    // function to handle creation of new staff
+    // function to handle creation of new contacts and accounts
     const onSubmit = async (data) => {
         if (createAcc) {
             const newContact = {
@@ -18,7 +18,7 @@ const NewContact = () => {
                 category: data.category
             };
 
-            const newAcc = {
+            const newAccount = {
                 username: data.username,
                 email: data.email,
                 password: data.password,
@@ -27,11 +27,47 @@ const NewContact = () => {
                 admin: data.admin,
             }
 
-            data = {contact: newContact, account: newAcc}
+            data = { contact: newContact, account: newAccount }
         }
-        
+
         try {
-            const reponse = await fetch()
+            const responseContact = await fetch("/api/users/new-contact", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data.contact)
+            });
+
+            const dataContact = await responseContact.json();
+
+            if (responseContact.ok) {
+                console.log("successfully added new contact");
+                console.log("contact details:", dataContact);
+                toast.success(`A new contact has been created for ${dataContact.contact_name}!`)
+
+                const responseAccount = await fetch("/api/users/new-account", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({...data.account, contact_details: dataContact.contact_id})
+                });
+
+                const dataAccount = await responseAccount.json();
+
+                if (responseAccount.ok) {
+                    console.log("successfully added new account");
+                    console.log("account details:", data);
+                    toast.success(`A new account has been created for ${dataAccount.username}!`);
+                } else {
+                    console.log("server error:", dataAccount.error);
+                    toast.error(dataAccount.error);
+                }
+            } else {
+                console.log("server error:", dataContact.error);
+                toast.error(dataContact.error);
+            }
         } catch (error) {
             console.log("client error:", error);
         }
