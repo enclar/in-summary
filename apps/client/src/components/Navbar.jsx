@@ -22,9 +22,8 @@ const Navbar = () => {
             return (
                 <>
                     <Link>projects</Link>
-                    <Link>calendar</Link>
+                    <Link>schedule</Link>
                     <Link>admin</Link>
-                    <Link>profile</Link>
                     <Link>logout</Link>
                 </>
             )

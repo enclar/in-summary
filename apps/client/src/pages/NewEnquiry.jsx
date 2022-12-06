@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Enquiry = () => {
+const NewEnquiry = () => {
     // setting up navigation
     const navigate = useNavigate();
 
@@ -147,4 +147,4 @@ const Enquiry = () => {
     )
 }
 
-export default Enquiry;
+export default NewEnquiry;

@@ -35,5 +35,20 @@ router.post("/new", async (req, res) => {
     }
 });
 
+// get all enquiries
+router.get("/all", async (req, res) => {
+    try {
+        const enquiries = await prisma.enquiries.findMany();
+
+        if (!enquiries) {
+            res.status(400).json({ error: "No enquiries found"});
+        } else {
+            res.status(200).json(enquiries);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+})
+
 // Export
 module.exports = router;
