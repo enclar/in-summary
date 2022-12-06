@@ -34,35 +34,29 @@ router.get("/seed-contacts", async (req, res) => {
     res.status(201).json(contacts);
 });
 
-// seed phonebook
-router.get("/seed-pb", async (req, res) => {
-    await prisma.phonebook.deleteMany();
-
-    const contacts = await prisma.phonebook.createMany({
-        data: seedPhonebook
-    });
-
-    res.status(201).json(contacts);
+// seed accounts
+router.get("/seed-accounts", async (req, res) => {
+    await prisma.accounts.deleteMany();
+    const accounts = await prisma.accounts.createMany(
+        { data: encryptedAccounts }
+    );
+    res.status(201).json(accounts);
 });
 
 // login route
 router.post("/login", async (req, res) => {
     try {
-        const staff = await prisma.staff.findUnique({
-            where: {
-                email: req.body.email,
-            }
+        const user = await prisma.accounts.findUnique({
+            where: { email: req.body.email }
         });
-
-        if (!staff) {
+        if (!user) {
             res.status(400).json({ error: "No account associated with this email" });
         } else {
-            const loginPass = bcrypt.compareSync(req.body.password, staff.password);
-    
+            const loginPass = bcrypt.compareSync(req.body.password, user.password);
             if (loginPass) {
-                res.status(200).json(staff);
+                res.status(200).json(user);
             } else {
-                res.status(400).json({ error: "Wrong password"});
+                res.status(400).json({ error: "Wrong password" });
             }
         }
     } catch (error) {

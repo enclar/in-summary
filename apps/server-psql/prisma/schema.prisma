@@ -9,6 +9,7 @@ datasource db {
 
 model accounts {
   account_id      Int      @id @default(autoincrement())
+  username        String   @db.VarChar(255)
   email           String   @unique @db.VarChar(255)
   password        String   @db.VarChar(255)
   account_type    String   @db.VarChar(255)

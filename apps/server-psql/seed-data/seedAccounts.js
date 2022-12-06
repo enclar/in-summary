@@ -1,36 +1,64 @@
-const seedStaff = [
+const seedAccounts = [
     {
-        username: "Anne Lee",
-        email: "anne_lee@mail.com",
+        username: "Bob and Linda",
+        email: "bob-linda@mail.com",
         password: "welcome123",
-        contact: 8,
-        admin: false,
-        accType: "staff"
+        account_type: "client",
+        contact_details: 1
     },
     {
-        username: "Jack Ng",
-        email: "jack_ng@mail.com",
+        username: "Ed and Kelly",
+        email: "ed-kelly@mail.com",
         password: "welcome123",
-        contact: 9,
-        admin: false,
-        accType: "staff"
+        account_type: "client",
+        contact_details: 2
+    },
+    {
+        username: "Bag & Bag Co.",
+        email: "hello@bagnbag.com",
+        password: "welcome123",
+        account_type: "client",
+        company: true,
+        contact_details: 3
+    },
+    {
+        username: "Nice Florist",
+        email: "hello@niceflorist.com",
+        password: "welcome123",
+        account_type: "vendor",
+        company: true,
+        contact_details: 4
+    },
+    {
+        username: "Best Carpentry Company",
+        email: "hello@bcc.com",
+        password: "welcome123",
+        account_type: "vendor",
+        company: true,
+        contact_details: 5
+    },
+    {
+        username: "Anne Lee",
+        email: "anne-lee@mail.com",
+        password: "welcome123",
+        account_type: "staff",
+        contact_details: 7
     },
     {
         username: "Joyce Wong",
-        email: "joyce_wong@mail.com",
+        email: "joyce-wong@mail.com",
         password: "welcome123",
-        contact: 10,
+        account_type: "staff",
         admin: true,
-        accType: "staff"
+        contact_details: 8
     },
     {
         username: "Chris Teo",
-        email: "chris_teo@mail.com",
+        email: "chris-teo@mail.com",
         password: "welcome123",
-        contact: 11,
-        admin: true,
-        accType: "staff"
+        account_type: "staff",
+        contact_details: 9
     }
 ];
 
-module.exports = seedStaff;
+module.exports = seedAccounts;
