@@ -1,3 +1,4 @@
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,6 +14,29 @@ const Enquiry = () => {
     // function to handle enquiry submission
     const onSubmit = async (data) => {
         console.log("enquiry:", data);
+
+        try {
+            const response = await fetch("/api/enquiries/new", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const data2 = await response.json();
+
+            if (response.ok) {
+                console.log("successfully submitted enquiry");
+                toast.success("Your enquiry has been successfully submitted!", { toastId: "enquiry-success-msg" });
+                document.getElementById("enquiry-form").reset();
+            } else {
+                console.log("server error:", data2.error);
+                toast.error("Your enquiry could not be submitted, please try again", { toastId: "enquiry-fail-msg" });
+            }
+        } catch (error) {
+            console.log("client error:", error);
+        }
     };
 
     return (
@@ -80,7 +104,10 @@ const Enquiry = () => {
                     </label>
                     <label className="text-slate-50 flex flex-col">
                         event type:
-                        <select className="bg-slate-100 text-slate-500 p-1 tracking-wide">
+                        <select
+                            className="bg-slate-100 text-slate-500 p-1 tracking-wide"
+                            {...register("event_type")}
+                        >
                             <option>wedding</option>
                             <option>corporate</option>
                             <option>party</option>
@@ -94,7 +121,7 @@ const Enquiry = () => {
                         required
                         id="enquiry-description-input"
                         className="bg-slate-100 w-64 h-36 text-slate-500 p-1 tracking-wide"
-                        {...register("event-description")}
+                        {...register("event_description")}
                     />
                 </label>
                 <button

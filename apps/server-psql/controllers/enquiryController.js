@@ -23,5 +23,17 @@ router.get("/seed", async (req, res) => {
     res.json(enquiries);
 });
 
+// create new enquiry
+router.post("/new", async (req, res) => {
+    try {
+        const newEnquiry = await prisma.enquiries.create(
+            { data: req.body }
+        );
+        res.status(201).json(newEnquiry);
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 // Export
 module.exports = router;
