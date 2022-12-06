@@ -64,50 +64,54 @@ router.post("/login", async (req, res) => {
     }
 });
 
-// create new user
-router.post("/new", async (req, res) => {
+// create new contact
+router.post("/new-contact", async (req, res) => {
     console.log("req body:", req.body);
 
     try {
-        if (req.body.accountType === "staff") {
-            const staffCheck = await prisma.staff.findUnique({
-                where: { email: req.body.email }
+        const checkContact = await prisma.contacts.findUnique({
+            where: { contact_number: req.body.contact_number }
+        });
+
+        if (!checkContact) {
+            const newContact = await prisma.contacts.create({
+                data: req.body
             });
 
-            if (!staffCheck) {
-                const newStaff = await prisma.staff.create({
-                    data: {
-                        ...req.body,
-                        password: bcrypt.hashSync(req.body.password, saltRounds)
-                    }
-                });
-
-                res.status(201).json(newStaff);
-            } else {
-                res.status(400).json({ error: "An account is already associated with this email"});
-            }
-        } else if (req.body.accountType === "client" || req.body.accountType === "vendor") {
-            const extUserCheck = await prisma.externalUsers.findUnique({
-                where: { email: req.body.email }
-            });
-
-            if (!extUserCheck) {
-                const newExtUser = await prisma.externalUsers.create({
-                    data: {
-                        ...req.body,
-                        password: bcrypt.hashSync(req.body.password, saltRounds)
-                    }
-                });
-
-                res.status(201).json(newExtUser);
-            } else {
-                res.status(400).json({ error: "An account is already associated with this email" });
-            }
+            res.status(201).json(newContact);
+        } else {
+            res.status(400).json({ error: "This number is already linked to an existing contact" });
         }
     } catch (error) {
         res.status(500).json({ error: error });
     }
 });
+
+// create new account
+router.post("/new-account", async (req, res) => {
+    console.log("req body:", req.body);
+
+    try {
+        const checkAccount = await prisma.accounts.findUnique({
+            where: { email: req.body.email }
+        });
+
+        if (!checkAccount) {
+            const newAccount = await prisma.accounts.create({
+                data: {
+                    ...req.body,
+                    password: bcrypt.hashSync(req.body.password, saltRounds)
+                }
+            });
+            
+            res.status(200).json(newAccount);
+        } else {
+            res.status(400).json({ error: "This email is already linked to an existing account" });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+})
 
 // Export
 module.exports = router;

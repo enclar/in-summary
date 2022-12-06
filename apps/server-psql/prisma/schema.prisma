@@ -22,7 +22,7 @@ model accounts {
 model contacts {
   contact_id     Int        @id @default(autoincrement())
   contact_name   String     @db.VarChar(255)
-  contact_number String     @db.VarChar(15)
+  contact_number String     @unique @db.VarChar(15)
   category       String     @db.VarChar(255)
   nationality    String?    @db.VarChar(255)
   accounts       accounts[]
