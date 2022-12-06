@@ -8,7 +8,8 @@ import Home from "./pages/Home";
 import Enquiries from "./pages/Enquiries";
 import NewUser from "./pages/NewUser";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbars/Navbar";
+import AdminNavbar from "./components/Navbars/AdminNavbar";
 
 export const DataContext = createContext();
 
@@ -22,8 +23,10 @@ const App = () => {
                     <Route path="/enquiry" element={<NewEnquiry />} />
                     <Route path="/" element={<Navbar />}>
                         <Route path="/home" element={<Home />} />
-                        <Route path="/enquiries" element={<Enquiries />} />
-                        <Route path="/new-user" element={<NewUser />} />
+                        <Route path="/" element={<AdminNavbar />}>
+                            <Route path="/enquiries" element={<Enquiries />} />
+                            <Route path="/new-user" element={<NewUser />} />
+                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

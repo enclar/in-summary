@@ -38,7 +38,11 @@ router.post("/new", async (req, res) => {
 // get all enquiries
 router.get("/all", async (req, res) => {
     try {
-        const enquiries = await prisma.enquiries.findMany();
+        const enquiries = await prisma.enquiries.findMany({
+            include: {
+                accounts: true,
+            },
+        });
 
         if (!enquiries) {
             res.status(400).json({ error: "No enquiries found"});
