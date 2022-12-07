@@ -21,7 +21,7 @@ const Navbar = () => {
         if (currUser?.accountType === "staff") {
             return (
                 <>
-                    <Link>projects</Link>
+                    <Link to="/projects">projects</Link>
                     <Link>schedule</Link>
                     <Link>admin</Link>
                     <Link>logout</Link>
