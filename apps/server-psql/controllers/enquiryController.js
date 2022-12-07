@@ -26,7 +26,7 @@ router.get("/seed", async (req, res) => {
 // create new enquiry
 router.post("/new", async (req, res) => {
     try {
-        const newEnquiry = await prisma.enquiries.create(
+        const newEnquiry = await prisma.enquiry.create(
             { data: req.body }
         );
         res.status(201).json(newEnquiry);
@@ -38,11 +38,7 @@ router.post("/new", async (req, res) => {
 // get all enquiries
 router.get("/all", async (req, res) => {
     try {
-        const enquiries = await prisma.enquiries.findMany({
-            include: {
-                accounts: true,
-            },
-        });
+        const enquiries = await prisma.enquiry.findMany();
 
         if (!enquiries) {
             res.status(400).json({ error: "No enquiries found"});

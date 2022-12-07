@@ -45,7 +45,7 @@ model Client {
   id        String    @id @default(uuid())
   name      String
   email     String    @unique
-  password  String    @unique
+  password  String   
   isCompany Boolean   @default(false)
   contacts  Contact[] // Contains zero or many contacts associated with this Client
   projects  Project[] // Client can be part of zero or many Projects
@@ -55,7 +55,7 @@ model Vendor {
   id        String    @id @default(uuid())
   name      String
   email     String    @unique
-  password  String    @unique
+  password  String   
   employees Contact[] // Each Vendor can have many Employees
   projects  Project[] // Each Vendor can be involed in many Projects
 }
