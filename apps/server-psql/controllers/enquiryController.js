@@ -16,11 +16,11 @@ router.get("/test", (req, res) => {
 
 // seed route
 router.get("/seed", async (req, res) => {
-    await prisma.enquiries.deleteMany();
-    const enquiries = await prisma.enquiries.createMany(
-        { data: seedEnquiries }
-    );
-    res.json(enquiries);
+    await prisma.enquiry.deleteMany();
+    const enquiries = await prisma.enquiry.createMany({
+        data: seedEnquiries,
+    });
+    res.status(201).json(enquiries);
 });
 
 // create new enquiry

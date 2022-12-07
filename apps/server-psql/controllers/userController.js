@@ -3,8 +3,8 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { PrismaClient } = require("@prisma/client");
 
-const seedContacts = require("../seed-data/seedContacts");
-const seedAccounts = require("../seed-data/seedAccounts");
+// const seedContacts = require("../seed-data/seedContacts");
+// const seedAccounts = require("../seed-data/seedAccounts");
 
 // Variables
 const router = express.Router();
@@ -12,12 +12,12 @@ const prisma = new PrismaClient();
 const saltRounds = 10;
 
 // Account Encryption
-const encryptedAccounts = seedAccounts.map((account) => (
-    {
-        ...account,
-        password: bcrypt.hashSync(account.password, saltRounds)
-    }
-));
+// const encryptedAccounts = seedAccounts.map((account) => (
+//     {
+//         ...account,
+//         password: bcrypt.hashSync(account.password, saltRounds)
+//     }
+// ));
 
 // Routes
 // test route

@@ -17,7 +17,7 @@ model Enquiry {
   description String
   followUp    Boolean  @default(false)
   followUpBy  Staff?   @relation(fields: [staffId], references: [id])
-  staffId     String
+  staffId     String?
 }
 
 model Staff {
