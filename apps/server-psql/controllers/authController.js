@@ -3,7 +3,6 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwtGenerator = require("../utils/jwtGenerator");
 const validation = require("../middleware/validation");
-const authorization = require("../middleware/authorization");
 const { PrismaClient } = require("@prisma/client");
 
 const router = express.Router();
@@ -101,6 +100,54 @@ router.post("/login/staff", validation, async (req, res) => {
             if (loginPass) {
                 const token = jwtGenerator(staff.id);
                 res.status(200).json({ staff: staff, token: token });
+            } else {
+                res.status(401).json({ error: "Wrong password" });
+            }
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
+// client login
+router.post("/login/client", validation, async (req, res) => {
+    try {
+        const client = await prisma.client.findUnique({
+            where: { email: req.body.email }
+        });
+
+        if (!client) {
+            res.status(401).json({ error: "No client account associated with this email" });
+        } else {
+            const loginPass = bcrypt.compareSync(req.body.password, client.password);
+
+            if (loginPass) {
+                const token = jwtGenerator(client.id);
+                res.status(200).json({ client: client, token: token });
+            } else {
+                res.status(401).json({ error: "Wrong password" });
+            }
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
+// vendor login
+router.post("/login/vendor", validation, async (req, res) => {
+    try {
+        const vendor = await prisma.vendor.findUnique({
+            where: { email: req.body.email }
+        });
+
+        if (!vendor) {
+            res.status(401).json({ error: "No vendor account associated with this email" });
+        } else {
+            const loginPass = bcrypt.compareSync(req.body.password, vendor.password);
+
+            if (loginPass) {
+                const token = jwtGenerator(vendor.id);
+                res.status(200).json({ vendor: vendor, token: token });
             } else {
                 res.status(401).json({ error: "Wrong password" });
             }
