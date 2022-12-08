@@ -88,7 +88,7 @@ const NewEnquiry = () => {
                         required
                         id="enquiry-contact-input"
                         className="bg-slate-100 text-slate-500 p-1 tracking-wide"
-                        {...register("contact_number")}
+                        {...register("contactNum")}
                     />
                 </label>
                 <div className="flex gap-7">
@@ -99,14 +99,14 @@ const NewEnquiry = () => {
                             type="date"
                             id="enquiry-date-input"
                             className="bg-slate-100 w-32 pl-1 text-slate-500"
-                            {...register("event_date")}
+                            {...register("date")}
                         />
                     </label>
                     <label className="text-slate-50 flex flex-col">
                         event type:
                         <select
                             className="bg-slate-100 text-slate-500 p-1 tracking-wide"
-                            {...register("event_type")}
+                            {...register("type")}
                         >
                             <option>wedding</option>
                             <option>corporate</option>
@@ -121,7 +121,7 @@ const NewEnquiry = () => {
                         required
                         id="enquiry-description-input"
                         className="bg-slate-100 w-64 h-36 text-slate-500 p-1 tracking-wide"
-                        {...register("event_description")}
+                        {...register("description")}
                     />
                 </label>
                 <button
