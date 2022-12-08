@@ -32,11 +32,19 @@ const Projects = () => {
             }
         };
 
+        getProjects();
     }, []);
 
+    // mapping project summaries
+    const projectSummaries = projects?.map((project, index) => (
+        <ProjectSummary key={index} project={project} />
+    ))
+
     return (
-        <div id="projects" className="mt-20">
-            <ProjectSummary />
+        <div id="projects" className="mt-20 flex flex-col items-center">
+            <div id="project-summaries" className="flex gap-10">
+                {projectSummaries}
+            </div>
         </div>
     )
 }

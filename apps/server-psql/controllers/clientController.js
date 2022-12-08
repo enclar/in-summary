@@ -34,26 +34,26 @@ router.get("/seed", async (req, res) => {
 });
 
 // login route
-router.post("/login", async (req, res) => {
-    try {
-        const client = await prisma.client.findUnique({
-            where: { email: req.body.email }
-        });
+// router.post("/login", async (req, res) => {
+//     try {
+//         const client = await prisma.client.findUnique({
+//             where: { email: req.body.email }
+//         });
 
-        if (!client) {
-            res.status(400).json({ error: "No client account associated with this email" });
-        } else {
-            const loginPass = bcrypt.compareSync(req.body.password, client.password);
+//         if (!client) {
+//             res.status(400).json({ error: "No client account associated with this email" });
+//         } else {
+//             const loginPass = bcrypt.compareSync(req.body.password, client.password);
 
-            if (loginPass) {
-                res.status(200).json(client);
-            } else {
-                res.status(400).json({ error: "Wrong password" });
-            }
-        }
-    } catch (error) {
-        res.status(500).json({ error: error });
-    }
-});
+//             if (loginPass) {
+//                 res.status(200).json(client);
+//             } else {
+//                 res.status(400).json({ error: "Wrong password" });
+//             }
+//         }
+//     } catch (error) {
+//         res.status(500).json({ error: error });
+//     }
+// });
 
 module.exports = router;

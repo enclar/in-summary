@@ -34,36 +34,36 @@ router.get("/seed", async (req, res) => {
 });
 
 // staff login route
-router.post("/login", async (req, res) => {
-    try {
-        const staff = await prisma.staff.findUnique({
-            where: {
-                email: req.body.email,
-            }
-        });
+// router.post("/login", async (req, res) => {
+//     try {
+//         const staff = await prisma.staff.findUnique({
+//             where: {
+//                 email: req.body.email,
+//             }
+//         });
 
-        if (!staff) {
-            res.status(400).json({ error: "No staff account linked to this email" });
-        } else {
-            const loginPass = bcrypt.compareSync(req.body.password, staff.password);
-            if (loginPass) {
-                res.status(200).json(staff);
-            } else {
-                res.status(400).json({ error: "Wrong password"})
-            }
-        }
-    } catch (error) {
-        res.status(500).json({ error: error });
-    }
-});
+//         if (!staff) {
+//             res.status(400).json({ error: "No staff account linked to this email" });
+//         } else {
+//             const loginPass = bcrypt.compareSync(req.body.password, staff.password);
+//             if (loginPass) {
+//                 res.status(200).json(staff);
+//             } else {
+//                 res.status(400).json({ error: "Wrong password"})
+//             }
+//         }
+//     } catch (error) {
+//         res.status(500).json({ error: error });
+//     }
+// });
 
 // get all staff
 router.get("/all", async (req, res) => {
     try {
         const staff = await prisma.staff.findMany();
-        res.json(staff);
+        res.status(200).json(staff);
     } catch (error) {
-        res.staty(500).json({ error: error });
+        res.status(500).json({ error: error });
     }
 })
 

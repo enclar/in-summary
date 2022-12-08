@@ -2,13 +2,6 @@
 const express = require("express");
 const cors = require("cors");
 
-const enquiryController = require("./controllers/enquiryController");
-const staffController = require("./controllers/staffController");
-const contactController = require("./controllers/contactController");
-const clientController = require("./controllers/clientController");
-const vendorController = require("./controllers/vendorController");
-const projectController = require("./controllers/projectController");
-
 // Variables
 const app = express();
 const port = 3000;
@@ -17,12 +10,13 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/enquiries", enquiryController);
-app.use("/api/staff", staffController);
-app.use("/api/contacts", contactController);
-app.use("/api/clients", clientController);
-app.use("/api/vendors", vendorController);
-app.use("/api/projects", projectController);
+app.use("/api/enquiries", require("./controllers/enquiryController"));
+app.use("/api/auth", require("./controllers/authController"));
+app.use("/api/staff", require("./controllers/staffController"));
+app.use("/api/contacts", require("./controllers/contactController"));
+app.use("/api/clients", require("./controllers/clientController"));
+app.use("/api/vendors", require("./controllers/vendorController"));
+app.use("/api/projects", require("./controllers/projectController"));
 
 // Routes
 // test route
