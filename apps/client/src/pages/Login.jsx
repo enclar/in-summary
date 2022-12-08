@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,14 +10,37 @@ const Login = () => {
     // setting up react hook form
     const { register, handleSubmit } = useForm();
 
-    // function to handle typing in inputs
-    const handleTyping = (event, field) => {
-        setLoginDetails({...loginDetails, [`${field}`]: event.target.value});
-    };
-
     // function to handle login
     const handleLogin = async (data) => {
-        console.log(data);
+        const details = {
+            email: data.email,
+            password: data.password
+        };
+
+        const url = `/api/${data.accountType}/login`
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(details)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("successfully logged in:", data);
+                localStorage.setItem("currUser", JSON.stringify(data));
+                navigate("/home");
+            } else {
+                console.log("server error:", data.error);
+                toast.error(data.error, { toastId: "login-fail-msg" });
+            }
+        } catch (error) {
+            console.log("client error:", error);
+        }
     };
 
     return (
@@ -58,7 +80,7 @@ const Login = () => {
                     i'm logging in as a:
                     <select
                         className="bg-slate-100 p-1 tracking-wide"
-                        {...register("account-type")}
+                        {...register("accountType")}
                     >
                         <option>staff</option>
                         <option>client</option>

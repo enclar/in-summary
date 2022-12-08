@@ -23,4 +23,24 @@ router.get("/seed", async (req, res) => {
     res.status(201).json(projects);
 });
 
+// get all projects
+router.get("/all", async (req, res) => {
+    try {
+        const projects = await prisma.project.findMany({
+            include: {
+                inCharge: true,
+                client: true
+            }
+        });
+
+        if (!projects) {
+            res.status(400).json({ error: "No projects found"});
+        } else {
+            res.status(200).json(projects);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 module.exports = router;
