@@ -9,7 +9,7 @@ const ProjectNavbar = () => {
             >
                 <Link to="/projects" className="bg-slate-400 px-4 py-2 rounded-full text-slate-50 tracking-wider">live projects</Link>
                 <Link className="bg-slate-400 px-4 py-2 rounded-full text-slate-50 tracking-wider">archived</Link>
-                <Link className="bg-slate-400 px-4 py-2 rounded-full text-slate-50 tracking-wider">create new project</Link>
+                <Link to="/new-project" className="bg-slate-400 px-4 py-2 rounded-full text-slate-50 tracking-wider">create new project</Link>
             </div>
             <Outlet />
         </div>

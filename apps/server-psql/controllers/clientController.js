@@ -2,6 +2,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const { PrismaClient } = require("@prisma/client");
+const authorization = require("../middleware/authorization");
 
 const seedClients = require("../seed-data/seedClients");
 
@@ -33,27 +34,19 @@ router.get("/seed", async (req, res) => {
     res.status(201).json(clients);
 });
 
-// login route
-// router.post("/login", async (req, res) => {
-//     try {
-//         const client = await prisma.client.findUnique({
-//             where: { email: req.body.email }
-//         });
+// get all clients
+router.get("/all", authorization, async (req, res) => {
+    try {
+        const clients = await prisma.client.findMany();
 
-//         if (!client) {
-//             res.status(400).json({ error: "No client account associated with this email" });
-//         } else {
-//             const loginPass = bcrypt.compareSync(req.body.password, client.password);
-
-//             if (loginPass) {
-//                 res.status(200).json(client);
-//             } else {
-//                 res.status(400).json({ error: "Wrong password" });
-//             }
-//         }
-//     } catch (error) {
-//         res.status(500).json({ error: error });
-//     }
-// });
+        if (!clients) {
+            res.status(400).json({ error: "No clients found" });
+        } else {
+            res.status(200).json(clients);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
 
 module.exports = router;

@@ -1,4 +1,3 @@
-import { useReducer, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Landing from "./pages/Landing";
@@ -8,12 +7,11 @@ import Home from "./pages/Home";
 import Enquiries from "./pages/Enquiries";
 import NewUser from "./pages/NewUser";
 import Projects from "./pages/Projects";
+import NewProject from "./pages/NewProject";
 
 import Navbar from "./components/Navbars/Navbar";
 import AdminNavbar from "./components/Navbars/AdminNavbar";
 import ProjectNavbar from "./components/Navbars/ProjectNavbar";
-
-export const DataContext = createContext();
 
 const App = () => {
     return (
@@ -27,6 +25,7 @@ const App = () => {
                         <Route path="/home" element={<Home />} />
                         <Route to="/" element={<ProjectNavbar />}>
                             <Route path="/projects" element={<Projects />} />
+                            <Route path="/new-project" element={<NewProject />} />
                         </Route>
                         <Route path="/" element={<AdminNavbar />}>
                             <Route path="/enquiries" element={<Enquiries />} />

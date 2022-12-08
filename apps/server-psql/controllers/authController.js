@@ -99,7 +99,7 @@ router.post("/login/staff", validation, async (req, res) => {
 
             if (loginPass) {
                 const token = jwtGenerator(staff.id);
-                res.status(200).json({ staff: staff, token: token });
+                res.status(200).json({ user: staff, token: token });
             } else {
                 res.status(401).json({ error: "Wrong password" });
             }
@@ -123,7 +123,7 @@ router.post("/login/client", validation, async (req, res) => {
 
             if (loginPass) {
                 const token = jwtGenerator(client.id);
-                res.status(200).json({ client: client, token: token });
+                res.status(200).json({ user: client, token: token });
             } else {
                 res.status(401).json({ error: "Wrong password" });
             }
@@ -147,7 +147,7 @@ router.post("/login/vendor", validation, async (req, res) => {
 
             if (loginPass) {
                 const token = jwtGenerator(vendor.id);
-                res.status(200).json({ vendor: vendor, token: token });
+                res.status(200).json({ user: vendor, token: token });
             } else {
                 res.status(401).json({ error: "Wrong password" });
             }

@@ -37,7 +37,7 @@ model Contact {
   contactNum String  @unique
   client     Client? @relation(fields: [clientId], references: [id]) // Might or might not be related to a Client
   clientId   String?
-  vendor     Vendor? @relation(fields: [vendorId], references: [id])
+  vendor     Vendor? @relation(fields: [vendorId], references: [id]) // Might or might not be related to a Client
   vendorId   String?
 }
 

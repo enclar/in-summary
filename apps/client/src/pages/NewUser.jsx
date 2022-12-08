@@ -1,13 +1,18 @@
-import NewContact from "../components/NewUser/NewContact";
+import { useEffect } from "react";
+import { atom, useAtom } from "jotai";
+import { useForm } from "react-hook-form";
 
 const NewUser = () => {
+    // setting up react hook form
+    const { register, onSubmit } = useForm();
+
+    // accessing local storage
+    const token = JSON.stringify(localStorage.getItem("token"));
+    const currUser = JSON.stringify(localStorage.getItem("currUser"));
+
     return (
-        <div
-            id="new-user"
-            className="w-4/5 py-20 flex flex-col items-center"
-        >
-            <p className="text-sky-800 text-xl text-center">add a new contact</p>
-            <NewContact />
+        <div id="new-user">
+            
         </div>
     )
 }

@@ -17,7 +17,7 @@ const Login = () => {
             password: data.password
         };
 
-        const url = `/api/${data.accountType}/login`
+        const url = `/api/auth/login/${data.accountType}`
 
         try {
             const response = await fetch(url, {
@@ -32,7 +32,8 @@ const Login = () => {
 
             if (response.ok) {
                 console.log("successfully logged in:", data);
-                localStorage.setItem("currUser", JSON.stringify(data));
+                localStorage.setItem("currUser", JSON.stringify(data.user));
+                localStorage.setItem("token", JSON.stringify(data.token));
                 navigate("/home");
             } else {
                 console.log("server error:", data.error);

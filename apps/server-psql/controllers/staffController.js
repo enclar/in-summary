@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const { PrismaClient } = require("@prisma/client");
 
 const seedStaff = require("../seed-data/seedStaff");
+const authorization = require("../middleware/authorization");
 
 // Variables
 const router = express.Router();
@@ -33,32 +34,8 @@ router.get("/seed", async (req, res) => {
     res.status(201).json(staff);
 });
 
-// staff login route
-// router.post("/login", async (req, res) => {
-//     try {
-//         const staff = await prisma.staff.findUnique({
-//             where: {
-//                 email: req.body.email,
-//             }
-//         });
-
-//         if (!staff) {
-//             res.status(400).json({ error: "No staff account linked to this email" });
-//         } else {
-//             const loginPass = bcrypt.compareSync(req.body.password, staff.password);
-//             if (loginPass) {
-//                 res.status(200).json(staff);
-//             } else {
-//                 res.status(400).json({ error: "Wrong password"})
-//             }
-//         }
-//     } catch (error) {
-//         res.status(500).json({ error: error });
-//     }
-// });
-
 // get all staff
-router.get("/all", async (req, res) => {
+router.get("/all", authorization, async (req, res) => {
     try {
         const staff = await prisma.staff.findMany();
         res.status(200).json(staff);

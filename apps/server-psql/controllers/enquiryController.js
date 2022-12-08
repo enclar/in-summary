@@ -3,6 +3,7 @@ const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 
 const seedEnquiries = require("../seed-data/seedEnquiries");
+const authorization = require("../middleware/authorization");
 
 // Variables
 const router = express.Router();
@@ -24,7 +25,7 @@ router.get("/seed", async (req, res) => {
 });
 
 // create new enquiry
-router.post("/new", async (req, res) => {
+router.post("/new", authorization, async (req, res) => {
     try {
         const newEnquiry = await prisma.enquiry.create(
             { data: req.body }
@@ -36,7 +37,7 @@ router.post("/new", async (req, res) => {
 });
 
 // get all enquiries
-router.get("/all", async (req, res) => {
+router.get("/all", authorization, async (req, res) => {
     try {
         const enquiries = await prisma.enquiry.findMany();
 

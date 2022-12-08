@@ -1,10 +1,13 @@
 // Dependancies
 const express = require("express");
 const cors = require("cors");
+const authorization = require("./middleware/authorization");
+const { PrismaClient } = require("@prisma/client");
 
 // Variables
 const app = express();
 const port = 3000;
+const prisma = new PrismaClient();
 
 // Middleware
 app.use(cors());
