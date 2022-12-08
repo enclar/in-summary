@@ -14,6 +14,10 @@ const NewEnquiry = () => {
     // function to handle enquiry submission
     const onSubmit = async (data) => {
         console.log("enquiry:", data);
+        data = {
+            ...data,
+            date: new Date(data.date)
+        }
 
         try {
             const response = await fetch("/api/enquiries/new", {

@@ -2,8 +2,8 @@ describe('empty spec', () => {
   it('create a new enquiry', () => {
     cy.visit("localhost:5173/enquiry");
 
-    cy.get("#enquiry-name-input").type("Sarah and Philip").should("have.value", "Sarah and Philip");
-    cy.get("#enquiry-email-input").type("sarah-philip@mail.com").should("have.value", "sarah-philip@mail.com");
+    cy.get("#enquiry-name-input").type("Sarah and George").should("have.value", "Sarah and George");
+    cy.get("#enquiry-email-input").type("sarah-george@mail.com").should("have.value", "sarah-george@mail.com");
     cy.get("#enquiry-contact-input").type("93117812").should("have.value", "93117812");
     cy.get("#enquiry-date-input").type("2022-08-26").should("have.value", "2022-08-26");
     cy.get("#enquiry-description-input").type("Looking for balloon decor for our wedding ballroom. Have some photos we can share during our consult!").should("have.value", "Looking for balloon decor for our wedding ballroom. Have some photos we can share during our consult!");
