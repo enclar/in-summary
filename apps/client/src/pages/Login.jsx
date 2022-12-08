@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,11 +8,8 @@ const Login = () => {
     // setting up navigationg
     const navigate = useNavigate();
 
-    // setting up state
-    const [loginDetails, setLoginDetails] = useState({
-        email: "",
-        password: ""
-    });
+    // setting up react hook form
+    const { register, handleSubmit } = useForm();
 
     // function to handle typing in inputs
     const handleTyping = (event, field) => {
@@ -19,32 +17,8 @@ const Login = () => {
     };
 
     // function to handle login
-    const handleLogin = async (event) => {
-        event.preventDefault();
-
-        try {
-            const response = await fetch("/api/users/login", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(loginDetails)
-            });
-            
-            const data = await response.json();
-
-            if (response.ok) {
-                console.log("successfully logged in:", data);
-                localStorage.setItem("currUser", JSON.stringify(data));
-                navigate("/home");
-                // toast.success("Successfully logged in!", {toastId: "login-pass-msg"});
-            } else {
-                console.log("server error:", data.error);
-                toast.error(data.error, {toastId: "login-fail-msg"});
-            }
-        } catch (error) {
-            console.log("client error:", error);
-        }
+    const handleLogin = async (data) => {
+        console.log(data);
     };
 
     return (
@@ -54,7 +28,7 @@ const Login = () => {
                 className="flex flex-col items-center gap-3"
                 method="post"
                 autoComplete="off"
-                onSubmit={() => handleLogin(event)}
+                onSubmit={handleSubmit(handleLogin)}
             >
                 <legend
                     id="login-legend"
@@ -68,8 +42,7 @@ const Login = () => {
                         type="email"
                         id="login-email-input"
                         className="bg-slate-100 px-1"
-                        value={loginDetails.email}
-                        onChange={() => handleTyping(event, "email")}
+                        {...register("email")}
                     />
                 </label>
                 <label className="flex flex-col">
@@ -78,9 +51,19 @@ const Login = () => {
                         type="password"
                         id="login-password-input"
                         className="bg-slate-100 px-1"
-                        value={loginDetails.password}
-                        onChange={() => handleTyping(event, "password")}
+                        {...register("password")}
                     />
+                </label>
+                <label className="my-3 flex flex-col gap-2">
+                    i'm logging in as a:
+                    <select
+                        className="bg-slate-100 p-1 tracking-wide"
+                        {...register("account-type")}
+                    >
+                        <option>staff</option>
+                        <option>client</option>
+                        <option>vendor</option>
+                    </select>
                 </label>
                 <button
                     id="login-btn"
