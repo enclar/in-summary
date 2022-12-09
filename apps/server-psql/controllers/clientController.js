@@ -43,7 +43,7 @@ router.post("/new", authorization, async (req, res) => {
         });
 
         if (!client) {
-            res.status(401).json({ error: "Unable to add new client" });
+            res.status(401).json({ error: "Unable to add new client account" });
         } else {
             res.status(201).json(newClient);
         }

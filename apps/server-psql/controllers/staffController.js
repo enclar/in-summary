@@ -34,7 +34,7 @@ router.post("/new", authorization, async (req, res) => {
         });
 
         if (!staff) {
-            res.status(401).json({ error: "Unable to create a new staff account" });
+            res.status(401).json({ error: "Unable to add new staff account" });
         } else {
             res.status(201).json(staff);
         }
