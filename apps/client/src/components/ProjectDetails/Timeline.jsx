@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
+import { atom, useAtom } from "jotai";
+
 import AddCheckpoint from "./AddCheckpoint";
+import CheckpointTable from "./CheckpointTable";
+
+export const checkpointAtom = atom([]);
 
 const Timeline = ({ project }) => {
     // setting up state
-    const [checkpoints, setCheckpoints] = useState([]);
+    const [checkpoints, setCheckpoints] = useAtom(checkpointAtom);
 
     // fetching all checkpoints
     useEffect(() => {
@@ -39,13 +44,17 @@ const Timeline = ({ project }) => {
     return (
         <div id="timeline" className="mt-10 flex flex-col items-center">
             {
-                checkpoints ?
-                <div>
-                    no checkpoints available
+                checkpoints.length === 0 ?
+                <div className="bg-sky-900 p-4 rounded-lg">
+                    <AddCheckpoint project={project} />
                 </div>
                 :
-                <div>
-                    here are your checkpoints!
+                <div className="bg-sky-900 p-4 rounded-lg flex flex-col gap-8 items-center">
+                    <label className="flex flex-col items-center gap-2 text-slate-50 tracking-wider">
+                        project checkpoints
+                        <CheckpointTable />
+                    </label>
+                    <AddCheckpoint project={project} />
                 </div>
             }
         </div>
