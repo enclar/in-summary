@@ -20,7 +20,8 @@ const NewStaffForm = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     token: JSON.parse(localStorage.getItem("token"))
-                }
+                },
+                body: JSON.stringify(data)
             });
 
             const data2 = await response.json();
@@ -39,7 +40,12 @@ const NewStaffForm = () => {
     };
 
     return (
-        <form id="new-account-form" className="flex flex-col items-center gap-5" method="post" onSubmit={handleSubmit(newStaff)} autoComplete="off">
+        <form
+            id="new-account-form"
+            className="flex flex-col items-center gap-5"
+            method="post" onSubmit={handleSubmit(newStaff)} 
+            autoComplete="off"
+        >
             <label className="flex flex-col">
                 name
                 <input {...register("name")} className="bg-slate-200 px-1" required />
@@ -52,7 +58,7 @@ const NewStaffForm = () => {
 
             <label className="flex flex-col">
                 password
-                <input type="password" {...register("name")} className="bg-slate-200 px-1" required />
+                <input type="password" {...register("password")} className="bg-slate-200 px-1" required />
             </label>
 
             <label className="flex flex-col">
