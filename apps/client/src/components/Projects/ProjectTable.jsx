@@ -9,7 +9,7 @@ const ProjectTable = () => {
     // mapping out table rows
     const rows = projects?.map((project, index) => {
         return(
-            <ProjectTableRow key={index} project={project} />
+            <ProjectTableRow key={index} project={project} index={parseInt(index)} />
         )
     });
 
@@ -21,7 +21,8 @@ const ProjectTable = () => {
                     <th className="bg-slate-400 px-5">project</th>
                     <th className="bg-slate-300 px-5">date</th>
                     <th className="bg-slate-400 px-5">location</th>
-                    <th className="bg-slate-300 px-5">in-charge</th>
+                    <th className="bg-slate-300 px-5">client</th>
+                    <th className="bg-slate-400 px-5">in-charge</th>
                 </tr>
             </thead>
             <tbody>
