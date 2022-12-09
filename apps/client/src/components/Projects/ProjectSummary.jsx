@@ -1,8 +1,23 @@
 import { useNavigate } from "react-router-dom";
+import { atom, useAtom } from "jotai";
+
+export const currProjAtom = atom({});
 
 const ProjectSummary = ({ project }) => {
+    // setting up jotai
+    const [currProject, setCurrProject] = useAtom(currProjAtom);
+
+    // setting up navigation
+    const navigate = useNavigate();
+
+    // function to set project as current project being viewed
+    const viewDetails = () => {
+        setCurrProject(project);
+        navigate(`/projects/${project.id}`);
+    };
+
     return (
-        <div id="proj-summary" className="bg-teal-900 w-96 px-5 py-4 rounded-md">
+        <div id="proj-summary" className="bg-teal-900 w-96 px-5 py-4 rounded-md hover:cursor-pointer" onClick={viewDetails}>
             <div className="pt-2 pb-3 px-2 border-b-2 text-slate-50 flex items-end justify-between">
                 <div className="flex flex-col">
                     <p>#{project.type}</p>

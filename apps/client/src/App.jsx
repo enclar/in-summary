@@ -8,6 +8,7 @@ import Enquiries from "./pages/Enquiries";
 import NewUser from "./pages/NewUser";
 import Projects from "./pages/Projects";
 import NewProject from "./pages/NewProject";
+import ProjectDetails from "./pages/ProjectDetails";
 
 import Navbar from "./components/Navbars/Navbar";
 import AdminNavbar from "./components/Navbars/AdminNavbar";
@@ -26,6 +27,7 @@ const App = () => {
                         <Route to="/" element={<ProjectNavbar />}>
                             <Route path="/projects" element={<Projects />} />
                             <Route path="/new-project" element={<NewProject />} />
+                            <Route path="/projects/:id" element={<ProjectDetails />} />
                         </Route>
                         <Route path="/" element={<AdminNavbar />}>
                             <Route path="/enquiries" element={<Enquiries />} />

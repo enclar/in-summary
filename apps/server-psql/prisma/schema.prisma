@@ -27,26 +27,18 @@ model Staff {
   password         String
   contactNum       String    @unique
   isAdmin          Boolean
+  accType          AccType   @default(staff)
   enquiriesHandled Enquiry[] // One staff can take care of zero or many Enquiries
   projects         Project[] // One staff can be in charge of zero or many Projects
-}
-
-model Contact {
-  id         String  @id @default(uuid())
-  name       String
-  contactNum String  @unique
-  client     Client? @relation(fields: [clientId], references: [id]) // Might or might not be related to a Client
-  clientId   String?
-  vendor     Vendor? @relation(fields: [vendorId], references: [id]) // Might or might not be related to a Client
-  vendorId   String?
 }
 
 model Client {
   id        String    @id @default(uuid())
   name      String
   email     String    @unique
-  password  String   
+  password  String
   isCompany Boolean   @default(false)
+  accType   AccType   @default(client)
   contacts  Contact[] // Contains zero or many contacts associated with this Client
   projects  Project[] // Client can be part of zero or many Projects
 }
@@ -55,16 +47,26 @@ model Vendor {
   id        String    @id @default(uuid())
   name      String
   email     String    @unique
-  password  String   
+  password  String
+  accType   AccType   @default(vendor)
   employees Contact[] // Each Vendor can have many Employees
   projects  Project[] // Each Vendor can be involed in many Projects
+}
+
+model Contact {
+  id         String   @id @default(uuid())
+  name       String
+  contactNum String   @unique
+  client     Client[]
+  vendor     Vendor[]
 }
 
 model Project {
   id          String       @id @default(uuid())
   title       String
   type        String
-  date        DateTime
+  startDate   DateTime
+  endDate     DateTime
   location    String
   budget      Int
   inCharge    Staff        @relation(fields: [inChargeId], references: [id]) // A Project can only have one Staff in charge
@@ -74,14 +76,17 @@ model Project {
   checkpoints Checkpoint[] // A Project can have zero or many Checkpoints
   vendors     Vendor[] // Each Project can have many Vendors
   notes       Note[] // Each Project can have many Notes
+  meetings    Meeting[] // Each Project can have many Meetings
+  tasks       Task[] // Each Project can have many Tasks
 }
 
 model Checkpoint {
-  id          String   @id @default(uuid())
-  description String
-  date        DateTime
-  project     Project  @relation(fields: [projectId], references: [id]) // Each Checkpoint is only for one Project
-  projectId   String
+  id           String   @id @default(uuid())
+  title        DateTime
+  cardTitle    String
+  cardSubtitle String?
+  project      Project  @relation(fields: [projectId], references: [id]) // Each Checkpoint is only for one Project
+  projectId    String
 }
 
 model Note {
@@ -90,4 +95,26 @@ model Note {
   content   String[]
   project   Project  @relation(fields: [projectId], references: [id]) // Each Note is only for one Project
   projectId String
+}
+
+model Meeting {
+  id        String   @id @default(uuid())
+  name      String
+  date      DateTime
+  project   Project? @relation(fields: [projectId], references: [id]) // Each Meeting is only for one Project
+  projectId String
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  description String
+  doneBy      AccType
+  project     Project? @relation(fields: [projectId], references: [id])
+  projectId   String?
+}
+
+enum AccType {
+  staff
+  client
+  vendor
 }

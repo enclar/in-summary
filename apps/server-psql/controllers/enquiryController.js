@@ -1,27 +1,15 @@
 // Dependancies
-const express = require("express");
-const { PrismaClient } = require("@prisma/client");
-
-const seedEnquiries = require("../seed-data/seedEnquiries");
+const router = require("express").Router();
 const authorization = require("../middleware/authorization");
 
-// Variables
-const router = express.Router();
+// Prisma
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // Routes
 // test route
 router.get("/test", (req, res) => {
     res.json({ msg: "test route for enquiry controller" });
-});
-
-// seed route
-router.get("/seed", async (req, res) => {
-    await prisma.enquiry.deleteMany();
-    const enquiries = await prisma.enquiry.createMany({
-        data: seedEnquiries,
-    });
-    res.status(201).json(enquiries);
 });
 
 // create new enquiry

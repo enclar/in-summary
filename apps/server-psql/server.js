@@ -13,6 +13,7 @@ const prisma = new PrismaClient();
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/seed", require("./controllers/seedController"));
 app.use("/api/enquiries", require("./controllers/enquiryController"));
 app.use("/api/auth", require("./controllers/authController"));
 app.use("/api/staff", require("./controllers/staffController"));

@@ -1,27 +1,15 @@
 // Dependancies
-const express = require("express");
-const { PrismaClient } = require("@prisma/client");
+const router = require("express").Router();
 const authorization = require("../middleware/authorization");
 
-const seedContacts = require("../seed-data/seedContacts");
-
-// Variables
-const router = express.Router();
+// Prisma
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // Routes
 // test route
 router.get("/test", (req, res) => {
     res.json({ msg: "test route for contact controller" });
-});
-
-// seed route
-router.get("/seed", async (req, res) => {
-    await prisma.contact.deleteMany();
-    const contacts = await prisma.contact.createMany(
-        { data: seedContacts }
-    );
-    res.status(201).json(contacts);
 });
 
 // get all contacts
