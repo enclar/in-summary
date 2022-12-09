@@ -107,7 +107,9 @@ model Meeting {
 model Task {
   id          String   @id @default(uuid())
   description String
-  doneBy      AccType
+  dueBy       DateTime
+  completed   Boolean  @default(false)
+  doneBy      String
   project     Project? @relation(fields: [projectId], references: [id])
   projectId   String?
 }

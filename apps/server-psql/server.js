@@ -22,6 +22,7 @@ app.use("/api/clients", require("./controllers/clientController"));
 app.use("/api/vendors", require("./controllers/vendorController"));
 app.use("/api/projects", require("./controllers/projectController"));
 app.use("/api/checkpoints", require("./controllers/checkpointController"));
+app.use("/api/tasks", require("./controllers/taskController"));
 
 // Routes
 // test route

@@ -1,14 +1,18 @@
 import { useAtom } from "jotai";
 import { currProjAtom } from "../components/Projects/ProjectTableRow";
+
 import Timeline from "../components/ProjectDetails/Timeline";
+import ProjectLogs from "../components/ProjectDetails/ProjectLogs";
+import Tasks from "../components/ProjectDetails/Tasks";
 
 const ProjectDetails = () => {
     const [projDetails, setProjDetails] = useAtom(currProjAtom);
 
     return (
-        <div id="project-details" className="mt-20 flex flex-col items-center">
-            <p className="bg-teal-900 py-2 px-10 rounded-full text-slate-50 tracking-wider text-2xl">{projDetails?.title?.toUpperCase()}</p>
+        <div id="project-details" className="mt-20 flex flex-col gap-6 items-center">
+            <ProjectLogs project={projDetails} />
             <Timeline project={projDetails} />
+            <Tasks project={projDetails} />
         </div>
     )
 }

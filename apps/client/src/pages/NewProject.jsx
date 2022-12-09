@@ -11,19 +11,14 @@ export const clientAtom = atom([]);
 const NewProject = () => {
     const token = JSON.parse(localStorage.getItem("token"));
 
-    // setting up react hook form
-    const { register, handleSubmit } = useForm();
-
     // setting up jotai
-    const [staff, setStaff] = useAtom(staffAtom);
     const [clients, setClients] = useAtom(clientAtom);
-    const [projects, setProjects] = useAtom(projectAtom);
 
     // useEffect to fetch all the neccessary accounts
     useEffect(() => {
-        const getUsers = async () => {
+        const getClients = async () => {
             try {
-                const responseClient = await fetch("/api/clients/all", {
+                const response = await fetch("/api/clients/all", {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',
@@ -31,37 +26,20 @@ const NewProject = () => {
                     }
                 });
 
-                const dataClient = await responseClient.json();
+                const data = await response.json();
 
-                if (responseClient.ok) {
-                    console.log("fetched clients:", dataClient);
-                    setClients(dataClient);
+                if (response.ok) {
+                    console.log("fetched clients:", data);
+                    setClients(data);
                 } else {
-                    console.log("server error:", dataClient.error);
-                }
-
-                const responseStaff = await fetch("/api/staff/all", {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        token: token
-                    }
-                });
-
-                const dataStaff = await responseStaff.json();
-
-                if (responseStaff.ok) {
-                    console.log("fetched staff:", dataStaff);
-                    setStaff(dataStaff);
-                } else {
-                    console.log("server error:", dataStaff.error);
+                    console.log("server error:", data.error);
                 }
             } catch (error) {
                 console.log("client error:", error);
             }
         };
 
-        getUsers();
+        getClients();
     }, []);
 
     return (

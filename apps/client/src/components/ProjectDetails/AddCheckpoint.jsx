@@ -47,7 +47,7 @@ const AddCheckpoint = ({ project }) => {
             autoComplete="off"
         >
             <legend className="text-slate-50 text-center tracking-wider text-md">add a new checkpoint</legend>
-            <div className="flex gap-5 items-center">
+            <div className="flex gap-7 items-center">
                 <label className="flex gap-2 text-slate-50">
                     date:
                     <input type="date" {...register("date")} className="text-slate-700 pl-1" required={true} />

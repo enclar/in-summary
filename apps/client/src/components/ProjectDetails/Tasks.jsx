@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { atom, useAtom } from "jotai";
 
-import AddCheckpoint from "./AddCheckpoint";
-import CheckpointTable from "./CheckpointTable";
+import AddTask from "./AddTask";
 
-export const checkpointAtom = atom([]);
+export const taskAtom = atom([]);
 
-const Timeline = ({ project }) => {
-    // setting up state
-    const [checkpoints, setCheckpoints] = useAtom(checkpointAtom);
+const Tasks = ({ project }) => {
+    const [tasks, setTasks] = useAtom(taskAtom);
 
-    // fetching all checkpoints
     useEffect(() => {
-        const getCheckpoints = async () => {
-            const url = "/api/checkpoints/" + project.id;
-
+        const getTasks = async () => {
+            const url = "/api/tasks/" + project.id
             try {
                 const response = await fetch(url, {
                     method: "GET",
@@ -27,10 +23,10 @@ const Timeline = ({ project }) => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    console.log("fetched all checkpoints:", data);
-                    setCheckpoints(data);
+                    console.log("fetched all tasks:", data);
+                    setTasks(data);
                 } else {
-                    console.log("no checkpoints available for this project");
+                    console.log("no tasks available for this project");
                     console.log("server error:", data.error);
                 }
             } catch (error) {
@@ -38,20 +34,20 @@ const Timeline = ({ project }) => {
             }
         };
 
-        getCheckpoints();
+        getTasks();
     }, []);
 
     return (
-        <div id="timeline" className="flex flex-col items-center">
+        <div id="tasks" className="flex flex-col items-center">
             {
-                checkpoints.length === 0 ?
+                tasks.length === 0 ?
                 <div className="bg-sky-900 p-4 rounded-lg">
-                    <AddCheckpoint project={project} />
+                    <AddTask project={project} />
                 </div>
                 :
                 <div className="bg-sky-900 p-4 rounded-lg flex flex-col gap-8 items-center">
                     <label className="flex flex-col items-center gap-2 text-slate-50 tracking-wider">
-                        project checkpoints
+                        to be done
                         <CheckpointTable />
                     </label>
                     <AddCheckpoint project={project} />
@@ -61,4 +57,4 @@ const Timeline = ({ project }) => {
     )
 }
 
-export default Timeline;
+export default Tasks;
