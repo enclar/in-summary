@@ -1,48 +1,42 @@
-import { useForm } from "react-hook-form"
-import { toast } from "react-toastify";
-import { clientAtom } from "../../pages/NewProject";
-import { useAtom } from "jotai";
+import { useAtom, atom } from "jotai"
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
-const NewClientForm = () => {
-    // react hook form
+const NewVendorForm = () => {
+    // setting up react hook form
     const { register, handleSubmit } = useForm();
 
-    // setting up jotai
-    const [clients, setClients] = useAtom(clientAtom);
-
-    // function to add new client
-    const newClient = async (data) => {
+    // function to create new vendor
+    const newVendor = async (data) => {
         console.log("all data:", data);
 
-        const client = {
+        const vendor = {
             name: data.name,
             email: data.email,
-            password: data.password,
-            isCompany: data.isCompany
+            password: data.password
         };
 
         const contact = { name: data.contactName, contactNum: data.contactNum };
 
         try {
-            const response = await fetch("/api/clients/new", {
+            const response = await fetch("/api/vendors/new", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                     token: JSON.parse(localStorage.getItem("token"))
                 },
-                body: JSON.stringify({ client: client, contact: contact })
+                body: JSON.stringify({ vendor: vendor, contact: contact })
             });
 
             const data2 = await response.json();
 
             if (response.ok) {
-                console.log("added new client:", data2);
-                setClients([...clients, data2]);
-                document.getElementById("new-client-form").reset();
-                toast.success(`New client account added for ${data2.name}`);
+                console.log("added new vendor:", data2);
+                document.getElementById("new-vendor-form").reset();
+                toast.success(`New vendor account added for ${data2.name}`);
             } else {
                 console.log("server error:", data2.error);
-                toast.error("Unable to add new staff account, please try again");
+                toast.error("Unable to add new vendor account, please try again");
             }
         } catch (error) {
             console.log("client error:", error);
@@ -51,10 +45,10 @@ const NewClientForm = () => {
 
     return (
         <form
-            id="new-client-form"
+            id="new-vendor-form"
             className="flex flex-col items-center gap-5"
             method="post"
-            onSubmit={handleSubmit(newClient)}
+            onSubmit={handleSubmit(newVendor)}
             autoComplete="off"
         >
             <label className="flex flex-col">
@@ -86,14 +80,9 @@ const NewClientForm = () => {
                 </div>
             </label>
 
-            <label className="flex gap-1">
-                <input type="checkbox" {...register("isCompany")} className="bg-slate-200" />
-                this client is a company
-            </label>
-
-            <button className="bg-sky-900 mt-5 px-5 py-1 rounded-full text-slate-50">add new client</button>
+            <button className="bg-sky-900 mt-5 px-5 py-1 rounded-full text-slate-50">add new vendor</button>
         </form>
     )
 }
 
-export default NewClientForm;
+export default NewVendorForm;

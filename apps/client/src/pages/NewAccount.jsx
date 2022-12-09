@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import { atom, useAtom } from "jotai";
-import NewStaffForm from "../components/NewAccount/NewStaffForm";
-import NewClientForm from "../components/NewAccount/NewClientForm";
 import { ToastContainer } from "react-toastify";
 
-const NewAccount = () => {
+import NewStaffForm from "../components/NewAccount/NewStaffForm";
+import NewClientForm from "../components/NewAccount/NewClientForm";
+import NewVendorForm from "../components/NewAccount/NewVendorForm";
 
+const NewAccount = () => {
     // setting up state
-    const [accountType, setAccountType] = useState("client");
+    const [accountType, setAccountType] = useState("staff");
 
     const displayForm = () => {
         if ( accountType === "staff" ) {
             return <NewStaffForm />
         } else if (accountType === "client") {
             return <NewClientForm />
+        } else if (accountType === "vendor") {
+            return <NewVendorForm />
         }
     };
 
