@@ -29,6 +29,7 @@ const NewStaffForm = () => {
             if (response.ok) {
                 console.log("added new staff account:", data2);
                 setStaff([...staff, data2]);
+                document.getElementById("new-staff-form").reset();
                 toast.success(`New staff account added for ${data2.name}`);
             } else {
                 console.log("server error:", data2.error);
@@ -41,9 +42,10 @@ const NewStaffForm = () => {
 
     return (
         <form
-            id="new-account-form"
+            id="new-staff-form"
             className="flex flex-col items-center gap-5"
-            method="post" onSubmit={handleSubmit(newStaff)} 
+            method="post" 
+            onSubmit={handleSubmit(newStaff)} 
             autoComplete="off"
         >
             <label className="flex flex-col">

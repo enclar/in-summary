@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import { atom, useAtom } from "jotai";
 import NewStaffForm from "../components/NewAccount/NewStaffForm";
+import NewClientForm from "../components/NewAccount/NewClientForm";
 import { ToastContainer } from "react-toastify";
 
 const NewAccount = () => {
 
     // setting up state
-    const [accountType, setAccountType] = useState("staff");
+    const [accountType, setAccountType] = useState("client");
+
+    const displayForm = () => {
+        if ( accountType === "staff" ) {
+            return <NewStaffForm />
+        } else if (accountType === "client") {
+            return <NewClientForm />
+        }
+    };
 
     return (
         <div id="new-user" className="mt-12 flex flex-col items-center gap-10">
@@ -28,11 +37,7 @@ const NewAccount = () => {
                     </label>
                 </div>
             </label>
-            {
-                accountType === "staff" ?
-                <NewStaffForm accountType={accountType} /> :
-                <></>
-            }
+            { displayForm() }
             <ToastContainer />
         </div>
     )
