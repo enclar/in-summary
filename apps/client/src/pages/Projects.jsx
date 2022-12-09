@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { atom, useAtom } from "jotai";
 import ProjectSummary from "../components/Projects/ProjectSummary";
+import ProjectTable from "../components/Projects/ProjectTable";
 
 export const projectAtom = atom([]);
 
@@ -46,8 +47,9 @@ const Projects = () => {
 
     return (
         <div id="projects" className="mt-20 flex flex-col items-center">
+            <ProjectTable />
             <div id="project-summaries" className="w-9/12 flex flex-wrap gap-5 items-center">
-                {projectSummaries}
+
             </div>
         </div>
     )
