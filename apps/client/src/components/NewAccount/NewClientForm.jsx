@@ -24,7 +24,7 @@ const NewClientForm = () => {
         const contact = { name: data.contactNum, contactNum: data.contactNum };
 
         try {
-            const response = await fetch("/client/new", {
+            const response = await fetch("/api/clients/new", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const NewClientForm = () => {
             if (response.ok) {
                 console.log("added new client:", data2);
                 setClients([...clients, data2]);
-                document.getElementById("new-staff-form").reset();
+                document.getElementById("new-client-form").reset();
                 toast.success(`New client account added for ${data2.name}`);
             } else {
                 console.log("server error:", data2.error);
