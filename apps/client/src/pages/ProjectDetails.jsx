@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { currProjAtom } from "../components/Projects/ProjectSummary";
+import { currProjAtom } from "../components/Projects/ProjectTableRow";
 import Timeline from "../components/ProjectDetails/Timeline";
 
 const ProjectDetails = () => {

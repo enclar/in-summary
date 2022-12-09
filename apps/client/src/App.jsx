@@ -4,8 +4,11 @@ import Landing from "./pages/Landing";
 import NewEnquiry from "./pages/NewEnquiry";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+
 import Enquiries from "./pages/Enquiries";
-import NewUser from "./pages/NewUser";
+import NewAccount from "./pages/NewAccount";
+import Accounts from "./pages/Accounts";
+
 import Projects from "./pages/Projects";
 import NewProject from "./pages/NewProject";
 import ProjectDetails from "./pages/ProjectDetails";
@@ -31,7 +34,7 @@ const App = () => {
                         </Route>
                         <Route path="/" element={<AdminNavbar />}>
                             <Route path="/enquiries" element={<Enquiries />} />
-                            <Route path="/new-user" element={<NewUser />} />
+                            <Route path="/new-account" element={<NewAccount />} />
                         </Route>
                     </Route>
                 </Routes>

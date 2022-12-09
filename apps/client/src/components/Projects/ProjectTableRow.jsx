@@ -13,22 +13,23 @@ const ProjectTableRow = ({project, index}) => {
     // function to view specific project details
     const viewDetails = () => {
         setCurrProj(project);
-        NavigationPreloadManager(`/projects/${project.id}`)
+        navigate(`/projects/${project.id}`)
     }
 
     return (
         <tr
-            className={ index%2 === 0 ? "bg-violet-50 hover:cursor-pointer" : "bg-orange-100 hover:cursor-pointer" }
+            className="bg-violet-50 border-slate-50 border-b-2 hover:cursor-pointer hover:bg-sky-200"
+            onClick={viewDetails}
         >
-            <td className="px-5 py-1 text-center border-slate-500 border-r-2">{project?.type}</td>
-            <td className="px-5 py-1 text-center border-slate-500 border-r-2">{project?.title}</td>
+            <td className="px-5 py-1 text-center">{project?.type}</td>
+            <td className="px-5 py-1 text-center">{project?.title}</td>
             { 
                 project?.startDate === project?.endDate ? 
-                <td className="px-5 py-1 text-center border-slate-500 border-r-2">{project?.startDate?.slice(0, 10)}</td> : 
-                <td className="px-5 py-1 text-center border-slate-500 border-r-2">{project?.startDate?.slice(0,10)} to {project?.endDate?.slice(0,10)}</td>
+                <td className="px-5 py-1 text-center">{project?.startDate?.slice(0, 10)}</td> : 
+                <td className="px-5 py-1 text-center">{project?.startDate?.slice(0,10)} to {project?.endDate?.slice(0,10)}</td>
             }
-            <td className="px-5 py-1 text-center border-slate-500 border-r-2">{project?.location}</td>
-            <td className="px-5 py-1 text-center border-slate-500 border-r-2">{project?.client?.name}</td>
+            <td className="px-5 py-1 text-center">{project?.location}</td>
+            <td className="px-5 py-1 text-center">{project?.client?.name}</td>
             <td className="px-5 py-1 text-center">{project?.inCharge?.name}</td>
         </tr>
     )

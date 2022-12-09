@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { atom, useAtom } from "jotai";
-import ProjectSummary from "../components/Projects/ProjectSummary";
 import ProjectTable from "../components/Projects/ProjectTable";
 
 export const projectAtom = atom([]);
@@ -39,11 +38,6 @@ const Projects = () => {
 
         getAllProjects();
     }, []);
-
-    // mapping project summaries
-    const projectSummaries = projects?.map((project, index) => (
-        <ProjectSummary key={index} project={project} />
-    ))
 
     return (
         <div id="projects" className="mt-20 flex flex-col items-center">
