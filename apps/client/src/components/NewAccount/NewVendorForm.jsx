@@ -1,6 +1,7 @@
 import { useAtom, atom } from "jotai"
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { toast } from 'react-toastify';
 
 const NewVendorForm = () => {
     // setting up react hook form
@@ -52,7 +53,7 @@ const NewVendorForm = () => {
             autoComplete="off"
         >
             <label className="flex flex-col">
-                account name
+                vendor name
                 <input {...register("name")} className="bg-slate-200 px-1" required />
             </label>
 

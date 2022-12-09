@@ -58,7 +58,7 @@ const NewClientForm = () => {
             autoComplete="off"
         >
             <label className="flex flex-col">
-                account name
+                client name
                 <input {...register("name")} className="bg-slate-200 px-1" required />
             </label>
 
