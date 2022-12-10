@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cd apps/server && npm run start"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/enclar/capstone/issues"
   },
-  "homepage": "https://github.com/enclar/capstone#readme"
+  "homepage": "https://github.com/enclar/capstone#readme",
+  "devDependencies": {
+    "turbo": "^1.6.3"
+  }
 }
