@@ -2,7 +2,16 @@ import { checkpointAtom } from "./Timeline";
 import { useAtom } from "jotai";
 
 const CheckpointTable = () => {
-    const [checkpoints] = useAtom(checkpointAtom);
+    const [checkpoints, setCheckpoints] = useAtom(checkpointAtom);
+
+    // function to delete checkpoint
+    const deleteCheckpoint = async () => {
+        try {
+
+        } catch (error) {
+            console.log("client error:", error)
+        }
+    }
 
     return (
         <table>
