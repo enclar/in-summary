@@ -2,8 +2,13 @@ import { useEffect } from "react";
 import { atom, useAtom } from "jotai";
 
 import AddTask from "./AddTask";
+import TaskTable from "./TaskTable";
 
-export const taskAtom = atom([]);
+export const taskAtom = atom([{
+    dueBy: "2022-05-03",
+    description: "test task table",
+    doneBy: "clarissa"
+}]);
 
 const Tasks = ({ project }) => {
     const [tasks, setTasks] = useAtom(taskAtom);
@@ -34,7 +39,7 @@ const Tasks = ({ project }) => {
             }
         };
 
-        getTasks();
+        // getTasks();
     }, []);
 
     return (
@@ -48,9 +53,9 @@ const Tasks = ({ project }) => {
                 <div className="bg-sky-900 p-4 rounded-lg flex flex-col gap-8 items-center">
                     <label className="flex flex-col items-center gap-2 text-slate-50 tracking-wider">
                         to be done
-                        <CheckpointTable />
+                        <TaskTable />
                     </label>
-                    <AddCheckpoint project={project} />
+                    <AddTask project={project} />
                 </div>
             }
         </div>
