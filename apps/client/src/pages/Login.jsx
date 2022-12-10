@@ -17,6 +17,8 @@ const Login = () => {
             password: data.password
         };
 
+        console.log(data);
+
         const url = `/api/auth/login/${data.accountType}`
 
         try {
@@ -62,6 +64,7 @@ const Login = () => {
                 <label className="flex flex-col">
                     email:
                     <input
+                        required
                         type="email"
                         id="login-email-input"
                         className="bg-slate-100 px-1"
@@ -71,6 +74,7 @@ const Login = () => {
                 <label className="flex flex-col">
                     password:
                     <input
+                        required
                         type="password"
                         id="login-password-input"
                         className="bg-slate-100 px-1"

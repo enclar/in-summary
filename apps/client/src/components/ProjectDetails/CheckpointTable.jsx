@@ -19,6 +19,7 @@ const CheckpointTable = () => {
                             <tr key={index}>
                                 <td className="px-5 border-2 text-center">{checkpoint?.date?.slice(0, 10)}</td>
                                 <td className="px-5 border-2">{checkpoint?.details}</td>
+                                <td className="px-5 border-2 text-center">remove</td>
                             </tr>
                         )
                     })

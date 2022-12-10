@@ -45,6 +45,23 @@ router.post("/new", authorization, async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error });
     }
-})
+});
+
+// delete a checkpoint
+router.delete("/delete/:id", authorization, async (req, res) => {
+    try {
+        const deleteCheckpoint = await prisma.checkpoint.delete({
+            where: { id: req.params.id }
+        });
+
+        if (!deleteCheckpoint) {
+            res.status(401).json({ error: "Unable to delete checkpoint "});
+        } else {
+            res.status(200).json(deleteCheckpoint);
+        }
+    } catch (error) {
+        res.status(500).json({})
+    }
+});
 
 module.exports = router;
