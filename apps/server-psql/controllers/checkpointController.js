@@ -16,7 +16,8 @@ router.get("/test", (req, res) => {
 router.get("/:project", authorization, async (req, res) => {
     try {
         const checkpoints = await prisma.checkpoint.findMany({
-            where: { projectId: req.params.project }
+            where: { projectId: req.params.project },
+            orderBy: { date: "asc" }
         });
 
         if (!checkpoints) {

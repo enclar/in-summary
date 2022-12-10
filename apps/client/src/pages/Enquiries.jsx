@@ -1,6 +1,6 @@
 import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
-import Enquiry from "../components/Enquiries/Enquiry";
+import EnquiryTable from "../components/Enquiries/EnquiryTable";
 
 export const enquiriesAtom = atom([]);
 
@@ -14,7 +14,8 @@ const Enquiries = () => {
                 const response = await fetch("/api/enquiries/all", {
                     method: "GET",
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        token: JSON.parse(localStorage.getItem("token"))
                     }
                 });
 
@@ -35,31 +36,8 @@ const Enquiries = () => {
     }, []);
 
     return (
-        <div id="enquiries" className="py-16">
-            <p className="text-sky-800 text-xl text-center">enquiries</p>
-            <div id="enquiry container">
-            </div>
-            <table className="mt-10">
-                <thead>
-                    <tr>
-                        <th className="bg-sky-800 px-5 text-slate-50">name</th>
-                        <th className="bg-sky-600 px-5 text-slate-50">contact details</th>
-                        <th className="bg-sky-800 px-5 text-slate-50">event date</th>
-                        <th className="bg-sky-600 px-5 text-slate-50">event type</th>
-                        <th className="bg-sky-800 px-5 text-slate-50">event description</th>
-                        <th className="bg-sky-600 px-5 text-slate-50">follow up?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        enquiries?.map((enquiry, index) => {
-                            return (
-                                <Enquiry enquiry={enquiry} key={index} />
-                            )
-                        })
-                    }
-                </tbody>
-            </table>
+        <div id="enquiries" className="my-20 flex flex-col items-center">
+            <EnquiryTable enquiries={enquiries} />
         </div>
     )
 }

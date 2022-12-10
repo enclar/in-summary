@@ -17,7 +17,7 @@ const CheckpointTable = () => {
                     checkpoints?.map((checkpoint, index) => {
                         return (
                             <tr key={index}>
-                                <td className="px-5 border-2">{checkpoint?.date?.slice(0, 10)}</td>
+                                <td className="px-5 border-2 text-center">{checkpoint?.date?.slice(0, 10)}</td>
                                 <td className="px-5 border-2">{checkpoint?.details}</td>
                             </tr>
                         )

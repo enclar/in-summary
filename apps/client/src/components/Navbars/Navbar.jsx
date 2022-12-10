@@ -28,9 +28,8 @@ const Navbar = () => {
                 </div>
                 <div className="flex flex-col gap-4 items-center">
                     <Link to="/projects">projects</Link>
-                    <Link>schedule</Link>
                     <Link>inventory</Link>
-                    <Link>admin</Link>
+                    <Link to="/enquiries">admin</Link>
                     <Link>logout</Link>
                 </div>
             </div>

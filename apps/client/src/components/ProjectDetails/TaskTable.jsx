@@ -14,6 +14,7 @@ const TaskTable = () => {
                     <th className="border-2 px-5">completed?</th>
                 </tr>
             </thead>
+            <tbody>
                 {
                     tasks?.map((task, index) => {
                         return (
@@ -28,8 +29,6 @@ const TaskTable = () => {
                         )
                     })
                 }
-            <tbody>
-
             </tbody>
         </table>
     )

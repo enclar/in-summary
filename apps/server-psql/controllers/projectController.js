@@ -19,6 +19,9 @@ router.get("/all", authorization, async (req, res) => {
             include: {
                 inCharge: true,
                 client: true
+            },
+            orderBy: {
+                startDate: "asc"
             }
         });
 

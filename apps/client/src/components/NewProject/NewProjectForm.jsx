@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useAtom } from "jotai";
+import { useNavigate } from "react-router-dom"; 
+
 import { clientAtom, staffAtom } from "../../pages/NewProject";
 import { projectAtom } from "../../pages/Projects";
 import { toast } from "react-toastify";
@@ -9,6 +11,9 @@ const NewProjectForm = () => {
     const [clients, setClients] = useAtom(clientAtom);
     const [staff, setStaff] = useAtom(staffAtom);
     const [projects, setProjects] = useAtom(projectAtom);
+
+    // navigation
+    const navigate = useNavigate();
 
     // setting up react hook form
     const { register, handleSubmit } = useForm();

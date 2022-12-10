@@ -16,7 +16,8 @@ router.get("/test", (req, res) => {
 router.get("/:project", authorization, async (req, res) => {
     try {
         const tasks = await prisma.task.findMany({
-            where: { projectId: req.params.project }
+            where: { projectId: req.params.project },
+            orderBy: { dueBy: "asc" }
         });
 
         if (!tasks) {

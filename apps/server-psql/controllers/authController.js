@@ -17,7 +17,7 @@ router.post("/register/staff", validation, async (req, res) => {
             where: { email: req.body.email }
         });
 
-        if (userCheck) {
+        if (staffCheck) {
             res.status(401).json({ error: "This email is already linked to a staff account" });
         } else {
             const newStaff = await prisma.staff.create({
