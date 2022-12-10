@@ -41,5 +41,28 @@ router.get("/all", authorization, async (req, res) => {
     }
 })
 
+// update enquiry when follow up has been done
+router.put("/update/:id", authorization, async (req, res) => {
+    try {
+        const updatedEnquiry = await prisma.enquiry.update({
+            where: {
+                id: req.params.id
+            },
+            data: {
+                followUp: true,
+                staffId: req.body.staffId
+            }
+        });
+
+        if (!updatedEnquiry) {
+            res.status(401).json({ error: "Unable to update enquiry" });
+        } else {
+            res.status(200).json(updatedEnquiry);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 // Export
 module.exports = router;

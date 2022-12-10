@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import Timeline from "../components/ProjectDetails/Timeline";
 import ProjectLogs from "../components/ProjectDetails/ProjectLogs";
 import Tasks from "../components/ProjectDetails/Tasks";
+import Vendors from "../components/ProjectDetails/Vendors";
 
 const ProjectDetails = () => {
     const [projDetails, setProjDetails] = useAtom(currProjAtom);
@@ -14,6 +15,7 @@ const ProjectDetails = () => {
             <ProjectLogs project={projDetails} />
             <Timeline project={projDetails} />
             <Tasks project={projDetails} />
+            <Vendors project={projDetails} />
             <ToastContainer />
         </div>
     )
