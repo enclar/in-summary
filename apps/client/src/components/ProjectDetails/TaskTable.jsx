@@ -11,15 +11,19 @@ const TaskTable = () => {
                     <th className="border-2">due by</th>
                     <th className="border-2">task</th>
                     <th className="border-2 px-5">action from</th>
+                    <th className="border-2 px-5">completed?</th>
                 </tr>
             </thead>
                 {
                     tasks?.map((task, index) => {
                         return (
                             <tr key={index}>
-                                <td className="px-5 border-2">{task?.dueBy}</td>
-                                <td className="px-5 border-2">{task?.description}</td>
+                                <td className="px-5 border-2">{task?.dueBy?.slice(0, 10)}</td>
+                                <td className="px-5 w-2/5 border-2">{task?.description}</td>
                                 <td className="px-5 border-2 text-center">{task?.doneBy}</td>
+                                <td className="px-5 border-2 text-center">
+                                    <input type="checkbox" />
+                                </td>
                             </tr>
                         )
                     })

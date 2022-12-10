@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import { currProjAtom } from "../components/Projects/ProjectTableRow";
+import { ToastContainer } from "react-toastify";
 
 import Timeline from "../components/ProjectDetails/Timeline";
 import ProjectLogs from "../components/ProjectDetails/ProjectLogs";
@@ -13,6 +14,7 @@ const ProjectDetails = () => {
             <ProjectLogs project={projDetails} />
             <Timeline project={projDetails} />
             <Tasks project={projDetails} />
+            <ToastContainer />
         </div>
     )
 }

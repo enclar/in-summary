@@ -4,11 +4,7 @@ import { atom, useAtom } from "jotai";
 import AddTask from "./AddTask";
 import TaskTable from "./TaskTable";
 
-export const taskAtom = atom([{
-    dueBy: "2022-05-03",
-    description: "test task table",
-    doneBy: "clarissa"
-}]);
+export const taskAtom = atom([]);
 
 const Tasks = ({ project }) => {
     const [tasks, setTasks] = useAtom(taskAtom);
@@ -39,7 +35,7 @@ const Tasks = ({ project }) => {
             }
         };
 
-        // getTasks();
+        getTasks();
     }, []);
 
     return (

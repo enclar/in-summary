@@ -106,12 +106,12 @@ model Meeting {
 
 model Task {
   id          String   @id @default(uuid())
-  description String
   dueBy       DateTime
-  completed   Boolean  @default(false)
+  description String
   doneBy      String
-  project     Project? @relation(fields: [projectId], references: [id])
-  projectId   String?
+  completed   Boolean  @default(false)
+  project     Project  @relation(fields: [projectId], references: [id])
+  projectId   String
 }
 
 enum AccType {

@@ -29,5 +29,21 @@ router.get("/:project", authorization, async (req, res) => {
     }
 });
 
+// add a new task to a project
+router.post("/new", authorization, async (req, res) => {
+    try {
+        const task = await prisma.task.create({
+            data: req.body
+        });
+
+        if (!task) {
+            res.status(401).json({ error: "Unable to add new task" });
+        } else {
+            res.status(201).json(task);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
 
 module.exports = router;

@@ -37,7 +37,7 @@ router.post("/new", authorization, async (req, res) => {
         });
 
         if (!checkpoint) {
-            res.status(401).json({ error: "Unable to create new checkpoint" });
+            res.status(401).json({ error: "Unable to add new checkpoint" });
         } else {
             res.status(201).json(checkpoint);
         }
