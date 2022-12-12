@@ -15,8 +15,14 @@ router.get("/test", (req, res) => {
 
 // get all clients
 router.get("/all", authorization, async (req, res) => {
+    console.log("req user:", req.user)
     try {
-        const clients = await prisma.client.findMany();
+        const clients = await prisma.client.findMany({
+            include: {
+                projects: true,
+                contacts: true,
+            }
+        });
 
         if (!clients) {
             res.status(400).json({ error: "No clients found" });
@@ -46,6 +52,32 @@ router.post("/new", authorization, async (req, res) => {
             res.status(401).json({ error: "Unable to add new client account" });
         } else {
             res.status(201).json(newClient);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
+// add a new contact to a client
+router.put("/add-contact/:id", authorization, async (req, res) => {
+    try {
+        const client = await prisma.client.update({
+            where: { id: req.params.id },
+            data: {
+                contacts: {
+                    create: [req.body]
+                }
+            },
+            include: {
+                contacts: true,
+                projects: true
+            }
+        });
+
+        if (!client) {
+            res.status(401).json({ error: "Unable to add new contact" });
+        } else {
+            res.status(200).json(client);
         }
     } catch (error) {
         res.status(500).json({ error: error });

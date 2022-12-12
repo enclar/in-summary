@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ClientAccounts from "../components/AllAccounts/ClientAccounts";
 import StaffAccounts from "../components/AllAccounts/StaffAccounts";
 
 const AllAccounts = () => {
@@ -8,6 +9,8 @@ const AllAccounts = () => {
     const whichAccounts = () => {
         if (accountType === "staff") {
             return <StaffAccounts />
+        } else if (accountType === "clients") {
+            return <ClientAccounts />
         }
     };
 
@@ -21,11 +24,11 @@ const AllAccounts = () => {
                         staff
                     </label>
                     <label className="flex gap-2 items-center">
-                        <input type="radio" name="account-type" onClick={() => setAccountType("client")} />
+                        <input type="radio" name="account-type" onClick={() => setAccountType("clients")} />
                         client
                     </label>
                     <label className="flex gap-2 items-center">
-                        <input type="radio" name="account-type" onClick={() => setAccountType("vendor")} />
+                        <input type="radio" name="account-type" onClick={() => setAccountType("vendors")} />
                         vendor
                     </label>
                 </div>

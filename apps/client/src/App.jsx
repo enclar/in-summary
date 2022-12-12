@@ -12,6 +12,7 @@ import AllAccounts from "./pages/AllAccounts";
 import Projects from "./pages/Projects";
 import NewProject from "./pages/NewProject";
 import ProjectDetails from "./pages/ProjectDetails";
+import ClientDetails from "./pages/ClientDetails";
 
 import Navbar from "./components/Navbars/Navbar";
 import AdminNavbar from "./components/Navbars/AdminNavbar";
@@ -36,6 +37,7 @@ const App = () => {
                             <Route path="/enquiries" element={<Enquiries />} />
                             <Route path="/new-account" element={<NewAccount />} />
                             <Route path="/all-accounts" element={<AllAccounts />} />
+                            <Route path="/clients/:id" element={<ClientDetails />} />
                         </Route>
                     </Route>
                 </Routes>
