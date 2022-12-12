@@ -13,7 +13,7 @@ router.get("/test", (req, res) => {
 });
 
 // create new enquiry
-router.post("/new", authorization, async (req, res) => {
+router.post("/new", async (req, res) => {
     try {
         const newEnquiry = await prisma.enquiry.create(
             { data: req.body }

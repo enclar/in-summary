@@ -1,4 +1,37 @@
-const EnquiryTable = ({ enquiries }) => {
+import { enquiriesAtom } from "../../pages/Enquiries";
+import { useAtom } from "jotai";
+
+const EnquiryTable = () => {
+    const [enquiries, setEnquiries] = useAtom(enquiriesAtom);
+
+    // function to follow up on enquiry
+    const followUp = async (enquiry_id) => {
+        const currUser = JSON.parse(localStorage.getItem("currUser"));
+        const url ="/api/enquiries/update/" + enquiry_id;
+
+        try {
+            const response = await fetch(url, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: JSON.parse(localStorage.getItem("token"))
+                },
+                body: JSON.stringify({ staffId: currUser.id })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("updated enquiry:", data);
+                const updatedEnquiries = enquiries?.filter((enquiry) => enquiry.id !== data.id);
+                updatedEnquiries.push(data);
+                setEnquiries(updatedEnquiries);
+            }
+        } catch (error) {
+            console.log("client error:", error)
+        }
+    };
+
     return (
         <table id="enquiry-table" className="w-4/5">
             <thead>
@@ -25,7 +58,7 @@ const EnquiryTable = ({ enquiries }) => {
                                     enquiry?.followUp?
                                     <td className="px-5 border-2 text-center">{enquiry?.followUpBy?.name}</td> :
                                     <td className="px-5 border-2">
-                                        <input type="checkbox" />
+                                        <input type="checkbox" onClick={() => followUp(enquiry?.id)} />
                                     </td>
                                 }
                             </tr>
