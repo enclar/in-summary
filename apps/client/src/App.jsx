@@ -8,11 +8,12 @@ import Home from "./pages/Home";
 import Enquiries from "./pages/Enquiries";
 import NewAccount from "./pages/NewAccount";
 import AllAccounts from "./pages/AllAccounts";
+import ClientDetails from "./pages/ClientDetails";
 
 import Projects from "./pages/Projects";
 import NewProject from "./pages/NewProject";
 import ProjectDetails from "./pages/ProjectDetails";
-import ClientDetails from "./pages/ClientDetails";
+import NoteContent from "./pages/NoteContent";
 
 import Navbar from "./components/Navbars/Navbar";
 import AdminNavbar from "./components/Navbars/AdminNavbar";
@@ -32,6 +33,7 @@ const App = () => {
                             <Route path="/projects" element={<Projects />} />
                             <Route path="/new-project" element={<NewProject />} />
                             <Route path="/projects/:id" element={<ProjectDetails />} />
+                            <Route path="/notes/:id" element={<NoteContent />} />
                         </Route>
                         <Route path="/" element={<AdminNavbar />}>
                             <Route path="/enquiries" element={<Enquiries />} />

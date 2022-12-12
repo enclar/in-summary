@@ -29,4 +29,22 @@ router.post("/new", authorization, async (req, res) => {
     }
 });
 
+// edit an existing note
+router.put("/edit/:note", authorization, async (req, res) => {
+    try {
+        const updatedNote = await prisma.note.update({
+            where: { id: req.params.note },
+            data: { content: req.body.content }
+        });
+
+        if (!updatedNote) {
+            res.status(401).json({ error: "Unable to edit note" });
+        } else {
+            res.status(200).json(updatedNote);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 module.exports = router;
