@@ -1,6 +1,6 @@
 const ProjectLogs = ({ project }) => {
     return (
-        <div id="project-logs" className="bg-teal-800 px-10 py-4 rounded-md flex flex-col gap-5 items-center">
+        <div id="project-logs" className="bg-teal-800 w-4/5 px-10 py-4 rounded-md flex flex-col gap-5 items-center">
             <p className="text-slate-50 text-2xl tracking-widest">{project?.title?.toUpperCase()}</p>
             <div className="flex gap-5">
                 <p className="bg-slate-50 px-3 rounded-sm text-teal-800"># {project?.type}</p>

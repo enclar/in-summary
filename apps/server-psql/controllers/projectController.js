@@ -19,14 +19,18 @@ router.get("/all", authorization, async (req, res) => {
             include: {
                 inCharge: true,
                 client: true,
-                checkpoints: true,
+                checkpoints: {
+                    orderBy: { date: "asc" }
+                },
                 vendors: true,
                 notes: true,
                 meetings: true,
-                tasks: true
+                tasks: {
+                    orderBy: { dueBy: "asc" }
+                }
             },
             orderBy: {
-                startDate: "asc"
+                startDate: "asc",
             }
         });
 

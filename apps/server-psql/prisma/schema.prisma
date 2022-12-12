@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
@@ -91,7 +91,7 @@ model Checkpoint {
 
 model Note {
   id        String   @id @default(uuid())
-  date      DateTime
+  date      DateTime @default(now())
   content   String
   project   Project  @relation(fields: [projectId], references: [id]) // Each Note is only for one Project
   projectId String

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useAtom } from "jotai";
-import { currProjAtom } from "../Projects/ProjectTableRow";
+import { currProjAtom } from "../../Projects/ProjectTableRow";
 
 const AddCheckpoint = () => {
     // setting up state

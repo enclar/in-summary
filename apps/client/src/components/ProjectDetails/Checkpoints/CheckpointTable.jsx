@@ -1,4 +1,4 @@
-import { currProjAtom } from "../Projects/ProjectTableRow";
+import { currProjAtom } from "../../Projects/ProjectTableRow";
 import { useAtom } from "jotai";
 
 const CheckpointTable = () => {
@@ -20,8 +20,8 @@ const CheckpointTable = () => {
 
             if (response.ok) {
                 console.log("deleted checkpoint:", data);
-                const filtered = checkpoints?.filter((checkpoint) => checkpoint.id !== data.id);
-                setCheckpoints(filtered);
+                const filtered = project?.checkpoints?.filter((checkpoint) => checkpoint.id !== data.id);
+                setProject({...project, checkpoints: filtered});
             } else {
                 console.log("server error:", data.error);
             }

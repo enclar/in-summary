@@ -1,7 +1,5 @@
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { atom, useAtom } from "jotai";
-import { projectAtom } from "./Projects";
 import { toast, ToastContainer } from "react-toastify";
 import NewProjectForm from "../components/NewProject/NewProjectForm";
 

@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form";
 import { useAtom } from "jotai";
 import { toast } from "react-toastify";
 
-import { taskAtom } from "./Tasks";
-import { staffAtom } from "../../pages/NewProject";
+import { currProjAtom } from "../../Projects/ProjectTableRow";
+import { staffAtom } from "../../../pages/NewProject";
 
-const AddTask = ({ project }) => {
-    const [tasks, setTasks] = useAtom(taskAtom);
+const AddTask = () => {
+    const [project, setProject] = useAtom(currProjAtom);
     const [staff] = useAtom(staffAtom);
     const { register, handleSubmit } = useForm();
 
@@ -30,7 +30,8 @@ const AddTask = ({ project }) => {
 
             if (response.ok) {
                 console.log("added task:", data2);
-                setTasks([...tasks, data2]);
+                setProject({...project, tasks: [...project?.tasks, data2]});
+                document.getElementById("add-task-form").reset();
             } else {
                 console.log("server error:", data2.error);
                 toast.error("Unable to add task, please try again");
@@ -42,7 +43,7 @@ const AddTask = ({ project }) => {
 
     return (
         <form
-            id="add-checkpoint-form"
+            id="add-task-form"
             className="flex flex-col gap-3 items-center"
             onSubmit={handleSubmit(newTask)}
             method="post"

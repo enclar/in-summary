@@ -31,7 +31,7 @@ const Projects = () => {
                     console.log("fetched all projects:", data);
                     setProjects(data);
                 } else {
-                    console.log("server error:", error);
+                    console.log("server error:", data.error);
                 }
             } catch(error) {
                 console.log("client error:", error);

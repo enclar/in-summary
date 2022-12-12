@@ -1,8 +1,8 @@
-import { taskAtom } from "./Tasks";
+import { currProjAtom } from "../../Projects/ProjectTableRow";
 import { useAtom } from "jotai";
 
 const TaskTable = () => {
-    const [tasks] = useAtom(taskAtom);
+    const [project, setProject] = useAtom(currProjAtom);
 
     return (
         <table id="task-table">
@@ -16,7 +16,7 @@ const TaskTable = () => {
             </thead>
             <tbody>
                 {
-                    tasks?.map((task, index) => {
+                    project?.tasks?.map((task, index) => {
                         return (
                             <tr key={index}>
                                 <td className="px-5 border-2">{task?.dueBy?.slice(0, 10)}</td>
