@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 
 import Enquiries from "./pages/Enquiries";
 import NewAccount from "./pages/NewAccount";
-import Accounts from "./pages/Accounts";
+import AllAccounts from "./pages/AllAccounts";
 
 import Projects from "./pages/Projects";
 import NewProject from "./pages/NewProject";
@@ -35,6 +35,7 @@ const App = () => {
                         <Route path="/" element={<AdminNavbar />}>
                             <Route path="/enquiries" element={<Enquiries />} />
                             <Route path="/new-account" element={<NewAccount />} />
+                            <Route path="/all-accounts" element={<AllAccounts />} />
                         </Route>
                     </Route>
                 </Routes>
