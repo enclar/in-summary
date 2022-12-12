@@ -18,7 +18,12 @@ router.get("/all", authorization, async (req, res) => {
         const projects = await prisma.project.findMany({
             include: {
                 inCharge: true,
-                client: true
+                client: true,
+                checkpoints: true,
+                vendors: true,
+                notes: true,
+                meetings: true,
+                tasks: true
             },
             orderBy: {
                 startDate: "asc"

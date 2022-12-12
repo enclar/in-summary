@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useAtom } from "jotai";
-import { checkpointAtom } from "./Timeline";
+import { currProjAtom } from "../Projects/ProjectTableRow";
 
-const AddCheckpoint = ({ project }) => {
+const AddCheckpoint = () => {
     // setting up state
-    const [checkpoints, setCheckpoints] = useAtom(checkpointAtom);
+    const [project, setProject] = useAtom(currProjAtom);
 
     // setting up react hook form
     const { register, handleSubmit } = useForm();
@@ -29,7 +29,7 @@ const AddCheckpoint = ({ project }) => {
 
             if (response.ok) {
                 console.log("added new checkpoint:", data2);
-                setCheckpoints([...checkpoints, data2]);
+                setProject({...project, checkpoints: [...project?.checkpoints, data2]});
                 document.getElementById("add-checkpoint-form").reset();
             } else {
                 console.log("server error:", data2.error);

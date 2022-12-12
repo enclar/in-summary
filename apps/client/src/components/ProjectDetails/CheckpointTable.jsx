@@ -1,8 +1,8 @@
-import { checkpointAtom } from "./Timeline";
+import { currProjAtom } from "../Projects/ProjectTableRow";
 import { useAtom } from "jotai";
 
 const CheckpointTable = () => {
-    const [checkpoints, setCheckpoints] = useAtom(checkpointAtom);
+    const [project, setProject] = useAtom(currProjAtom);
 
     // function to delete checkpoint
     const deleteCheckpoint = async (checkpoint_id) => {
@@ -40,7 +40,7 @@ const CheckpointTable = () => {
             </thead>
             <tbody>
                 {
-                    checkpoints?.map((checkpoint, index) => {
+                    project?.checkpoints?.map((checkpoint, index) => {
                         return (
                             <tr key={index}>
                                 <td className="px-5 border-2 text-center">{checkpoint?.date?.slice(0, 10)}</td>

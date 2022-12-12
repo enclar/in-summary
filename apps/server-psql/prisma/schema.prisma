@@ -92,7 +92,7 @@ model Checkpoint {
 model Note {
   id        String   @id @default(uuid())
   date      DateTime
-  content   String[]
+  content   String
   project   Project  @relation(fields: [projectId], references: [id]) // Each Note is only for one Project
   projectId String
 }

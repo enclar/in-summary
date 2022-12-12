@@ -15,59 +15,55 @@ const ClientDetails = () => {
                 </div>
 
                 {
-                    details?.contacts?.length === 0 ?
-                    <div className="flex flex-col items-center gap-2">
-                        <p className="italic text-slate-50">no contact information available</p>
-                        <AddContact />
-                    </div>
-                    :
-                    <div className="flex flex-col items-center gap-5">
-                        <label className="flex flex-col items-center gap-1 text-slate-50">
-                            contacts
-                            <table>
-                                    <thead>
-                                        <tr>
-                                            <th className="px-4 border-2 text-slate-50">name</th>
-                                            <th className="px-4 border-2 text-slate-50">contact number</th>
+                    details?.projects?.length === 0 ?
+                    <p className="italic text-slate-50">no projects yet</p> :
+                    <table>
+                        <thead>
+                            <tr>
+                                <th className="border-2 text-slate-50">projects</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                details?.projects?.map((project, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td className="px-5 py-1 border-2 text-slate-50">{project?.title}</td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            details?.contacts?.map((contact, index) => {
-                                                return (
-                                                    <tr key={index}>
-                                                        <td className="px-4 py-1 border-2 text-slate-50">{contact?.name}</td>
-                                                        <td className="px-4 py-1 border-2 text-slate-50 text-center">{contact?.contactNum}</td>
-                                                    </tr>
-                                                )
-                                            })
-                                        }
-                                    </tbody>
-                            </table>
-                        </label>
-                        <AddContact />
-                    </div>
-
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
                 }
 
-                <table className="mt-5">
-                    <thead>
-                        <tr>
-                            <th className="border-2 text-slate-50">projects</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            details?.projects?.map((project, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td className="px-5 py-1 border-2 text-slate-50">{project?.title}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+                {
+                    details?.contacts?.length === 0 ?
+                    <p className="italic text-slate-50">no contact information available</p> :
+                    <table className="mt-3">
+                        <thead>
+                            <tr>
+                                <th colSpan={2} className="px-4 border-2 text-slate-50">contact information</th>
+                            </tr>
+                            <tr>
+                                <th className="px-4 border-2 text-slate-50">name</th>
+                                <th className="px-4 border-2 text-slate-50">contact number</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    details?.contacts?.map((contact, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td className="px-4 py-1 border-2 text-slate-50">{contact?.name}</td>
+                                                <td className="px-4 py-1 border-2 text-slate-50 text-center">{contact?.contactNum}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                    </table>
+                }
             </div>
             <button className="bg-teal-700 py-1 px-5 rounded-full text-slate-50">back</button>
         </div>
