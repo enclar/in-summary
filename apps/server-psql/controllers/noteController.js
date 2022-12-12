@@ -47,4 +47,21 @@ router.put("/edit/:note", authorization, async (req, res) => {
     }
 });
 
+// delete an existing note
+router.delete("/delete/:note", authorization, async (req, res) => {
+    try {
+        const deletedNote = await prisma.note.delete({
+            where: { id: req.params.note }
+        });
+
+        if (!deletedNote) {
+            res.status(401).json({ error: "Unable to delete note" })
+        } else {
+            res.status(200).json(deletedNote);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+})
+
 module.exports = router;

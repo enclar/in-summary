@@ -29,7 +29,8 @@ const NoteContent = () => {
                 console.log("updated the note:", data);
                 setCurrNote(data);
                 const filteredNotes = project?.notes?.filter(note => note.id !== data.id);
-                setProject({...project, notes: [date, ...project?.notes]});
+                setProject({...project, notes: [data, ...filteredNotes]});
+                setEditing(!editing);
             }
         } catch (error) {
             console.log("client error:", error);
@@ -45,8 +46,8 @@ const NoteContent = () => {
                 {
                     !editing ?
                     <>
-                        <pre className="font-sans">
-                            <p className="text-lg w-4/5">{currNote?.content}</p>
+                        <pre className="font-sans w-full">
+                            <p className="text-lg w-4/6">{currNote?.content}</p>
                         </pre>
                         <button
                             className="bg-slate-50 text-sky-900 mt-5 px-5 py-1 rounded-full tracking-wider text-lg"
@@ -62,7 +63,7 @@ const NoteContent = () => {
                         </pre>
                         <button
                             className="bg-slate-50 text-sky-900 mt-5 px-5 py-1 rounded-full tracking-wider text-lg"
-                            onClick={() => setEditing(!editing)}
+                            onClick={editNote}
                         >
                             save edits
                         </button>
