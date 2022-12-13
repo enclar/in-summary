@@ -42,6 +42,33 @@ const TaskTable = () => {
         }
     }
 
+    // function to complete a task
+    const completeTask = async (id) => {
+        const url = "/api/tasks/complete/" + id;
+
+        try {
+            const response = await fetch(url, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: JSON.parse(localStorage.getItem("token"))
+                },
+                body: JSON.stringify({ completed: true })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("completed task:", data);
+                setProject(data?.project);
+            } else {
+                console.log("server error:", data.error)
+            }
+        } catch (error) {
+            console.log("client error:", error);
+        }
+    }
+
     return (
         <table id="task-table">
             <thead>
@@ -63,7 +90,12 @@ const TaskTable = () => {
                                     <td className="px-3 w-2/5 border-2">{task?.description}</td>
                                     <td className="px-3 border-2 text-center">{task?.doneBy}</td>
                                     <td className="px-3 border-2 text-center">
-                                        <input type="checkbox" checked={task?.completed ? true : false } disabled={task?.completed ? true : false } />
+                                        <input
+                                            type="checkbox"
+                                            checked={task?.completed ? true : false }
+                                            onChange={() => completeTask(task.id)}
+                                            disabled={task?.completed ? true : false }
+                                        />
                                     </td>
                                     {
                                         task?.completed ?
@@ -93,10 +125,13 @@ const TaskTable = () => {
                                         </select>
                                     </td>
                                     <td className="p-3 border-2 text-center">
-                                        <input type="checkbox" checked={false} disabled={true} />
+                                        <input type="checkbox" defaultChecked={false} disabled={true} />
                                     </td>
                                     <td className="p-3 text-center">
-                                        <button className="bg-slate-50 text-sky-900 px-3 rounded-full">update</button>
+                                        <button
+                                            className="bg-slate-50 text-sky-900 px-3 rounded-full"
+                                            onClick={editTask}
+                                        >update</button>
                                     </td>
                                 </tr>
                             )

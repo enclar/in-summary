@@ -47,4 +47,80 @@ router.post("/new", authorization, async (req, res) => {
     }
 });
 
+// update an existing task
+router.put("/update/:id", authorization, async (req, res) => {
+    try {
+        const updatedTask = await prisma.task.update({
+            where: req.params,
+            data: req.body,
+            include: {
+                project: {
+                    include: {
+                        inCharge: true,
+                        client: true,
+                        checkpoints: {
+                            orderBy: { date: "asc" }
+                        },
+                        vendors: true,
+                        notes: true,
+                        meetings: true,
+                        tasks: {
+                            orderBy: { dueBy: "asc" }
+                        },
+                        albums: {
+                            include: { images: true }
+                        }
+                    }
+                }
+            }
+        });
+
+        if (!updatedTask) {
+            res.status(401).json({ error: "Unable to update task" });
+        } else {
+            res.status(200).json(updatedTask);
+        }
+    } catch (error) {
+        res.status(501).json({ error: error });
+    }
+});
+
+// complete an existing task
+router.put("/complete/:id", authorization, async (req, res) => {
+    try {
+        const completedTask = await prisma.task.update({
+            where: req.params,
+            data: req.body,
+            include: {
+                project: {
+                    include: {
+                        inCharge: true,
+                        client: true,
+                        checkpoints: {
+                            orderBy: { date: "asc" }
+                        },
+                        vendors: true,
+                        notes: true,
+                        meetings: true,
+                        tasks: {
+                            orderBy: { dueBy: "asc" }
+                        },
+                        albums: {
+                            include: { images: true }
+                        }
+                    }
+                }
+            }
+        });
+
+        if (!completedTask) {
+            res.status(401).json({ error: "Unable to complete task"});
+        } else {
+            res.status(200).json(completedTask);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+})
+
 module.exports = router;
