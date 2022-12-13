@@ -57,8 +57,8 @@ const ProjectLogs = () => {
                     }
                     <p className="bg-slate-50 px-3 rounded-sm text-teal-800">i/c - {project?.inCharge?.name}</p>
                     <p className="bg-slate-50 px-3 rounded-sm text-teal-800">client - {project?.client?.name}</p>
+                    <ion-icon name="create-outline" size="large" onClick={() => setEditing(true)} style={{ color: "white", cursor: "pointer"}}></ion-icon>
                 </div>
-                <button className="bg-slate-50 px-4 mt-5 italic rounded-full" onClick={() => setEditing(true)}>edit project details</button>
             </div>
         )
     } else {
