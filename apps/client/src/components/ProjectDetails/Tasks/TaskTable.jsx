@@ -69,6 +69,32 @@ const TaskTable = () => {
         }
     }
 
+    // function to delete a task
+    const deleteTask = async (id) => {
+        const url = "/api/tasks/delete/" + id;
+
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: JSON.parse(localStorage.getItem("token"))
+                }
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("deleted task:", data);
+                setProject(data?.project);
+            } else {
+                console.log("server error:", data?.error);
+            }
+        } catch (error) {
+            console.log("client error:", error);
+        }
+    }
+
     return (
         <table id="task-table">
             <thead>
@@ -102,7 +128,7 @@ const TaskTable = () => {
                                         <></> :
                                         <td className="pl-5 w-full flex gap-1 items-center hover:cursor-pointer">
                                             <ion-icon name="create-outline" size="large" onClick={() => setEditing(task?.id)}></ion-icon>
-                                            <ion-icon name="close" size="large"></ion-icon>
+                                            <ion-icon name="close" size="large" onClick={() => deleteTask(task.id)}></ion-icon>
                                         </td>
                                     }
                                 </tr>

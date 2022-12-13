@@ -121,6 +121,43 @@ router.put("/complete/:id", authorization, async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error });
     }
+});
+
+// delete an existing task
+router.delete("/delete/:id", authorization, async (req, res) => {
+    try {
+        const deletedTask = await prisma.task.delete({
+            where: req.params,
+            include: {
+                project: {
+                    include: {
+                        inCharge: true,
+                        client: true,
+                        checkpoints: {
+                            orderBy: { date: "asc" }
+                        },
+                        vendors: true,
+                        notes: true,
+                        meetings: true,
+                        tasks: {
+                            orderBy: { dueBy: "asc" }
+                        },
+                        albums: {
+                            include: { images: true }
+                        }
+                    }
+                }
+            }
+        });
+
+        if (!deletedTask) {
+            res.status(401).json({ error: "Unable to delete task" });
+        } else {
+            res.status(200).json(deletedTask);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
 })
 
 module.exports = router;
