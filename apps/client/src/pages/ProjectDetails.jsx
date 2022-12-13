@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { currProjAtom } from "../components/Projects/ProjectTableRow";
 import { ToastContainer } from "react-toastify";
@@ -10,6 +11,7 @@ import Notes from "../components/ProjectDetails/Notes/Notes";
 
 const ProjectDetails = () => {
     const [projDetails, setProjDetails] = useAtom(currProjAtom);
+    const navigate = useNavigate();
 
     return (
         <div id="project-details" className="my-20 w-4/5 rounded-2xl flex flex-col gap-6 items-center">
@@ -18,6 +20,7 @@ const ProjectDetails = () => {
             <Tasks />
             <Notes />
             <Vendors project={projDetails} />
+            <button onClick={() => navigate(`/projects/${projDetails.id}/images`)}>images</button>
             <ToastContainer />
         </div>
     )

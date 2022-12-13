@@ -79,6 +79,7 @@ model Project {
   notes       Note[] // Each Project can have many Notes
   meetings    Meeting[] // Each Project can have many Meetings
   tasks       Task[] // Each Project can have many Tasks
+  albums      Album[]
 }
 
 model Checkpoint {
@@ -113,6 +114,22 @@ model Task {
   completed   Boolean  @default(false)
   project     Project  @relation(fields: [projectId], references: [id])
   projectId   String
+}
+
+model Image {
+  id           String @id @default(uuid())
+  url          String
+  thumbnailUrl String
+  album        Album  @relation(fields: [albumId], references: [id])
+  albumId      String
+}
+
+model Album {
+  id        String  @id @default(uuid())
+  name      String
+  images    Image[]
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String
 }
 
 enum AccType {

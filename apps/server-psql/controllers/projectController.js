@@ -27,6 +27,9 @@ router.get("/all", authorization, async (req, res) => {
                 meetings: true,
                 tasks: {
                     orderBy: { dueBy: "asc" }
+                },
+                albums: {
+                    include: { images: true }
                 }
             },
             orderBy: {
@@ -60,43 +63,5 @@ router.post("/new", authorization, async (req, res) => {
         res.status(500).json({ error: error });
     }
 });
-
-// update a specific note in a project
-// router.put("/edit/:id", authorization, async (req, res) => {
-//     try {
-//         const updatedNote = prisma.project.update({
-//             where: { id: req.params.id },
-//             data: {
-//                 notes: {
-//                     update: {
-//                         where: { id: req.body.id },
-//                         data: { content: req.body.content }
-//                     }
-//                 }
-//             },
-//             // include: {
-//             //     inCharge: true,
-//             //     client: true,
-//             //     checkpoints: {
-//             //         orderBy: { date: "asc" }
-//             //     },
-//             //     vendors: true,
-//             //     notes: true,
-//             //     meetings: true,
-//             //     tasks: {
-//             //         orderBy: { dueBy: "asc" }
-//             //     } 
-//             // }
-//         });
-
-//         if (!updatedNote) {
-//             res.status(401).json({ error: "Unable to update note" });
-//         } else {
-//             res.status(200).json({ updated: updatedNote });
-//         }
-//     } catch (error) {
-//         res.status(500).json({ error: error });
-//     }
-// });
 
 module.exports = router;

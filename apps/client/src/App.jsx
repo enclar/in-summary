@@ -14,6 +14,7 @@ import Projects from "./pages/Projects";
 import NewProject from "./pages/NewProject";
 import ProjectDetails from "./pages/ProjectDetails";
 import NoteContent from "./pages/NoteContent";
+import Images from "./pages/Images";
 
 import Navbar from "./components/Navbars/Navbar";
 import AdminNavbar from "./components/Navbars/AdminNavbar";
@@ -34,6 +35,7 @@ const App = () => {
                             <Route path="/new-project" element={<NewProject />} />
                             <Route path="/projects/:id" element={<ProjectDetails />} />
                             <Route path="/notes/:id" element={<NoteContent />} />
+                            <Route path="/projects/:id/images" element={<Images />} />
                         </Route>
                         <Route path="/" element={<AdminNavbar />}>
                             <Route path="/enquiries" element={<Enquiries />} />
