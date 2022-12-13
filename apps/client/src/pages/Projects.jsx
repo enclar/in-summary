@@ -67,7 +67,7 @@ const Projects = () => {
     }, []);
 
     return (
-        <div id="projects" className="mt-20 flex flex-col items-center">
+        <div id="projects" className="mt-20 w-4/5 flex flex-col items-center">
             <ProjectTable />
         </div>
     )

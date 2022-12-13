@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export const currProjAtom = atom({});
 
-const ProjectTableRow = ({project, index}) => {
+const ProjectTableRow = ({ project }) => {
     // setting up state in jotai
     const [currProj, setCurrProj] = useAtom(currProjAtom);
 

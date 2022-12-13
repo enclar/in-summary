@@ -3,14 +3,12 @@ import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom"; 
 
 import { clientAtom, staffAtom } from "../../pages/NewProject";
-import { projectAtom } from "../../pages/Projects";
 import { toast } from "react-toastify";
 
 const NewProjectForm = () => {
     // setting up jotai state
     const [clients, setClients] = useAtom(clientAtom);
     const [staff, setStaff] = useAtom(staffAtom);
-    const [projects, setProjects] = useAtom(projectAtom);
 
     // navigation
     const navigate = useNavigate();
@@ -43,7 +41,6 @@ const NewProjectForm = () => {
 
             if (response.ok) {
                 console.log("added new project:", data2);
-                setProjects({...projects, data2});
                 toast.success("New project added!", { toastId: "project-add-msg" });
             } else {
                 console.log("client error:", data2.error);

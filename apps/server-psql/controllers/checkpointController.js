@@ -64,4 +64,42 @@ router.delete("/delete/:id", authorization, async (req, res) => {
     }
 });
 
+// update a checkpoint
+router.put("/update/:id", authorization, async (req, res) => {
+    try {
+        const updatedCheckpoint = await prisma.checkpoint.update({
+            where: req.params,
+            data: req.body,
+            include: {
+                project: {
+                    include: {
+                        inCharge: true,
+                        client: true,
+                        checkpoints: {
+                            orderBy: { date: "asc" }
+                        },
+                        vendors: true,
+                        notes: true,
+                        meetings: true,
+                        tasks: {
+                            orderBy: { dueBy: "asc" }
+                        },
+                        albums: {
+                            include: { images: true }
+                        }
+                    }
+                }
+            }
+        });
+
+        if (!updatedCheckpoint) {
+            res.status(401).json({ error: "Unable to update checkpoint" });
+        } else {
+            res.status(200).json(updatedCheckpoint);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 module.exports = router;

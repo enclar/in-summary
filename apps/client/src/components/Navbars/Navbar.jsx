@@ -17,10 +17,10 @@ const Navbar = () => {
     });
 
     return (
-        <div className="flex">
+        <div className="flex w-screen">
             <div
                 id="navbar"
-                className="bg-sky-100 w-1/5 min-h-screen px-10 py-12 flex flex-col justify-around items-center"
+                className="bg-sky-100 w-1/5 h-screen px-10 py-12 flex flex-col justify-around items-center"
             >
                 <div className="flex flex-col items-center gap-5">
                     <p className="text-xl tracking-widest">tl; dr</p>

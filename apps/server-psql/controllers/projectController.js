@@ -51,13 +51,63 @@ router.get("/all", authorization, async (req, res) => {
 router.post("/new", authorization, async (req, res) => {
     try {
         const project = await prisma.project.create({
-            data: req.body
+            data: req.body,
+            include: {
+                inCharge: true,
+                client: true,
+                checkpoints: {
+                    orderBy: { date: "asc" }
+                },
+                vendors: true,
+                notes: true,
+                meetings: true,
+                tasks: {
+                    orderBy: { dueBy: "asc" }
+                },
+                albums: {
+                    include: { images: true }
+                } 
+            }
         });
 
         if (!project) {
             res.status(401).json({ error: "Unable to create new project" });
         } else {
             res.status(201).json(project);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
+// edit an existing project
+router.put("/update/:id", authorization, async (req, res) => {
+    try {
+        const updatedProject = await prisma.project.update({
+            where: req.params,
+            data: req.body,
+            include: {
+                inCharge: true,
+                client: true,
+                checkpoints: {
+                    orderBy: { date: "asc" }
+                },
+                vendors: true,
+                notes: true,
+                meetings: true,
+                tasks: {
+                    orderBy: { dueBy: "asc" }
+                },
+                albums: {
+                    include: { images: true }
+                } 
+            }
+        });
+
+        if (!updatedProject) {
+            res.status(401).json({ error: "Unable to update project" });
+        } else {
+            res.status(200).json(updatedProject);
         }
     } catch (error) {
         res.status(500).json({ error: error });

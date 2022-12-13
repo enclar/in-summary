@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { currNoteAtom } from "../components/ProjectDetails/Notes/NoteSummaries";
 import { currProjAtom } from "../components/Projects/ProjectTableRow";
@@ -7,6 +8,8 @@ const NoteContent = () => {
     const [project, setProject] = useAtom(currProjAtom);
     const [currNote, setCurrNote] = useAtom(currNoteAtom);
     const [editing, setEditing] = useState(false);
+
+    const navigate = useNavigate();
 
     // function to update note content
     const editNote = async () => {
@@ -70,7 +73,12 @@ const NoteContent = () => {
                     </>
                 }
             </div>
-            <button className="bg-sky-900 px-5 py-1 rounded-full text-slate-50 tracking-wider text-lg">back</button>
+            <button 
+                className="bg-sky-900 px-5 py-1 rounded-full text-slate-50 tracking-wider text-lg"
+                onClick={() => navigate(-1)}
+            >
+                back
+            </button>
         </div>
     )
 }

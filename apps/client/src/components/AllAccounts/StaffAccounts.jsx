@@ -51,7 +51,6 @@ const StaffAccounts = () => {
                                 <td className="px-5 border-2 text-center">{staff?.name}</td>
                                 <td className="px-5 border-2 text-center">{staff?.email}</td>
                                 <td className="px-5 border-2 text-center">{staff?.contactNum}</td>
-                                <td className="pl-3 text-red-400 hover:underline hover:cursor-pointer">X</td>
                             </tr>
                         )
                     })
