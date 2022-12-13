@@ -13,7 +13,8 @@ import ClientDetails from "./pages/ClientDetails";
 import Projects from "./pages/Projects";
 import NewProject from "./pages/NewProject";
 import ProjectDetails from "./pages/ProjectDetails";
-import NoteContent from "./pages/NoteContent";
+import NoteContent from "./components/ProjectDetails/Notes/NoteContent";
+import Notes from "./pages/Notes";
 import Images from "./pages/Images";
 
 import Navbar from "./components/Navbars/Navbar";
@@ -35,6 +36,7 @@ const App = () => {
                             <Route path="/new-project" element={<NewProject />} />
                             <Route path="/projects/:id" element={<ProjectDetails />} />
                             <Route path="/notes/:id" element={<NoteContent />} />
+                            <Route path="/projects/:id/notes" element={<Notes />} />
                             <Route path="/projects/:id/images" element={<Images />} />
                         </Route>
                         <Route path="/" element={<AdminNavbar />}>

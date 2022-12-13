@@ -25,9 +25,11 @@ const ProjectDetails = () => {
             <ProjectLogs project={project} />
             <Checkpoints />
             <Tasks />
-            <Notes />
             <div className="flex gap-10">
-                <p className="bg-sky-900 py-5 px-10 rounded-lg text-slate-50 text-ls tracking-wider hover:cursor-pointer hover:bg-slate-500">notes</p>
+                <p
+                    className="bg-sky-900 py-5 px-10 rounded-lg text-slate-50 text-ls tracking-wider hover:cursor-pointer hover:bg-slate-500"
+                    onClick={() => navigate(`/projects/${project.id}/notes`)}
+                >notes</p>
                 <p
                     className="bg-sky-900 py-5 px-10 rounded-lg text-slate-50 text-ls tracking-wider hover:cursor-pointer hover:bg-slate-500"
                     onClick={goToImages}

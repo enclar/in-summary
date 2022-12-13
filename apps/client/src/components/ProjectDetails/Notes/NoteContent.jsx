@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
-import { currNoteAtom } from "../components/ProjectDetails/Notes/NoteSummaries";
-import { currProjAtom } from "../components/Projects/ProjectTableRow";
+import { currProjAtom } from "../../Projects/ProjectTableRow";
+import { currNoteAtom } from "./NoteSummaries";
 
 const NoteContent = () => {
     const [project, setProject] = useAtom(currProjAtom);
@@ -41,7 +41,7 @@ const NoteContent = () => {
     };
 
     return (
-        <div id="note-content" className="w-full my-20 flex flex-col items-center gap-10" >
+        <div id="note-content" className="w-full flex flex-col items-center gap-10" >
             <div className="bg-sky-900 p-10 w-3/5 rounded-lg flex flex-col items-center gap-10 text-slate-50">
                 <p className="bg-slate-50 text-sky-900 px-5 py-1 rounded-full text-xl tracking-wider">
                     {currNote?.date?.slice(0, 10)} MEETING NOTES

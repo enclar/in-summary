@@ -13,7 +13,6 @@ const NoteSummaries = () => {
     // function to display full content of note
     const displayNote = (note) => {
         setCurrNote(note);
-        navigate(`/notes/${note.id}`);
     }
 
     return (
@@ -25,7 +24,7 @@ const NoteSummaries = () => {
                         return (
                             <div
                                 key={index}
-                                className="bg-slate-50 px-5 py-1 h-20 rounded-md flex flex-col items-center hover:bg-sky-200 hover:cursor-pointer"
+                                className="bg-slate-50 px-5 py-1 h-20 overflow-y-hide rounded-md flex flex-col items-center hover:bg-sky-200 hover:cursor-pointer"
                                 onClick={() => displayNote(note)}
                             >
                                 <p>{note?.date?.slice(0, 10)}</p>
