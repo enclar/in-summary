@@ -8,7 +8,8 @@ const Tasks = () => {
     const [project, setProject] = useAtom(currProjAtom);
 
     return (
-        <div id="tasks" className="bg-sky-900 w-4/5 p-4 rounded-lg flex flex-col items-center">
+        <div id="tasks" className="p-10 w-full border-4 font-serif flex flex-col gap-2 items-center">
+            <p className=" text-teal-900 text-xl tracking-widest font-bold italic border-double border-4 py-2 px-10">tasks to be done</p>
             {
                 project?.tasks?.length === 0 ?
                 <AddTask />

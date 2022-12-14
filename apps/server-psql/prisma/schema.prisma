@@ -132,6 +132,15 @@ model Album {
   projectId String
 }
 
+model Inventory {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  quantity    Int
+  imageUrl    String
+  canBeUsed   Boolean @default(true)
+}
+
 enum AccType {
   staff
   client

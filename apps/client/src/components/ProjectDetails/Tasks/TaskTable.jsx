@@ -86,7 +86,8 @@ const TaskTable = () => {
 
             if (response.ok) {
                 console.log("deleted task:", data);
-                setProject(data?.project);
+                const filtered = project?.tasks?.filter(task => task.id !== data.id);
+                setProject({...project, tasks: filtered});
             } else {
                 console.log("server error:", data?.error);
             }
@@ -98,11 +99,11 @@ const TaskTable = () => {
     return (
         <table id="task-table">
             <thead>
-                <tr>
-                    <th className="border-2">due by</th>
-                    <th className="border-2">task</th>
-                    <th className="border-2 px-5">action from</th>
-                    <th className="border-2 px-5">complete?</th>
+                <tr className="text-teal-900 italic tracking-wider">
+                    <th className="border-2 py-1">due by</th>
+                    <th className="border-2 py-1">task</th>
+                    <th className="border-2 py-1 px-5">action from</th>
+                    <th className="border-2 py-1 px-5">complete?</th>
                     <th></th>
                 </tr>
             </thead>
@@ -112,9 +113,12 @@ const TaskTable = () => {
                         if (editing !== task.id) {
                             return (
                                 <tr key={index}>
-                                    <td className="px-3 border-2">{task?.dueBy?.slice(0, 10)}</td>
-                                    <td className="px-3 w-2/5 border-2">{task?.description}</td>
-                                    <td className="px-3 border-2 text-center">{task?.doneBy}</td>
+                                    <td className="px-5 py-1 border-2 text-center text-slate-700">{task?.dueBy?.slice(0, 10)}</td>
+
+                                    <td className="px-5 py-1 border-2 text-slate-700">{task?.description}</td>
+
+                                    <td className="px-5 py-1 border-2 text-center text-slate-700">{task?.doneBy}</td>
+
                                     <td className="px-3 border-2 text-center">
                                         <input
                                             type="checkbox"
@@ -127,8 +131,8 @@ const TaskTable = () => {
                                         task?.completed ?
                                         <></> :
                                         <td className="pl-5 w-full flex gap-1 items-center hover:cursor-pointer">
-                                            <ion-icon name="create-outline" size="large" onClick={() => setEditing(task?.id)}></ion-icon>
-                                            <ion-icon name="close" size="large" onClick={() => deleteTask(task.id)}></ion-icon>
+                                            <ion-icon name="create-outline" size="large" style={{ color: "darkGrey" }} onClick={() => setEditing(task?.id)}></ion-icon>
+                                            <ion-icon name="close" size="large" style={{ color: "darkGrey" }} onClick={() => deleteTask(task.id)}></ion-icon>
                                         </td>
                                     }
                                 </tr>
@@ -137,25 +141,27 @@ const TaskTable = () => {
                             return (
                                 <tr key={index}>
                                     <td className="p-3 border-2">
-                                        <input type="date" id="task-date" defaultValue={task?.dueBy?.slice(0, 10)} className="text-slate-900" />
+                                        <input type="date" id="task-date" defaultValue={task?.dueBy?.slice(0, 10)} className="bg-orange-50 p-1 text-slate-900" />
                                     </td>
 
                                     <td className="p-3 w-2/5 border-2">
-                                        <input id="task-description" defaultValue={task?.description} className="text-slate-900 w-full" />
+                                        <input id="task-description" defaultValue={task?.description} className="bg-orange-50 text-slate-900 w-full p-1" />
                                     </td>
 
                                     <td className="p-3 border-2 text-center">
-                                        <select id="task-person" className="text-slate-700 p-1 bg-slate-50" defaultValue={task?.doneBy}>
+                                        <select id="task-person" className="bg-orange-50 p-1 text-slate-900" defaultValue={task?.doneBy}>
                                             <option>{project?.client?.name}</option>
                                             { staff?.map((staff, index) => <option key={index}>{staff?.name}</option>) }
                                         </select>
                                     </td>
+
                                     <td className="p-3 border-2 text-center">
                                         <input type="checkbox" defaultChecked={false} disabled={true} />
                                     </td>
+                                    
                                     <td className="p-3 text-center">
                                         <button
-                                            className="bg-slate-50 text-sky-900 px-3 rounded-full"
+                                        className="bg-teal-900 text-slate-50 px-3 tracking-wider rounded-full"
                                             onClick={editTask}
                                         >update</button>
                                     </td>

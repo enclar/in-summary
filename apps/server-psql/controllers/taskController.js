@@ -34,7 +34,27 @@ router.get("/:project", authorization, async (req, res) => {
 router.post("/new", authorization, async (req, res) => {
     try {
         const task = await prisma.task.create({
-            data: req.body
+            data: req.body,
+            include: {
+                project: {
+                    include: {
+                        inCharge: true,
+                        client: true,
+                        checkpoints: {
+                            orderBy: { date: "asc" }
+                        },
+                        vendors: true,
+                        notes: true,
+                        meetings: true,
+                        tasks: {
+                            orderBy: { dueBy: "asc" }
+                        },
+                        albums: {
+                            include: { images: true }
+                        }
+                    }
+                }
+            }
         });
 
         if (!task) {
@@ -128,26 +148,6 @@ router.delete("/delete/:id", authorization, async (req, res) => {
     try {
         const deletedTask = await prisma.task.delete({
             where: req.params,
-            include: {
-                project: {
-                    include: {
-                        inCharge: true,
-                        client: true,
-                        checkpoints: {
-                            orderBy: { date: "asc" }
-                        },
-                        vendors: true,
-                        notes: true,
-                        meetings: true,
-                        tasks: {
-                            orderBy: { dueBy: "asc" }
-                        },
-                        albums: {
-                            include: { images: true }
-                        }
-                    }
-                }
-            }
         });
 
         if (!deletedTask) {

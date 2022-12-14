@@ -21,20 +21,24 @@ const ProjectDetails = () => {
     }
 
     return (
-        <div id="project-details" className="my-20 w-4/5 rounded-2xl flex flex-col gap-6 items-center">
+        <div id="project-details" className="mt-10 mb-20 w-4/5 flex flex-col items-center">
             <ProjectLogs project={project} />
             <Checkpoints />
             <Tasks />
-            <div className="flex gap-10">
+            <div className="w-full flex font-serif">
                 <p
-                    className="bg-sky-900 py-5 px-10 rounded-lg text-slate-50 text-ls tracking-wider hover:cursor-pointer hover:bg-slate-500"
+                    className="w-1/2 py-5 px-10 border-4 border-t-0 text-teal-900 text-xl italic font-bold tracking-wider text-center hover:cursor-pointer hover:bg-orange-50"
                     onClick={() => navigate(`/projects/${project.id}/notes`)}
                 >notes</p>
                 <p
-                    className="bg-sky-900 py-5 px-10 rounded-lg text-slate-50 text-ls tracking-wider hover:cursor-pointer hover:bg-slate-500"
+                className="w-1/2 py-5 px-10 border-b-4 border-r-4 text-teal-900 text-xl italic font-bold tracking-wider text-center hover:cursor-pointer hover:bg-orange-50"
                     onClick={goToImages}
                 >images</p>
             </div>
+            <button
+                className="bg-teal-900 text-slate-50 font-serif text-lg px-5 py-1 mt-16 rounded-full hover:bg-teal-800"
+                onClick={() => navigate(-1)}
+            >back</button>
             <ToastContainer />
         </div>
     )

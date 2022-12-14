@@ -30,7 +30,7 @@ const AddTask = () => {
 
             if (response.ok) {
                 console.log("added task:", data2);
-                setProject({...project, tasks: [...project?.tasks, data2]});
+                setProject(data2?.project);
                 document.getElementById("add-task-form").reset();
             } else {
                 console.log("server error:", data2.error);
@@ -49,24 +49,26 @@ const AddTask = () => {
             method="post"
             autoComplete="off"
         >
-            <legend className="text-slate-50 text-center tracking-wider text-md">add a new task</legend>
-            <div className="flex gap-7 items-center">
-                <label className="flex gap-2 text-slate-50">
+            <legend className="text-teal-900 font-semibold italic text-center tracking-wider text-md">add a new task</legend>
+            <div className="flex gap-10 items-center">
+                <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     due by:
-                    <input type="date" {...register("dueBy")} className="text-slate-700 pl-1" required={true} />
+                    <input type="date" {...register("dueBy")} className="bg-orange-50 text-slate-700 p-1" required={true} />
                 </label>
-                <label className="flex gap-2 text-slate-50">
+
+                <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     task:
-                    <input {...register("description")} className="text-slate-700 pl-1" required={true} />
+                    <input {...register("description")} className="bg-orange-50 text-slate-700 p-1" required={true} />
                 </label>
-                <label className="flex gap-2 text-slate-50">
+
+                <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     done by:
-                    <select {...register("doneBy")} className="text-slate-700 pl-1">
+                    <select {...register("doneBy")} className="bg-orange-50 text-slate-700 p-1">
                         <option>{project?.client?.name}</option>
                         { staff?.map((staff, index) => <option key={index}>{staff?.name}</option>) }
                     </select>
                 </label>
-                <button className="bg-slate-50 ml-2 px-5 rounded-full">add</button>
+                <button className="bg-teal-900 text-slate-50 ml-2 px-5 rounded-full">add</button>
             </div>
         </form>
     )

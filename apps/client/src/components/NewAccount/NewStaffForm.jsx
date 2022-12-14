@@ -43,37 +43,37 @@ const NewStaffForm = () => {
     return (
         <form
             id="new-staff-form"
-            className="flex flex-col items-center gap-5"
+            className="flex flex-col items-center gap-5 w-full"
             method="post" 
             onSubmit={handleSubmit(newStaff)} 
             autoComplete="off"
         >
-            <label className="flex flex-col">
+            <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 name
                 <input {...register("name")} className="bg-slate-200 px-1" required />
             </label>
 
-            <label className="flex flex-col">
+            <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 email
                 <input {...register("email")} className="bg-slate-200 px-1" required />
             </label>
 
-            <label className="flex flex-col">
+            <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 password
                 <input type="password" {...register("password")} className="bg-slate-200 px-1" required />
             </label>
 
-            <label className="flex flex-col">
+            <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 contact number
                 <input {...register("contactNum")} className="bg-slate-200 px-1" required />
             </label>
 
-            <label className="flex gap-1">
+            <label className="flex gap-2 text-slate-700 tracking-wider">
                 <input type="checkbox" {...register("isAdmin")} className="bg-slate-200" />
                 admin
             </label>
 
-            <button className="bg-sky-900 mt-5 px-5 py-1 rounded-full text-slate-50">add new staff</button>
+            <button className="bg-teal-900 mt-5 px-5 py-1 rounded-full tracking-widest italic text-slate-50">add new staff</button>
         </form>
     )
 }

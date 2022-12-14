@@ -4,33 +4,25 @@ const Navbar = () => {
     // defining variables
     const currUser = JSON.parse(localStorage.getItem("currUser"));
 
-    // mapping custom widgets
-    const widgets = ["weekly review", "projects", "enquiries", "to-do list"];
-
-    const widgetMap = widgets?.map((widget, index) => {
-        return (
-            <label className="flex gap-1" key={index}>
-                <input type="checkbox" />
-                {widget}
-            </label>
-        )
-    });
-
     return (
-        <div className="flex w-screen">
+        <div className="flex flex-col items-center">
             <div
                 id="navbar"
-                className="bg-sky-100 w-1/5 h-screen px-10 py-12 flex flex-col justify-around items-center"
+                className="w-screen h-40 my-10 border-y-8 px-20 py-10 border-double flex justify-evenly items-center"
             >
-                <div className="flex flex-col items-center gap-5">
-                    <p className="text-xl tracking-widest">tl; dr</p>
-                    <p>welcome, {currUser?.name?.toLowerCase()}!</p>
+                <div className="flex gap-16">
+                    <Link to="/projects" className="font-serif italic text-xl tracking-wider">projects</Link>
+                    <Link className="font-serif italic text-xl tracking-wider">inventory</Link>
+                    <Link to="/enquiries" className="font-serif italic text-xl tracking-wider">admin</Link>
                 </div>
-                <div className="flex flex-col gap-4 items-center">
-                    <Link to="/projects">projects</Link>
-                    <Link>inventory</Link>
-                    <Link to="/enquiries">admin</Link>
-                    <Link>logout</Link>
+
+                <div>
+                    <p className="text-4xl tracking-widest font-serif">tl; dr</p>
+                </div>
+
+                <div className="flex gap-16">
+                    <p className="font-serif italic text-xl tracking-wider">welcome, {currUser?.name?.toLowerCase()}!</p>
+                    <Link className="font-serif italic text-xl tracking-wider">logout</Link>
                 </div>
             </div>
             <Outlet />

@@ -46,17 +46,17 @@ const AddCheckpoint = () => {
             onSubmit={handleSubmit(newCheckpoint)}
             autoComplete="off"
         >
-            <legend className="text-slate-50 text-center tracking-wider text-md">add a new checkpoint</legend>
-            <div className="flex gap-7 items-center">
-                <label className="flex gap-2 text-slate-50">
+            <legend className="text-teal-900 font-semibold italic text-center tracking-wider text-md">add a new checkpoint</legend>
+            <div className="flex gap-10 items-center">
+                <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     date:
-                    <input type="date" {...register("date")} className="text-slate-700 pl-1" required={true} />
+                    <input type="date" {...register("date")} className="bg-orange-50 text-slate-700 p-1" required={true} />
                 </label>
-                <label className="flex gap-2 text-slate-50">
+                <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     checkpoint:
-                    <input {...register("details")} className="text-slate-700 pl-1" required={true} />
+                    <input {...register("details")} className="bg-orange-50 text-slate-700 p-1" required={true} />
                 </label>
-                <button className="bg-slate-50 ml-2 px-5 rounded-full">add</button>
+                <button className="bg-teal-900 text-slate-50 ml-2 px-5 rounded-full">add</button>
             </div>
         </form>
     )

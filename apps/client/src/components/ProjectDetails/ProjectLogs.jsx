@@ -45,69 +45,89 @@ const ProjectLogs = () => {
 
     if (!editing) {
         return (
-            <div id="project-logs" className="bg-teal-800 w-4/5 px-10 py-4 rounded-md flex flex-col gap-5 items-center">
-                <p className="text-slate-50 text-2xl tracking-widest">{project?.title?.toUpperCase()}</p>
-                <div className="flex gap-5">
-                    <p className="bg-slate-50 px-3 rounded-sm text-teal-800"># {project?.type}</p>
-                    <p className="bg-slate-50 px-3 rounded-sm text-teal-800">{project?.location}</p>
-                    { 
-                        project?.startDate === project?.endDate ? 
-                        <p className="bg-slate-50 px-3 rounded-sm text-teal-800">{project?.startDate?.slice(0, 10)}</p> : 
-                        <p className="bg-slate-50 px-3 rounded-sm text-teal-800">{project?.startDate?.slice(0,10)} to {project?.endDate?.slice(0,10)}</p>
-                    }
-                    <p className="bg-slate-50 px-3 rounded-sm text-teal-800">i/c - {project?.inCharge?.name}</p>
-                    <p className="bg-slate-50 px-3 rounded-sm text-teal-800">client - {project?.client?.name}</p>
-                    <ion-icon name="create-outline" size="large" onClick={() => setEditing(true)} style={{ color: "white", cursor: "pointer"}}></ion-icon>
+            <div id="project-logs" className="w-full p-10 border-double border-8 font-serif flex flex-col gap-5 items-center">
+                <p className="text-teal-900 text-3xl tracking-widest">{project?.title?.toUpperCase()}</p>
+                <div className="flex gap-5 justify-center items-center">
+                    <table>
+                        <tr className="text-slate-700 tracking-wider italic">
+                            <td className="px-5 py-1 border-x-2"># {project?.type}</td>
+                            
+                            <td className="px-5 py-1 border-r-2">{project?.location}</td>
+                            
+                            { 
+                                project?.startDate === project?.endDate ? 
+                                <td className="px-5 py-1 border-r-2">{project?.startDate?.slice(0, 10)}</td> : 
+                                <td className="px-5 py-1 border-r-2">{project?.startDate?.slice(0,10)} to {project?.endDate?.slice(0,10)}</td>
+                            }
+
+                            <td>
+                                <p className="px-5 py-1 border-r-2">i/c - {project?.inCharge?.name}</p>
+                            </td>
+                            
+                            <td>
+                                <p className="px-5 py-1 border-r-2">client - {project?.client?.name}</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <ion-icon name="create-outline" size="large" onClick={() => setEditing(true)} style={{ color: "darkGrey", cursor: "pointer" }}></ion-icon>
                 </div>
             </div>
         )
     } else {
         return (
-            <div className="w-4/5 bg-teal-800 px-10 py-4 rounded-md flex items-center justify-center">
+            <div id="project-logs" className="w-full p-10 border-double border-8 font-serif flex flex-col gap-5 items-center">
                 <form
-                    className="w-4/5  flex gap-x-10 gap-y-4 items-center justify-center flex-wrap"
+                    className="w-4/5 flex flex-col gap-8 items-center justify-center flex-wrap"
                     autoComplete="off"
                     onSubmit={handleSubmit(editProjDetails)}
                 >
-                    <label className="flex flex-col gap-1 text-slate-50">
+                    <label className="flex flex-col gap-1 text-slate-700 tracking-wider">
                         project title
-                        <input className="text-teal-900" {...register("title")} defaultValue={project?.title} required={true} />
+                        <input className="text-teal-900 bg-orange-50 px-2 py-1" {...register("title")} defaultValue={project?.title} required={true} />
                     </label>
 
-                    <label className="flex flex-col gap-1 text-slate-50">
-                        event type
-                        <select {...register("type")} className="text-teal-900" required={true} defaultValue={project?.type}>
-                            <option>wedding</option>
-                            <option>corporate</option>
-                            <option>party</option>
-                            <option>styled shoot</option>
-                            <option>others</option>
-                        </select>
-                    </label>
+                    <div className="flex w-7/8 flex-wrap gap-10 items-center justify-center">
+                        <label className="flex flex-col gap-1 text-slate-700 tracking-wider">
+                            event type
+                            <select {...register("type")} className="text-teal-900 bg-orange-50 px-2 py-1" required={true} defaultValue={project?.type}>
+                                <option>wedding</option>
+                                <option>corporate</option>
+                                <option>party</option>
+                                <option>styled shoot</option>
+                                <option>others</option>
+                            </select>
+                        </label>
 
-                    <label className="flex flex-col gap-1 text-slate-50">
-                        start date
-                        <input {...register("startDate")} type="date" className="text-teal-900" required={true} defaultValue={project?.startDate?.slice(0, 10)} />
-                    </label>
+                        <label className="flex flex-col gap-1 text-slate-700 tracking-wider">
+                            location
+                            <input className="text-teal-900 bg-orange-50 px-2 py-1" {...register("location")} defaultValue={project?.location} required={true} />
+                        </label>
 
-                    <label className="flex flex-col gap-1 text-slate-50">
-                        end date
-                        <input {...register("endDate")} type="date" className="text-teal-900" required={true} defaultValue={project?.endDate?.slice(0, 10)} />
-                    </label>
+                        <label className="flex flex-col gap-1 text-slate-700 tracking-wider">
+                            start date
+                            <input {...register("startDate")} type="date" className="text-teal-900 bg-orange-50 px-2 py-1" required={true} defaultValue={project?.startDate?.slice(0, 10)} />
+                        </label>
 
-                    <label className="flex flex-col gap-1 text-slate-50">
-                        project i/c
-                        <select {...register("inChargeId")} className="text-slate-900" defaultValue={project?.inCharge?.name}>
-                            { staff?.map((staff, index) => <option key={index}>{staff.name}</option>) }
-                        </select>
-                    </label>
+                        <label className="flex flex-col gap-1 text-slate-700 tracking-wider">
+                            end date
+                            <input {...register("endDate")} type="date" className="text-teal-900 bg-orange-50 px-2 py-1" required={true} defaultValue={project?.endDate?.slice(0, 10)} />
+                        </label>
 
-                    <label className="flex flex-col gap-1 text-slate-50">
-                        client
-                        <p className="bg-slate-50 text-teal-900 px-3">{project?.client?.name}</p>
-                    </label>
+                        <label className="flex flex-col gap-1 text-slate-700 tracking-wider">
+                            project i/c
+                            <select {...register("inChargeId")} className="text-teal-900 bg-orange-50 px-2 py-1" defaultValue={project?.inCharge?.name}>
+                                { staff?.map((staff, index) => <option key={index}>{staff.name}</option>) }
+                            </select>
+                        </label>
 
-                    <button className="bg-teal-600 text-slate-50 py-1 px-5 rounded-full">update project details</button>
+                        <label className="flex flex-col gap-1 text-slate-700 tracking-wider">
+                            client
+                            <p className="text-teal-900 bg-orange-50 px-2 py-1">{project?.client?.name}</p>
+                        </label>
+                    </div>
+
+
+                    <button className="bg-teal-900 text-slate-50 italic tracking-wider mt-5 py-1 px-5 rounded-full">update project details</button>
                 </form>
             </div>
 
