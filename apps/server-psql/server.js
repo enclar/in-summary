@@ -25,6 +25,7 @@ app.use("/api/checkpoints", require("./controllers/checkpointController"));
 app.use("/api/tasks", require("./controllers/taskController"));
 app.use("/api/notes", require("./controllers/noteController"));
 app.use("/api/albums", require("./controllers/albumController"));
+app.use("/api/inventory", require("./controllers/inventoryController"));
 
 // Routes
 // test route

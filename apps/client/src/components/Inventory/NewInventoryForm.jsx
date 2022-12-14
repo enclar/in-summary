@@ -33,6 +33,8 @@ const NewInventoryForm = () => {
 
             if (response.ok) {
                 toast.success(`${data2.name} has been added to your inventory!`);
+                document.getElementById("new-inventory-form").reset();
+                setNewImage("");
             } else {
                 console.log("server error:", data2.error);
                 toast.error("Unable to add new item, please try again");

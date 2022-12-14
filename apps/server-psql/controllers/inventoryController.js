@@ -1,0 +1,48 @@
+// Dependancies
+const router = require("express").Router();
+const authorization = require("../middleware/authorization");
+
+// Prisma
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+
+// Routes
+// test route
+router.get("/test", (req, res) => {
+    res.json({ msg: "test route for inventory controller" });
+});
+
+// get all inventory items
+router.get("/all", authorization, async (req, res) => {
+    try {
+        const items = await prisma.inventory.findMany();
+
+        if (!items) {
+            res.status(401).json({ error: "No items found" });
+        } else {
+            res.status(200).json(items);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
+// add a new inventory item
+router.post("/new", authorization, async (req, res) => {
+    try {
+        const newItem = await prisma.inventory.create({
+            data: req.body
+        });
+
+        if (!newItem) {
+            res.status(401).json({ error: "Unable to add new inventory item" });
+        } else {
+            res.status(201).json(newItem);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
+// Export
+module.exports = router;
