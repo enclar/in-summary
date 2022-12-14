@@ -18,9 +18,9 @@ const Images = () => {
             <p className="w-full py-5 px-10 border-8 border-double text-teal-900 text-xl font-bold tracking-widest text-center">{project?.title?.toUpperCase()}: <span className="italic">project images & graphics</span></p>
             {
                 project?.albums?.length === 0 ?
-                <div className="w-full flex flex-col gap-8 items-center">
+                <div className="p-10 border-4 border-t-0 w-full flex flex-col items-center gap-10">
                     <AddAlbum />
-                    <p>no albums available</p>
+                    <p className="text-teal-900 italic tracking-wider">no albums available</p>
                 </div>
                 :
                 <div className="flex flex-col w-full items-center">
@@ -37,7 +37,7 @@ const Images = () => {
                 </div>
             }
             <button 
-                className="bg-teal-900 px-5 py-1 mt-10 rounded-full text-slate-50 tracking-wider"
+                className="bg-teal-900 px-5 py-1 mt-10 rounded-full text-slate-50 italic tracking-wider"
                 onClick={() => navigate(-1)}
             >
                 back

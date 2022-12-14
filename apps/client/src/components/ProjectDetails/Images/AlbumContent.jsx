@@ -11,7 +11,7 @@ const AlbumContent = () => {
 
     // remove an image from the server
     const removeImage = async (id) => {
-        const url = "/api/albums/delete/" + id
+        const url = "/api/albums/delete-img/" + id
         try {
             const response = await fetch(url, {
                 method: "DELETE",
@@ -66,13 +66,43 @@ const AlbumContent = () => {
         }
     };
 
+    // delete an album and its images
+    const deleteAlbum = async () => {
+        const url = "/api/albums/delete-album/" + album.id;
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: JSON.parse(localStorage.getItem("token"))
+                }
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("deleted album:", data);
+                const filtered = project?.albums?.filter(album => album?.id !== data?.id);
+                setProject({...project, albums: filtered});
+                setAlbum({});
+            } else {
+                console.log("server error:", data?.error);
+            }
+        } catch (error) {
+            console.log("client error:", error);
+        }
+    };
+
     return (
         <div id="album-content" className="w-full p-10 border-4 border-t-0 flex flex-col items-center justify-center gap-5">
             {
                 !editing ?
-                <div className="flex gap-5 justify-center items-center">
-                    <p className="text-teal-900 text-xl tracking-wider">{album?.name?.toUpperCase()}</p> 
-                    <ion-icon name="create-outline" size="large" style={{ color: "darkGrey", cursor: "pointer"}} onClick={() => setEditing(true)}></ion-icon>
+                <div className="flex flex-col gap-2 justify-center items-center">
+                    <div>
+                        <ion-icon name="create-outline" size="large" style={{ color: "darkGrey", cursor: "pointer"}} onClick={() => setEditing(true)}></ion-icon>
+                        <ion-icon name="close" size="large" style={{ color: "darkGrey", cursor: "pointer"}} onClick={deleteAlbum}></ion-icon>
+                    </div>
+                    <p className="text-teal-900 text-xl tracking-wider">{album?.name?.toUpperCase()}</p>
                 </div>
                 :
                 <div className="flex gap-5">
@@ -85,10 +115,11 @@ const AlbumContent = () => {
             }
             
             <UploadWidget />
+            
             {
                 album?.images?.length === 0 ?
                 <p className="italic tracking-wider">no photos yet!</p> :
-                <div className="w-4/5 p-5 flex flex-wrap items-center justify-center gap-5">
+                <div className="w-4/5 flex flex-wrap gap-5 items-center justify-center">
                     {
                         album?.images?.map((img, index) => {
                             return (

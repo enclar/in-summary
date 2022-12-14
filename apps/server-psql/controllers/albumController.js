@@ -38,7 +38,8 @@ router.post("/new-img", authorization, async (req, res) => {
             include: { 
                 album: {
                     include: { images: true }
-                } }
+                }
+            }
         });
 
         if (!image) {
@@ -52,7 +53,7 @@ router.post("/new-img", authorization, async (req, res) => {
 });
 
 // delete an image from the album
-router.delete("/delete/:id", authorization, async (req, res) => {
+router.delete("/delete-img/:id", authorization, async (req, res) => {
     try {
         const deletedPhoto = await prisma.image.delete({
             where: req.params,
@@ -101,6 +102,27 @@ router.put("/edit-name/:id", authorization, async (req, res) => {
             res.status(400).json({ error: "Unable to update album name" });
         } else {
             res.status(200).json(updatedAlbum);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
+// delete a whole album
+router.delete("/delete-album/:id", authorization, async (req, res) => {
+    try {
+        const deleteImages = await prisma.image.deleteMany({
+            where: { albumId: req.params.id }
+        });
+
+        const deleteAlbum = await prisma.album.delete({
+            where: req.params
+        });
+
+        if (deleteImages && deleteAlbum) {
+            res.status(200).json(deleteAlbum);
+        } else {
+            res.status(400).json({ error: "Unable to delete album and its images" });
         }
     } catch (error) {
         res.status(500).json({ error: error });
