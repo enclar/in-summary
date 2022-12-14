@@ -66,7 +66,7 @@ const CheckpointTable = () => {
     };
 
     return (
-        <table classnName="w-3/5">
+        <table className="w-full">
             <thead>
                 <tr className="text-teal-900 italic tracking-wider">
                     <th className="border-2 py-1">date</th>

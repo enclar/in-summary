@@ -58,7 +58,7 @@ const NewInventoryForm = () => {
 
             <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 description
-                <textarea {...register("description")} className="bg-slate-200 px-1" />
+                <textarea {...register("description")} className="bg-slate-200 px-1 h-28" />
             </label>
         
             <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">

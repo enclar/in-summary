@@ -44,5 +44,23 @@ router.post("/new", authorization, async (req, res) => {
     }
 });
 
+// update an inventory item
+router.put("/update/:id", authorization, async (req, res) => {
+    try {
+        const updatedItem = await prisma.inventory.update({
+            where: req.params,
+            data: req.body
+        });
+
+        if (!updatedItem) {
+            res.status(400).json({ error: "Unable to update inventory item"});
+        } else {
+            res.status(200).json(updatedItem);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 // Export
 module.exports = router;

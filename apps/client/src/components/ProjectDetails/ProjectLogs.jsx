@@ -49,25 +49,27 @@ const ProjectLogs = () => {
                 <p className="text-teal-900 text-3xl tracking-widest">{project?.title?.toUpperCase()}</p>
                 <div className="flex gap-5 justify-center items-center">
                     <table>
-                        <tr className="text-slate-700 tracking-wider italic">
-                            <td className="px-5 py-1 border-x-2"># {project?.type}</td>
-                            
-                            <td className="px-5 py-1 border-r-2">{project?.location}</td>
-                            
-                            { 
-                                project?.startDate === project?.endDate ? 
-                                <td className="px-5 py-1 border-r-2">{project?.startDate?.slice(0, 10)}</td> : 
-                                <td className="px-5 py-1 border-r-2">{project?.startDate?.slice(0,10)} to {project?.endDate?.slice(0,10)}</td>
-                            }
+                        <tbody>
+                            <tr className="text-slate-700 tracking-wider italic">
+                                <td className="px-5 py-1 border-x-2"># {project?.type}</td>
+                                
+                                <td className="px-5 py-1 border-r-2">{project?.location}</td>
+                                
+                                { 
+                                    project?.startDate === project?.endDate ? 
+                                    <td className="px-5 py-1 border-r-2">{project?.startDate?.slice(0, 10)}</td> : 
+                                    <td className="px-5 py-1 border-r-2">{project?.startDate?.slice(0,10)} to {project?.endDate?.slice(0,10)}</td>
+                                }
 
-                            <td>
-                                <p className="px-5 py-1 border-r-2">i/c - {project?.inCharge?.name}</p>
-                            </td>
-                            
-                            <td>
-                                <p className="px-5 py-1 border-r-2">client - {project?.client?.name}</p>
-                            </td>
-                        </tr>
+                                <td>
+                                    <p className="px-5 py-1 border-r-2">i/c - {project?.inCharge?.name}</p>
+                                </td>
+                                
+                                <td>
+                                    <p className="px-5 py-1 border-r-2">client - {project?.client?.name}</p>
+                                </td>
+                            </tr>              
+                        </tbody>
                     </table>
                     <ion-icon name="create-outline" size="large" onClick={() => setEditing(true)} style={{ color: "darkGrey", cursor: "pointer" }}></ion-icon>
                 </div>

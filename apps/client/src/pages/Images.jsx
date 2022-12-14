@@ -14,17 +14,21 @@ const Images = () => {
     const navigate = useNavigate();
 
     return (
-        <div id="images" className="my-20 flex flex-col items-center gap-10">
+        <div id="images" className=" mt-10 mb-20 w-3/4 flex flex-col items-center font-serif">
+            <p className="w-full py-5 px-10 border-8 border-double text-teal-900 text-xl font-bold tracking-widest text-center">{project?.title?.toUpperCase()}: <span className="italic">project images & graphics</span></p>
             {
                 project?.albums?.length === 0 ?
-                <div className="flex flex-col gap-8 items-center">
+                <div className="w-full flex flex-col gap-8 items-center">
                     <AddAlbum />
                     <p>no albums available</p>
                 </div>
                 :
-                <div className="flex flex-col gap-8 items-center">
-                    <AddAlbum />
-                    <Albums />
+                <div className="flex flex-col w-full items-center">
+                    <div className="p-10 border-4 border-t-0 w-full flex flex-col items-center gap-10">
+                        <AddAlbum />
+                        <Albums />
+                    </div>
+
                     {
                         Object.keys(album).length === 0 ?
                         <></> :
@@ -33,7 +37,7 @@ const Images = () => {
                 </div>
             }
             <button 
-                className="bg-sky-900 px-5 py-1 rounded-full text-slate-50 tracking-wider"
+                className="bg-teal-900 px-5 py-1 mt-10 rounded-full text-slate-50 tracking-wider"
                 onClick={() => navigate(-1)}
             >
                 back

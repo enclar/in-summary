@@ -41,10 +41,10 @@ const AddAlbum = () => {
             autoComplete="off"
         >
             <label className="flex gap-2 text-md items-center tracking-wider">
-                album name
-                <input {...register("name")} className="bg-slate-200 p-1" />
+                album name:
+                <input {...register("name")} className="bg-orange-100 p-1" />
             </label>
-            <button className="bg-sky-900 text-slate-50 px-4 py-1 rounded-full">add album</button>
+            <button className="bg-teal-900 text-slate-50 px-4 py-1 rounded-full italic tracking-wider">add album</button>
         </form>
     )
 }
