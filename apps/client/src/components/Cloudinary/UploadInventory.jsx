@@ -1,17 +1,18 @@
 import { useRef, useEffect } from "react";
-import { useAtom } from "jotai";
-import { currProjAtom } from "../Projects/ProjectTableRow";
+import { atom, useAtom } from "jotai";
+
+export const newInventoryImgAtom = atom("");
 
 const UploadInventory = () => {
-    const [project, setProject] = useAtom(currProjAtom);
+    const [newImage, setNewImage] = useAtom(newInventoryImgAtom);
 
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
     
     useEffect(() => {
-        cloudinaryRef.current = window.cloudinary;
+        cloudinaryRef.current = window?.cloudinary;
 
-        widgetRef.current = cloudinaryRef.current.createUploadInventory(
+        widgetRef.current = cloudinaryRef?.current?.createUploadWidget(
             {
                 cloudName: "dzz1tj7yu",
                 uploadPreset: "capstone"
@@ -19,6 +20,8 @@ const UploadInventory = () => {
             async (error, result) => {
                 if (!error && result && result.event === "success") {
                     console.log("uploaded image:", result.info);
+
+                    setNewImage(result?.info?.url);
                 }
             }
         );
@@ -27,9 +30,9 @@ const UploadInventory = () => {
     return (
         <button
             onClick={() => widgetRef.current.open()}
-            className="mt-5 bg-teal-900 text-slate-50 px-5 py-1 rounded-full"
+            className="mt-5 mb-10 bg-slate-200 text-slate-700 italic tracking-wider px-5 py-1 rounded-full"
         >
-            upload image
+            upload item image
         </button>
     )
 }

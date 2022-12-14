@@ -12,7 +12,7 @@ const Navbar = () => {
             >
                 <div className="flex gap-16">
                     <Link to="/projects" className="font-serif italic text-xl tracking-wider">projects</Link>
-                    <Link className="font-serif italic text-xl tracking-wider">inventory</Link>
+                    <Link to="/inventory" className="font-serif italic text-xl tracking-wider">inventory</Link>
                     <Link to="/enquiries" className="font-serif italic text-xl tracking-wider">admin</Link>
                 </div>
 

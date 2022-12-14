@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Landing from "./pages/Landing";
 import NewEnquiry from "./pages/NewEnquiry";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
 
 import Enquiries from "./pages/Enquiries";
 import NewAccount from "./pages/NewAccount";
@@ -13,13 +12,14 @@ import ClientDetails from "./pages/ClientDetails";
 import Projects from "./pages/Projects";
 import NewProject from "./pages/NewProject";
 import ProjectDetails from "./pages/ProjectDetails";
-import NoteContent from "./components/ProjectDetails/Notes/NoteContent";
 import Notes from "./pages/Notes";
 import Images from "./pages/Images";
 
+import Inventory from "./pages/Inventory";
+import NewInventory from "./pages/NewInventory";
+
 import Navbar from "./components/Navbars/Navbar";
 import AdminNavbar from "./components/Navbars/AdminNavbar";
-import ProjectNavbar from "./components/Navbars/ProjectNavbar";
 
 const App = () => {
     return (
@@ -30,12 +30,15 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/enquiry" element={<NewEnquiry />} />
                     <Route path="/" element={<Navbar />}>
-                        <Route path="/home" element={<Home />} />
                         <Route path="/projects" element={<Projects />} />
                         <Route path="/new-project" element={<NewProject />} />
                         <Route path="/projects/:id" element={<ProjectDetails />} />
                         <Route path="/projects/:id/notes" element={<Notes />} />
                         <Route path="/projects/:id/images" element={<Images />} />
+
+                        <Route path="/inventory" element={<Inventory />} />
+                        <Route path="/new-inventory" element={<NewInventory />} />
+
                         <Route path="/" element={<AdminNavbar />}>
                             <Route path="/enquiries" element={<Enquiries />} />
                             <Route path="/new-account" element={<NewAccount />} />

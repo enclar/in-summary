@@ -36,7 +36,7 @@ const Login = () => {
                 console.log("successfully logged in:", data);
                 localStorage.setItem("currUser", JSON.stringify(data.user));
                 localStorage.setItem("token", JSON.stringify(data.token));
-                navigate("/home");
+                navigate("/projects");
             } else {
                 console.log("server error:", data.error);
                 toast.error(data.error, { toastId: "login-fail-msg" });
