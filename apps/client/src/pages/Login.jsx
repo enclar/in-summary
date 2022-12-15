@@ -84,12 +84,12 @@ const Login = () => {
                 <label className="my-3 flex flex-col gap-2">
                     i'm logging in as a:
                     <select
+                        id="acc-type-select"
                         className="bg-slate-100 p-1 tracking-wide"
                         {...register("accountType")}
                     >
                         <option>staff</option>
                         <option>client</option>
-                        <option>vendor</option>
                     </select>
                 </label>
                 <button

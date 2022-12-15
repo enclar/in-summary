@@ -28,7 +28,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex gap-16">
-                    <p className="font-serif italic text-xl tracking-wider">welcome, {currUser?.name?.toLowerCase()}!</p>
+                    <p id="welcome-msg" className="font-serif italic text-xl tracking-wider">welcome, {currUser?.name?.toLowerCase()}!</p>
                     <p onClick={handleLogout} className="font-serif italic text-xl tracking-wider cursor-pointer hover:underline">logout</p>
                 </div>
             </div>

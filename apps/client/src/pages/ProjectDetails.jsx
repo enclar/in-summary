@@ -8,8 +8,6 @@ import { ToastContainer } from "react-toastify";
 import ProjectLogs from "../components/ProjectDetails/ProjectLogs";
 import Checkpoints from "../components/ProjectDetails/Checkpoints/Checkpoints";
 import Tasks from "../components/ProjectDetails/Tasks/Tasks";
-import Vendors from "../components/ProjectDetails/Vendors";
-import Notes from "../components/ProjectDetails/Notes/Notes";
 
 const ProjectDetails = () => {
     const [project, setProject] = useAtom(currProjAtom);
