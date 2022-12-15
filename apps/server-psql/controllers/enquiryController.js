@@ -51,7 +51,8 @@ router.put("/update/:id", authorization, async (req, res) => {
             data: {
                 followUp: true,
                 staffId: req.body.staffId
-            }
+            },
+            include: { followUpBy: true }
         });
 
         if (!updatedEnquiry) {

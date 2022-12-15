@@ -50,18 +50,18 @@ const Login = () => {
         <div id="login" className="my-24">
             <form
                 id="login-form"
-                className="flex flex-col items-center gap-3"
+                className="flex flex-col items-center gap-3 font-serif text-teal-900"
                 method="post"
                 autoComplete="off"
                 onSubmit={handleSubmit(handleLogin)}
             >
                 <legend
                     id="login-legend"
-                    className="mb-5 text-stone-600 font-bold"
+                    className="mb-5 text-xl italic tracking-wider font-bold"
                 >
                     too long; read later
                 </legend>
-                <label className="flex flex-col">
+                <label className="flex flex-col tracking-wider">
                     email:
                     <input
                         required
@@ -71,7 +71,7 @@ const Login = () => {
                         {...register("email")}
                     />
                 </label>
-                <label className="flex flex-col">
+                <label className="flex flex-col tracking-wider">
                     password:
                     <input
                         required
@@ -94,7 +94,7 @@ const Login = () => {
                 </label>
                 <button
                     id="login-btn"
-                    className="mt-5 px-4 py-1 rounded-full bg-stone-600 text-slate-100 "
+                    className="mt-5 px-4 py-1 rounded-full bg-teal-900 text-slate-50 italic tracking-wider"
                 >
                     login
                 </button>

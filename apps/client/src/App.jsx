@@ -20,6 +20,7 @@ import NewInventory from "./pages/NewInventory";
 
 import Navbar from "./components/Navbars/Navbar";
 import AdminNavbar from "./components/Navbars/AdminNavbar";
+import Unauthorized from "./pages/Unauthorized";
 
 const App = () => {
     return (
@@ -30,6 +31,8 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/enquiry" element={<NewEnquiry />} />
                     <Route path="/" element={<Navbar />}>
+                        <Route path="/unauthorized" element={<Unauthorized />} />
+
                         <Route path="/projects" element={<Projects />} />
                         <Route path="/new-project" element={<NewProject />} />
                         <Route path="/projects/:id" element={<ProjectDetails />} />

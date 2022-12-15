@@ -23,8 +23,9 @@ const EnquiryTable = () => {
 
             if (response.ok) {
                 console.log("updated enquiry:", data);
-                const updatedEnquiries = enquiries?.filter((enquiry) => enquiry.id !== data.id);
-                updatedEnquiries.push(data);
+                const index = enquiries?.map(enquiry => enquiry.id).indexOf(data.id);
+                const updatedEnquiries = enquiries?.map(enquiry => enquiry)
+                updatedEnquiries[index] = data;
                 setEnquiries(updatedEnquiries);
             }
         } catch (error) {
@@ -33,15 +34,15 @@ const EnquiryTable = () => {
     };
 
     return (
-        <table id="enquiry-table" className="w-full">
+        <table id="enquiry-table" className="w-4/5">
             <thead>
                 <tr className="border-y-4 border-double text-teal-900 italic tracking-widest font-serif">
-                    <th className="px-10 py-2 border-r-2">name</th>
-                    <th className="px-10 py-2 border-r-2">contact details</th>
-                    <th className="px-10 py-2 border-r-2">date</th>
-                    <th className="px-10 py-2 border-r-2">type</th>
-                    <th className="px-10 py-2 border-r-2">details</th>
-                    <th className="px-10 py-2">follow up?</th>
+                    <th className="px-5 py-2 border-r-2">name</th>
+                    <th className="px-5 py-2 border-r-2">contact details</th>
+                    <th className="px-5 py-2 border-r-2">date</th>
+                    <th className="px-5 py-2 border-r-2">type</th>
+                    <th className="px-5 py-2 border-r-2">details</th>
+                    <th className="px-5 py-2">follow up?</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,7 +58,7 @@ const EnquiryTable = () => {
                                 {
                                     enquiry?.followUp?
                                     <td className="px-5 py-2 text-center">{enquiry?.followUpBy?.name}</td> :
-                                    <td className="px-5 py-2">
+                                    <td className="px-5 py-2 text-center align-middle">
                                         <input type="checkbox" onClick={() => followUp(enquiry?.id)} />
                                     </td>
                                 }

@@ -9,16 +9,17 @@ datasource db {
 }
 
 model Enquiry {
-  id          String   @id @default(uuid())
-  name        String
-  email       String
-  contactNum  String
-  date        DateTime
-  type        String
-  description String
-  followUp    Boolean  @default(false)
-  followUpBy  Staff?   @relation(fields: [staffId], references: [id])
-  staffId     String?
+  id            String   @id @default(uuid())
+  dateSubmitted DateTime
+  name          String
+  email         String
+  contactNum    String
+  date          DateTime
+  type          String
+  description   String
+  followUp      Boolean  @default(false)
+  followUpBy    Staff?   @relation(fields: [staffId], references: [id])
+  staffId       String?
 }
 
 model Staff {
