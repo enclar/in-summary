@@ -62,6 +62,7 @@ const StaffAccounts = () => {
                 const updatedStaff = staff?.map(staff => staff);
                 updatedStaff[index] = data;
                 setStaff(updatedStaff);
+                setEditing("");
             } else {
                 console.log("server error:", data?.error);
             }
@@ -110,7 +111,10 @@ const StaffAccounts = () => {
                                     </td>
 
                                     <td className="px-5 flex gap-2 items-center justify-center hover:cursor-pointer">
-                                        <button className="bg-teal-900 text-slate-50 mt-2 rounded-full px-5 py-1">update info</button>
+                                        <button
+                                            className="bg-teal-900 text-slate-50 mt-2 rounded-full px-5 py-1"
+                                            onClick={() => updateStaff(staff?.id)}
+                                        >update info</button>
                                     </td>
                                 </tr>
                             )
