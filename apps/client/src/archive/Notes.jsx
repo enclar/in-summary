@@ -1,8 +1,8 @@
 import { useAtom } from "jotai";
-import { currProjAtom } from "../../Projects/ProjectTableRow";
+import { currProjAtom } from "../components/Projects/ProjectTableRow";
 
-import AddNote from "./AddNote";
-import NoteSummaries from "./NoteSummaries";
+import AddNote from "../components/ProjectDetails/Notes/AddNote";
+import NoteSummaries from "../components/ProjectDetails/Notes/NoteSummaries";
 
 const Notes = () => {
     const [project, setProject] = useAtom(currProjAtom);

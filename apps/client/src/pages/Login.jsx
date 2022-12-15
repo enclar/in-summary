@@ -47,57 +47,76 @@ const Login = () => {
     };
 
     return (
-        <div id="login" className="my-24">
+        <div id="login" className="p-20 min-h-screen font-serif flex flex-col items-center justify-center">
             <form
                 id="login-form"
-                className="flex flex-col items-center gap-3 font-serif text-teal-900"
+                className="w-full flex flex-col items-center font-serif"
                 method="post"
                 autoComplete="off"
                 onSubmit={handleSubmit(handleLogin)}
             >
                 <legend
                     id="login-legend"
-                    className="mb-5 text-xl italic tracking-wider font-bold"
+                    className="w-2/5 py-10 rounded-t-3xl text-2xl italic tracking-widest font-bold border-double border-8 text-center border-stone-400 text-teal-900 bg-orange-50/60"
                 >
-                    too long; read later
+                    welcome to your daily summary
                 </legend>
-                <label className="flex flex-col tracking-wider">
-                    email:
-                    <input
-                        required
-                        type="email"
-                        id="login-email-input"
-                        className="bg-slate-100 px-1"
-                        {...register("email")}
-                    />
-                </label>
-                <label className="flex flex-col tracking-wider">
-                    password:
-                    <input
-                        required
-                        type="password"
-                        id="login-password-input"
-                        className="bg-slate-100 px-1"
-                        {...register("password")}
-                    />
-                </label>
-                <label className="my-3 flex flex-col gap-2">
-                    i'm logging in as a:
-                    <select
-                        id="acc-type-select"
-                        className="bg-slate-100 p-1 tracking-wide"
-                        {...register("accountType")}
+
+                <div className="border-4 p-10 rounded-b-3xl border-stone-400 border-t-0 w-2/5 flex flex-col items-center gap-5 bg-slate-50/60">
+                    <label className="text-teal-900 w-3/5 text-lg tracking-wider flex flex-col">
+                        email
+                        <input
+                            required
+                            type="email"
+                            id="login-email-input"
+                            className="bg-stone-300 text-slate-700 p-1 tracking-wide"
+                            {...register("email")}
+                        />
+                    </label>
+
+                    <label className="text-teal-900 w-3/5 text-lg tracking-wider flex flex-col">
+                        password
+                        <input
+                            required
+                            type="password"
+                            id="login-password-input"
+                            className="bg-stone-300 text-slate-700 p-1 tracking-wide"
+                            {...register("password")}
+                        />
+                    </label>
+
+                    <label className="text-teal-900 mt-5 w-2/5 text-lg tracking-wider flex flex-col items-center gap-1">
+                        i'm logging in as a
+                        <select
+                            id="acc-type-select"
+                            className="bg-stone-300 text-slate-700 p-1 tracking-wide"
+                            {...register("accountType")}
+                        >
+                            <option>staff</option>
+                            <option>client</option>
+                        </select>
+                    </label>
+
+                    <button
+                        id="login-btn"
+                        className="bg-teal-900 text-slate-50 mt-10 py-1 px-4 rounded-full tracking-widest italic hover:bg-teal-800"
                     >
-                        <option>staff</option>
-                        <option>client</option>
-                    </select>
-                </label>
-                <button
-                    id="login-btn"
-                    className="mt-5 px-4 py-1 rounded-full bg-teal-900 text-slate-50 italic tracking-wider"
-                >
-                    login
-                </button>
+                        login
+                    </button>
+
+                    <p className="text-teal-900 text-center mt-5 font-bold text-lg tracking-widest italic">
+                        click{" "}
+                        <span
+                            id="go-to-login"
+                            className="underline hover:text-teal-600 hover:cursor-pointer"
+                            onClick={() => navigate("/enquiry")}
+                        >
+                            here
+                        </span>
+                        {" "}if you're new and want to submit an enquiry!
+                    </p>
+                </div>
+
             </form>
             <ToastContainer />
         </div>

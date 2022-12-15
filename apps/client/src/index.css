@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 
 #landing {
-    background: url("https://i.pinimg.com/564x/59/b6/53/59b653f5dd1f2194a6e5e78191ce9df9.jpg");
+    background: url("https://i.pinimg.com/564x/79/6d/d5/796dd5f75d125d4a524d4ae9aef2c041.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -11,6 +11,13 @@
 
 #enquiry {
     background: url("https://i.pinimg.com/564x/a3/21/e5/a321e519e329473e6839fd9302d46236.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#login {
+    background: url("https://i.pinimg.com/736x/37/f1/35/37f135ebe90dd586a50904b02e7e463d.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

@@ -33,7 +33,7 @@ const Navbar = () => {
                 </div>
 
                 <div>
-                    <p className="text-4xl tracking-widest font-serif">tl; dr</p>
+                    <p className="text-4xl text-teal-900 tracking-widest font-serif">in summary;</p>
                 </div>
 
                 <div className="flex gap-16">

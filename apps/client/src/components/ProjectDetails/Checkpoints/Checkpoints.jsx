@@ -15,7 +15,11 @@ const Checkpoints = () => {
             <p className=" text-teal-900 text-xl tracking-widest font-bold italic border-double border-4 py-2 px-10">project checkpoints</p>
             {
                 project?.checkpoints?.length === 0 ?
-                <AddCheckpoint />
+                <div className="flex flex-col items-center gap-8">
+                    <p className="mt-5 text-stone-600 font-semibold italic tracking-widest">no checkpoints available</p>
+                    <AddCheckpoint />
+                </div>
+                
                 :
                 <div className="flex flex-col gap-10 items-center">
                     <label className="flex flex-col items-center gap-2 text-slate-50 tracking-wider">

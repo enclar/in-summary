@@ -43,4 +43,38 @@ router.post("/new", authorization, async (req, res) => {
     }
 });
 
+// update an existing staff account
+router.put("/update/:id", authorization, async (req, res) => {
+    try {
+        const checkEmail = await prisma.staff.findUnique({
+            where: { email: req.body.email }
+        });
+
+        if (checkEmail.id !== req.params.id) {
+            return res.status(401).json({ error: "This email is already linked to another account" });
+        }
+
+        const checkContact = await prisma.staff.findUnique({
+            where: { contactNum: req.body.contactNum }
+        });
+
+        if (checkContact.id !== req.params.id) {
+            return res.status(401).json({ error: "This number is already linked to another account" });
+        }
+
+        const updatedStaff = await prisma.staff.update({
+            where: req.params,
+            data: req.body
+        });
+
+        if (!updatedStaff) {
+            res.status(401).json({ error: "Unable to update user information"});
+        } else {
+            res.status(200).json(updatedStaff);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 module.exports = router;

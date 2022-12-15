@@ -50,12 +50,12 @@ const NewEnquiry = () => {
         >
             <div
                 id="enquiry-legend-msg"
-                className="flex flex-col gap-2 w-2/5 p-5 border-double border-8 border-teal-900 rounded-t-3xl bg-orange-50/60"
+                className="flex flex-col gap-2 w-2/5 p-5 border-double border-8 border-stone-600 rounded-t-3xl bg-orange-50/60"
             >
                 <p className="text-teal-900 text-center text-2xl font-bold italic tracking-wider">
                     hello!
                 </p>
-                <p className="text-slate-700 text-center text-lg tracking-wider">
+                <p className="text-slate-700 text-center italic text-lg tracking-wider">
                     thank you for enquiring with us!<br/>
                     let us know what you're looking for and we'll reach out to arrange a meeting soon!
                 </p>
@@ -63,7 +63,7 @@ const NewEnquiry = () => {
 
             <form
                 id="enquiry-form"
-                className="w-2/5 bg-slate-50/40 p-10 border-4 border-t-0 border-teal-900 flex flex-col items-center justify-center gap-5 rounded-b-3xl"
+                className="w-2/5 bg-slate-50/60 p-10 border-4 border-t-0 border-stone-600 flex flex-col items-center justify-center gap-5 rounded-b-3xl"
                 autoComplete="off"
                 method="post"
                 onSubmit={handleSubmit(onSubmit)}
@@ -73,7 +73,7 @@ const NewEnquiry = () => {
                     <input
                         required
                         id="enquiry-name-input"
-                        className="bg-orange-100 text-slate-700 p-1 tracking-wide"
+                        className="bg-stone-300 text-slate-700 p-1 tracking-wide"
                         {...register("name")}
                     />
                 </label>
@@ -84,7 +84,7 @@ const NewEnquiry = () => {
                         required
                         type="email"
                         id="enquiry-email-input"
-                        className="bg-orange-100 text-slate-700 p-1 tracking-wide"
+                        className="bg-stone-300 text-slate-700 p-1 tracking-wide"
                         {...register("email")}
                     />
                 </label>
@@ -94,7 +94,7 @@ const NewEnquiry = () => {
                     <input
                         required
                         id="enquiry-contact-input"
-                        className="bg-orange-100 text-slate-700 p-1 tracking-wide"
+                        className="bg-stone-300 text-slate-700 p-1 tracking-wide"
                         {...register("contactNum")}
                     />
                 </label>
@@ -106,7 +106,7 @@ const NewEnquiry = () => {
                             required
                             type="date"
                             id="enquiry-date-input"
-                            className="bg-orange-100 w-32 pl-1 text-slate-700"
+                            className="bg-stone-300 w-32 pl-1 text-slate-700"
                             {...register("date")}
                         />
                     </label>
@@ -114,7 +114,7 @@ const NewEnquiry = () => {
                     <label className="text-teal-900 text-lg tracking-wider flex flex-col">
                         event type
                         <select
-                            className="bg-orange-100 text-slate-700 p-1 tracking-wide"
+                            className="bg-stone-300 text-slate-700 p-1 tracking-wide"
                             {...register("type")}
                         >
                             <option>wedding</option>
@@ -129,7 +129,7 @@ const NewEnquiry = () => {
                     <textarea
                         required
                         id="enquiry-description-input"
-                        className="bg-orange-100 w-full h-36 text-slate-700 p-1 tracking-wide"
+                        className="bg-stone-300 w-full h-36 text-slate-700 p-1 tracking-wide"
                         {...register("description")}
                     />
                 </label>

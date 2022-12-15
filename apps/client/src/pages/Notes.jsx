@@ -28,7 +28,7 @@ const Notes = () => {
             <div className="w-full p-10 border-4 border-t-0 flex flex-col items-center gap-10">
                 {
                     project?.notes?.length === 0 ?
-                    <p className="text-teal-900 font-semibold text-lg italic tracking-wider">no notes yet!</p> :
+                    <p className="text-stone-600 font-semibold text-md italic tracking-widest">no notes available</p> :
                     <NoteSummaries />
                 }
                 {

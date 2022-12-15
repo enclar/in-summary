@@ -60,7 +60,7 @@ const Inventory = () => {
                 }
     
                 <label className="text-teal-900 font-serif tracking-widest italic font-semibold flex flex-col items-center gap-5">
-                    view existing inventory
+                    explore the inventory
                     <InventoryItems />
                 </label>
     

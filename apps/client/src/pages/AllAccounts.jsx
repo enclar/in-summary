@@ -15,21 +15,17 @@ const AllAccounts = () => {
     };
 
     return (
-        <div id="all-accounts" className="my-12 flex flex-col items-center gap-10">
-            <label className="flex flex-col items-center">
+        <div id="all-accounts" className="flex flex-col items-center gap-10 font-serif">
+            <label className="flex flex-col items-center italic tracking-wider text-teal-900 font-semibold">
                 view all accounts for:
                 <div className="flex gap-5">
-                    <label className="flex gap-2 items-center">
+                    <label className="flex gap-2 items-center not-italic font-normal">
                         <input type="radio" name="account-type" onClick={() => setAccountType("staff")} defaultChecked={true} />
                         staff
                     </label>
-                    <label className="flex gap-2 items-center">
+                    <label className="flex gap-2 items-center not-italic font-normal">
                         <input type="radio" name="account-type" onClick={() => setAccountType("clients")} />
-                        client
-                    </label>
-                    <label className="flex gap-2 items-center">
-                        <input type="radio" name="account-type" onClick={() => setAccountType("vendors")} />
-                        vendor
+                        clients
                     </label>
                 </div>
             </label>
