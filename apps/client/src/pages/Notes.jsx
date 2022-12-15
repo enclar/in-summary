@@ -10,14 +10,20 @@ const Notes = () => {
     const [project, setProject] = useAtom(currProjAtom);
     const [note, setNote] = useAtom(currNoteAtom);
     const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem("currUser"));
 
     return (
         <div id="notes" className="mt-10 mb-20 p-10 w-4/5 rounded-md flex flex-col items-center font-serif">
             <p className="w-full py-5 px-10 border-8 border-double text-teal-900 text-xl font-bold tracking-widest text-center">{project?.title?.toUpperCase()}: <span className="italic">notes & minutes</span></p>
 
-            <div className="w-full p-10 border-4 border-t-0">
-                <AddNote />
-            </div>
+            {
+                user?.accType === "staff" ?
+                <div className="w-full p-10 border-4 border-t-0">
+                    <AddNote />
+                </div>
+                :
+                <></>
+            }
 
             <div className="w-full p-10 border-4 border-t-0 flex flex-col items-center gap-10">
                 {

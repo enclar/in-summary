@@ -6,6 +6,7 @@ import TaskTable from "./TaskTable";
 
 const Tasks = () => {
     const [project, setProject] = useAtom(currProjAtom);
+    const user = JSON.parse(localStorage.getItem("currUser"));
 
     return (
         <div id="tasks" className="p-10 w-full border-4 font-serif flex flex-col gap-2 items-center">
@@ -19,7 +20,11 @@ const Tasks = () => {
                         to be done
                         <TaskTable />
                     </label>
-                    <AddTask />
+                    {
+                        user?.accType === "staff" ?
+                        <AddTask /> :
+                        <></>
+                    }
                 </div>
             }
         </div>

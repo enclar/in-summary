@@ -7,6 +7,7 @@ const TaskTable = () => {
     const [project, setProject] = useAtom(currProjAtom);
     const [staff] = useAtom(staffAtom);
     const [editing, setEditing] = useState("");
+    const user = JSON.parse(localStorage.getItem("currUser"));
 
     // function to update task
     const editTask = async () => {
@@ -104,7 +105,6 @@ const TaskTable = () => {
                     <th className="border-2 py-1">task</th>
                     <th className="border-2 py-1 px-5">action from</th>
                     <th className="border-2 py-1 px-5">complete?</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -128,7 +128,7 @@ const TaskTable = () => {
                                         />
                                     </td>
                                     {
-                                        task?.completed ?
+                                        task?.completed || user?.accType !== "staff" ?
                                         <></> :
                                         <td className="pl-5 w-full flex gap-1 items-center hover:cursor-pointer">
                                             <ion-icon name="create-outline" size="large" style={{ color: "darkGrey" }} onClick={() => setEditing(task?.id)}></ion-icon>

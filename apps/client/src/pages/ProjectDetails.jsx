@@ -13,6 +13,8 @@ const ProjectDetails = () => {
     const [project, setProject] = useAtom(currProjAtom);
     const [album, setAlbum] = useAtom(currAlbumAtom);
     const [notes, setNote] = useAtom(currNoteAtom);
+
+    const user = JSON.parse(localStorage.getItem("currUser"));
     const navigate = useNavigate();
 
     const goToImages = () => {
@@ -40,10 +42,16 @@ const ProjectDetails = () => {
                     onClick={goToImages}
                 >images</p>
             </div>
-            <button
-                className="bg-teal-900 text-slate-50 font-serif text-lg px-5 py-1 mt-16 rounded-full hover:bg-teal-800"
-                onClick={() => navigate(-1)}
-            >back</button>
+            
+            {
+                user?.accType === "client" ?
+                <></> :
+                <button
+                    className="bg-teal-900 text-slate-50 font-serif text-lg px-5 py-1 mt-16 rounded-full hover:bg-teal-800"
+                    onClick={() => navigate(-1)}
+                >back</button>
+            }
+
             <ToastContainer />
         </div>
     )

@@ -9,6 +9,7 @@ const ProjectLogs = () => {
     const [staff] = useAtom(staffAtom);
     const [editing, setEditing] = useState(false);
 
+    const user = JSON.parse(localStorage.getItem("currUser"));
     const { register, handleSubmit } = useForm();
 
     // function to update project details
@@ -71,7 +72,14 @@ const ProjectLogs = () => {
                             </tr>              
                         </tbody>
                     </table>
-                    <ion-icon name="create-outline" size="large" onClick={() => setEditing(true)} style={{ color: "darkGrey", cursor: "pointer" }}></ion-icon>
+
+                    {
+                        user?.accType === "staff" ?
+                        <ion-icon name="create-outline" size="large" onClick={() => setEditing(true)} style={{ color: "darkGrey", cursor: "pointer" }}></ion-icon>
+                        :
+                        <></>
+                    }
+
                 </div>
             </div>
         )

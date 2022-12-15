@@ -33,8 +33,12 @@ const ItemCard = ({ item }) => {
 
             if (response.ok) {
                 console.log("updated item:", data);
-                const filtered = inventory?.filter((inventory) => inventory?.id !== data?.id);
-                filtered.unshift(data);
+                const filtered = inventory?.filter(item => item.id !== data.id);
+                if (data?.canBeUsed) {
+                    filtered.unshift(data)
+                } else {
+                    filtered.push(data);
+                }
                 setInventory(filtered);
                 setEditing("");
             } else {
@@ -53,19 +57,24 @@ const ItemCard = ({ item }) => {
                 {
                     editing === item?.id ?
                     <div className="w-full flex flex-col gap-3">
-                        <label className="flex flex-col items-center text-teal-900 tracking-wider">
+                        <label className="flex flex-col items-center text-teal-900 tracking-wider w-full">
                             name
-                            <input className="bg-orange-50 text-slate-700 p-1" id="item-name" defaultValue={item?.name} />
+                            <input className="bg-orange-50 text-slate-700 p-1 font-normal w-full" id="item-name" defaultValue={item?.name} />
                         </label>
-                        <label className="flex flex-col items-center text-teal-900 tracking-wider">
+                        <label className="flex flex-col items-center text-teal-900 tracking-wider w-full">
                             description
-                            <textarea className="bg-orange-50 w-full h-20 p-1 text-slate-700" id="item-description" defaultValue={item?.description} />
+                            <pre className="font-serif w-full">
+                                <textarea className="bg-orange-50 w-full h-20 p-1 text-slate-700 font-normal" id="item-description" defaultValue={item?.description} />
+                            </pre>
                         </label>
                     </div>
                     :
                     <div className="flex flex-col items-center">
                         <p className="text-teal-900 mt-4 tracking-wider font-semibold italic">{item?.name}</p>
-                        <p className="text-slate-700 tracking-wide leading-5">{item?.description}</p>
+                        <pre className="font-serif whitespace-pre-wrap">
+                            <p className="text-slate-700 tracking-wide leading-5 text-center font-normal">{item?.description}</p>
+                        </pre>
+
                     </div>
                 }
 
@@ -97,8 +106,8 @@ const ItemCard = ({ item }) => {
                         editing === item?.id ?
                         <button className="bg-teal-900 px-5 rounded-full text-slate-50 tracking-wider" onClick={editItem}>update item details</button> :
                         <>
-                            <button className="bg-teal-900 px-5 rounded-full text-slate-50 tracking-wider" onClick={() => setEditing(item?.id)}>edit</button>
-                            <button className="bg-teal-900 px-5 rounded-full text-slate-50 tracking-wider">delete</button>
+                            <ion-icon name="create-outline" size="large" style={{ color: "darkGrey", cursor: "pointer" }} onClick={() => setEditing(item?.id)}></ion-icon>
+                            <ion-icon name="close" size="large" style={{ color: "darkGrey", cursor: "pointer" }} onClick={() => deleteCheckpoint(checkpoint.id)}></ion-icon>
                         </>
                     }
                 </div>

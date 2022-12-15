@@ -1,13 +1,17 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import { currProjAtom } from "../Projects/ProjectTableRow";
 
 const Navbar = () => {
     // defining variables
-    const currUser = JSON.parse(localStorage.getItem("currUser"));
+    const user = JSON.parse(localStorage.getItem("currUser"));
     const navigate = useNavigate();
+    const [currProject, setCurrProject] = useAtom(currProjAtom);
 
     // function to logout
     const handleLogout = () => {
         localStorage.clear();
+        setCurrProject({});
         navigate("/login");
     };
 
@@ -20,7 +24,12 @@ const Navbar = () => {
                 <div className="flex gap-16">
                     <Link to="/projects" className="font-serif italic text-xl tracking-wider hover:underline">projects</Link>
                     <Link to="/inventory" className="font-serif italic text-xl tracking-wider hover:underline">inventory</Link>
-                    <Link to="/enquiries" className="font-serif italic text-xl tracking-wider hover:underline">admin</Link>
+                    {
+                        user?.accType === "staff" ?
+                        <Link to="/enquiries" className="font-serif italic text-xl tracking-wider hover:underline">admin</Link> :
+                        <Link className="font-serif italic text-xl tracking-wider hover:underline">account</Link>
+                    }
+                    
                 </div>
 
                 <div>
@@ -28,7 +37,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex gap-16">
-                    <p id="welcome-msg" className="font-serif italic text-xl tracking-wider">welcome, {currUser?.name?.toLowerCase()}!</p>
+                    <p id="welcome-msg" className="font-serif italic text-xl tracking-wider">welcome, {user?.name?.toLowerCase()}!</p>
                     <p onClick={handleLogout} className="font-serif italic text-xl tracking-wider cursor-pointer hover:underline">logout</p>
                 </div>
             </div>

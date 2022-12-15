@@ -6,6 +6,8 @@ const CheckpointTable = () => {
     const [project, setProject] = useAtom(currProjAtom);
     const [editing, setEditing] = useState("");
 
+    const user = JSON.parse(localStorage.getItem("currUser"));
+
     // function to delete checkpoint
     const deleteCheckpoint = async (checkpoint_id) => {
         const url = "/api/checkpoints/delete/" + checkpoint_id

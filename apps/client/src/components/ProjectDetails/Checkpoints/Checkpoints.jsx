@@ -5,6 +5,8 @@ import AddCheckpoint from "./AddCheckpoint";
 import CheckpointTable from "./CheckpointTable";
 
 const Checkpoints = () => {
+    const user = JSON.parse(localStorage.getItem("currUser"));
+
     // setting up state
     const [project] = useAtom(currProjAtom);
 

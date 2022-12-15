@@ -47,6 +47,42 @@ router.get("/all", authorization, async (req, res) => {
     }
 });
 
+// get all projects for a client
+router.get("/client-all/:id", authorization, async (req, res) => {
+    try {
+        const clientProjects = await prisma.project.findMany({
+            where: { clientId: req.params.id },
+            include: {
+                inCharge: true,
+                client: true,
+                checkpoints: {
+                    orderBy: { date: "asc" }
+                },
+                vendors: true,
+                notes: true,
+                meetings: true,
+                tasks: {
+                    orderBy: { dueBy: "asc" }
+                },
+                albums: {
+                    include: { images: true }
+                }
+            },
+            orderBy: {
+                startDate: "asc",
+            }
+        });
+
+        if (!clientProjects) {
+            res.status(401).json({ error: "No projects found for this user" });
+        } else {
+            res.status(200).json(clientProjects);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
 // add new project
 router.post("/new", authorization, async (req, res) => {
     try {

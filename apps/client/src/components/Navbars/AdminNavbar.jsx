@@ -10,7 +10,6 @@ const AdminNavbar = () => {
                 <Link to="/enquiries" className="hover:underline hover:semibold">enquiries</Link>
                 <Link to="/new-account" className="hover:underline hover:semibold">create new account</Link>
                 <Link to="/all-accounts" className="hover:underline hover:semibold">all accounts</Link>
-                <Link className="hover:underline hover:semibold">generate worker list</Link>
             </div>
             <Outlet />
         </div>

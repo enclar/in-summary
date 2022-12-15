@@ -15,7 +15,15 @@ router.get("/test", (req, res) => {
 // get all inventory items
 router.get("/all", authorization, async (req, res) => {
     try {
-        const items = await prisma.inventory.findMany();
+        const availItems = await prisma.inventory.findMany({
+            where: { canBeUsed: true }
+        });
+
+        const unavailItems = await prisma.inventory.findMany({
+            where: { canBeUsed: false }
+        });
+
+        const items = availItems.concat(unavailItems);
 
         if (!items) {
             res.status(401).json({ error: "No items found" });

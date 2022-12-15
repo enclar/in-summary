@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-import { atom, useAtom } from "jotai";
+import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import NewStaffForm from "../components/NewAccount/NewStaffForm";
 import NewClientForm from "../components/NewAccount/NewClientForm";
-import NewVendorForm from "../components/NewAccount/NewVendorForm";
 
 const NewAccount = () => {
     // setting up state
@@ -15,8 +13,6 @@ const NewAccount = () => {
             return <NewStaffForm />
         } else if (accountType === "client") {
             return <NewClientForm />
-        } else if (accountType === "vendor") {
-            return <NewVendorForm />
         }
     };
 
@@ -35,11 +31,6 @@ const NewAccount = () => {
                         <label className="flex gap-2 items-center font-normal not-italic">
                             <input type="radio" name="account-type" onClick={() => setAccountType("client")} />
                             client
-                        </label>
-
-                        <label className="flex gap-2 items-center font-normal not-italic">
-                            <input type="radio" name="account-type" onClick={() => setAccountType("vendor")} />
-                            vendor
                         </label>
                     </div>
                 </label>

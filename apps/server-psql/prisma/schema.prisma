@@ -78,7 +78,6 @@ model Project {
   checkpoints Checkpoint[] // A Project can have zero or many Checkpoints
   vendors     Vendor[] // Each Project can have many Vendors
   notes       Note[] // Each Project can have many Notes
-  meetings    Meeting[] // Each Project can have many Meetings
   tasks       Task[] // Each Project can have many Tasks
   albums      Album[]
 }
@@ -96,14 +95,6 @@ model Note {
   date      DateTime @default(now())
   content   String
   project   Project  @relation(fields: [projectId], references: [id]) // Each Note is only for one Project
-  projectId String
-}
-
-model Meeting {
-  id        String   @id @default(uuid())
-  name      String
-  date      DateTime
-  project   Project? @relation(fields: [projectId], references: [id]) // Each Meeting is only for one Project
   projectId String
 }
 

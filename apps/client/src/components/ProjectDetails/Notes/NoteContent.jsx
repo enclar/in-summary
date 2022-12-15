@@ -9,7 +9,7 @@ const NoteContent = () => {
     const [currNote, setCurrNote] = useAtom(currNoteAtom);
     const [editing, setEditing] = useState(false);
 
-    const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem("currUser"));
 
     // function to update note content
     const editNote = async () => {
@@ -80,10 +80,16 @@ const NoteContent = () => {
                         <p>{currNote?.content}</p>
                     </pre>
                     
-                    <div className="flex gap-5 justify-center items-center">
-                        <ion-icon name="create-outline" size="large" style={{ color: "darkGrey"}} onClick={() => setEditing(!editing)}></ion-icon>
-                        <ion-icon name="close" size="large" style={{ color: "darkGrey", cursor: "pointer"}} onClick={deleteNote}></ion-icon>
-                    </div>
+                    {
+                        user?.accType === "staff" ?
+                        <div className="flex gap-5 justify-center items-center">
+                            <ion-icon name="create-outline" size="large" style={{ color: "darkGrey"}} onClick={() => setEditing(!editing)}></ion-icon>
+                            <ion-icon name="close" size="large" style={{ color: "darkGrey", cursor: "pointer"}} onClick={deleteNote}></ion-icon>
+                        </div>
+                        :
+                        <></>
+                    }
+
                 </div>
                 :
                 <div className="border-4 border-t-0 w-full px-20 py-10 flex flex-col items-center justify-center gap-5">

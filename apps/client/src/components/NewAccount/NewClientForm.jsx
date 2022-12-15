@@ -52,34 +52,34 @@ const NewClientForm = () => {
     return (
         <form
             id="new-client-form"
-            className="flex flex-col items-center gap-5"
+            className="flex flex-col items-center gap-5 w-full"
             method="post"
             onSubmit={handleSubmit(newClient)}
             autoComplete="off"
         >
-            <label className="flex flex-col">
+            <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 client name
                 <input {...register("name")} className="bg-slate-200 px-1" required />
             </label>
 
-            <label className="flex flex-col">
+            <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 email
                 <input {...register("email")} className="bg-slate-200 px-1" required />
             </label>
 
-            <label className="flex flex-col">
+            <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 password
                 <input type="password" {...register("password")} className="bg-slate-200 px-1" required />
             </label>
 
-            <label className="text-center my-5">
+            <label className="text-center my-5 w-3/5 text-teal-900 tracking-wider italic font-semibold">
                 main contact person
-                <div className="mt-3 flex flex-col gap-5">
-                    <label className="text-left flex flex-col">
+                <div className="flex flex-col items-center gap-5 w-full">
+                    <label className="w-full flex flex-col text-left text-slate-700 tracking-wider not-italic font-normal">
                         name
                         <input {...register("contactName")} className="bg-slate-200 px-1" />
                     </label>
-                    <label className="text-left flex flex-col">
+                    <label className="w-full flex flex-col text-left text-slate-700 tracking-wider not-italic font-normal">
                         contact number
                         <input {...register("contactNum")} className="bg-slate-200 px-1" />
                     </label>
@@ -91,7 +91,7 @@ const NewClientForm = () => {
                 this client is a company
             </label>
 
-            <button className="bg-sky-900 mt-5 px-5 py-1 rounded-full text-slate-50">add new client</button>
+            <button className="bg-teal-900 mt-5 px-5 py-1 rounded-full text-slate-50">add new client</button>
         </form>
     )
 }
