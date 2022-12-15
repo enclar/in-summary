@@ -1,5 +1,17 @@
 @import "tailwindcss/base";
-
 @import "tailwindcss/components";
-
 @import "tailwindcss/utilities";
+
+#landing {
+    background: url("https://i.pinimg.com/564x/59/b6/53/59b653f5dd1f2194a6e5e78191ce9df9.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#enquiry {
+    background: url("https://i.pinimg.com/564x/a3/21/e5/a321e519e329473e6839fd9302d46236.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

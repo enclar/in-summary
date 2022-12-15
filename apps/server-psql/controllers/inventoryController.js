@@ -70,5 +70,22 @@ router.put("/update/:id", authorization, async (req, res) => {
     }
 });
 
+// delete an inventory item
+router.delete("/delete/:id", authorization, async (req, res) => {
+    try {
+        const deletedItem = await prisma.inventory.delete({
+            where: req.params
+        });
+
+        if (!deletedItem) {
+            res.status(400).json({ error: "Unable to delete item" });
+        } else {
+            res.status(200).json(deletedItem);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+})
+
 // Export
 module.exports = router;

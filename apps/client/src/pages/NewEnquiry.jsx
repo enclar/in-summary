@@ -46,70 +46,75 @@ const NewEnquiry = () => {
     return (
         <div
             id="enquiry"
-            className="my-24 flex flex-col items-center justify-center gap-12"
+            className="p-20 min-h-screen font-serif flex flex-col items-center justify-center"
         >
             <div
                 id="enquiry-legend-msg"
-                className="flex flex-col gap-2"
+                className="flex flex-col gap-2 w-2/5 p-5 border-double border-8 border-teal-900 rounded-t-3xl bg-orange-50/60"
             >
-                <p className="text-sky-700 text-center text-xl tracking-wider">
+                <p className="text-teal-900 text-center text-2xl font-bold italic tracking-wider">
                     hello!
                 </p>
-                <p className="text-sky-900 text-center text-m tracking-wider">
+                <p className="text-slate-700 text-center text-lg tracking-wider">
                     thank you for enquiring with us!<br/>
-                    let us know what you're looking for and we'll reach out to arrange a meeting soon
+                    let us know what you're looking for and we'll reach out to arrange a meeting soon!
                 </p>
             </div>
+
             <form
                 id="enquiry-form"
-                className="bg-sky-900 px-20 py-10 rounded-xl flex flex-col items-center justify-center gap-5"
+                className="w-2/5 bg-slate-50/40 p-10 border-4 border-t-0 border-teal-900 flex flex-col items-center justify-center gap-5 rounded-b-3xl"
                 autoComplete="off"
                 method="post"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <label className="text-slate-50 flex flex-col">
-                    name:
+                <label className="text-teal-900 w-3/5 text-lg tracking-wider flex flex-col">
+                    name
                     <input
                         required
                         id="enquiry-name-input"
-                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
+                        className="bg-orange-100 text-slate-700 p-1 tracking-wide"
                         {...register("name")}
                     />
                 </label>
-                <label className="text-slate-50 flex flex-col">
-                    email:
+
+                <label className="text-teal-900 w-3/5 text-lg tracking-wider flex flex-col">
+                    email
                     <input
                         required
                         type="email"
                         id="enquiry-email-input"
-                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
+                        className="bg-orange-100 text-slate-700 p-1 tracking-wide"
                         {...register("email")}
                     />
                 </label>
-                <label className="text-slate-50 flex flex-col">
-                    contact number:
+
+                <label className="text-teal-900 w-3/5 text-lg tracking-wider flex flex-col">
+                    contact number
                     <input
                         required
                         id="enquiry-contact-input"
-                        className="bg-slate-100 text-slate-500 p-1 tracking-wide"
+                        className="bg-orange-100 text-slate-700 p-1 tracking-wide"
                         {...register("contactNum")}
                     />
                 </label>
-                <div className="flex gap-7">
-                    <label className="text-slate-50 flex flex-col">
-                        event date:
+
+                <div className="flex w-2/5 justify-around">
+                    <label className="text-teal-900 text-lg tracking-wider flex flex-col">
+                        event date
                         <input
                             required
                             type="date"
                             id="enquiry-date-input"
-                            className="bg-slate-100 w-32 pl-1 text-slate-500"
+                            className="bg-orange-100 w-32 pl-1 text-slate-700"
                             {...register("date")}
                         />
                     </label>
-                    <label className="text-slate-50 flex flex-col">
-                        event type:
+
+                    <label className="text-teal-900 text-lg tracking-wider flex flex-col">
+                        event type
                         <select
-                            className="bg-slate-100 text-slate-500 p-1 tracking-wide"
+                            className="bg-orange-100 text-slate-700 p-1 tracking-wide"
                             {...register("type")}
                         >
                             <option>wedding</option>
@@ -119,33 +124,35 @@ const NewEnquiry = () => {
                         </select>
                     </label>
                 </div>
-                <label className="text-slate-50 flex flex-col">
-                    event description:
+                <label className="text-teal-900 w-3/5 text-lg tracking-wider flex flex-col">
+                    event description
                     <textarea
                         required
                         id="enquiry-description-input"
-                        className="bg-slate-100 w-64 h-36 text-slate-500 p-1 tracking-wide"
+                        className="bg-orange-100 w-full h-36 text-slate-700 p-1 tracking-wide"
                         {...register("description")}
                     />
                 </label>
                 <button
                     id="submit-enquiry-btn"
-                    className="bg-slate-500 text-slate-50 mt-10 py-1 px-4 rounded-full tracking-wider hover:bg-slate-200 hover:text-slate-500"
+                    className="bg-teal-900 text-slate-50 mt-10 py-1 px-4 rounded-full tracking-widest italic hover:bg-teal-800"
                 >
                     submit enquiry
                 </button>
+
+                <p className="text-teal-900 text-center mt-5 font-bold text-lg tracking-widest italic">
+                    click{" "}
+                    <span
+                        id="go-to-login"
+                        className="underline hover:text-teal-600 hover:cursor-pointer"
+                        onClick={() => navigate("/login")}
+                    >
+                        here
+                    </span>
+                    {" "}to log in if you're an existing client!
+                </p>
             </form>
-            <p className="text-sky-900 text-center text-m tracking-wider">
-                click{" "}
-                <span
-                    id="go-to-login"
-                    className="underline hover:text-sky-600 hover:cursor-pointer"
-                    onClick={() => navigate("/login")}
-                >
-                    here
-                </span>
-                {" "}to log in if you're an existing client!
-            </p>
+
             <ToastContainer />
         </div>
     )

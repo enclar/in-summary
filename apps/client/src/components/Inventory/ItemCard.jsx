@@ -49,6 +49,33 @@ const ItemCard = ({ item }) => {
         }
     };
 
+    // function to delete an item
+    const deleteItem = async () => {
+        const url = "/api/inventory/delete/" + item?.id;
+
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: JSON.parse(localStorage.getItem("token"))
+                }
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("deleted item:", data);
+                const filtered = inventory?.filter(item => item.id !== data?.id);
+                setInventory(filtered);
+            } else {
+                console.log("server error:", error);
+            }
+        } catch (error) {
+            console.log("client error:", error);
+        }
+    };
+
     return (
         <div id="item-card" className="border-double border-4 p-10 w-1/4 font-serif flex flex-col items-center gap-5 justify-between">
             <div className="flex flex-col gap-3 items-center">
