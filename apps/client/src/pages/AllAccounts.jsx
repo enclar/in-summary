@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import ClientAccounts from "../components/AllAccounts/ClientAccounts";
 import StaffAccounts from "../components/AllAccounts/StaffAccounts";
 
@@ -30,6 +31,7 @@ const AllAccounts = () => {
                 </div>
             </label>
             { whichAccounts() }
+            <ToastContainer />
         </div>
     )
 }

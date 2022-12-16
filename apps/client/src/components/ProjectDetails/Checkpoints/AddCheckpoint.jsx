@@ -29,7 +29,7 @@ const AddCheckpoint = () => {
 
             if (response.ok) {
                 console.log("added new checkpoint:", data2);
-                setProject({...project, checkpoints: [...project?.checkpoints, data2]});
+                setProject(data2?.project);
                 document.getElementById("add-checkpoint-form").reset();
             } else {
                 console.log("server error:", data2.error);

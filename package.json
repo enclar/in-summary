@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "cd apps/server && npm run dev"
+    "start": "cd apps/server-psql && npm run dev"
   },
   "repository": {
     "type": "git",

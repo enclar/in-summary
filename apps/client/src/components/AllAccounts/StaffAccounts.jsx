@@ -42,6 +42,8 @@ const StaffAccounts = () => {
             contactNum: document.getElementById("staff-num").value
         };
 
+        console.log("updated staff:", updatedStaff);
+
         const url = "/api/staff/update/" + id;
 
         try {

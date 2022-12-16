@@ -10,7 +10,7 @@ datasource db {
 
 model Enquiry {
   id            String   @id @default(uuid())
-  dateSubmitted DateTime
+  dateSubmitted DateTime @default(now())
   name          String
   email         String
   contactNum    String

@@ -50,27 +50,25 @@ router.put("/update/:id", authorization, async (req, res) => {
             where: { email: req.body.email }
         });
 
-        if (checkEmail[0].id !== req.params.id) {
-            return res.status(401).json({ error: "This email is already linked to another account" });
-        }
-
         const checkContact = await prisma.staff.findUnique({
             where: { contactNum: req.body.contactNum }
         });
 
-        if (checkContact[0].id !== req.params.id) {
-            return res.status(401).json({ error: "This number is already linked to another account" });
-        }
-
-        const updatedStaff = await prisma.staff.update({
-            where: req.params,
-            data: req.body
-        });
-
-        if (!updatedStaff) {
-            res.status(401).json({ error: "Unable to update user information"});
+        if (checkEmail.id !== req.params.id) {
+            res.status(401).json({ error: "This email is already linked to another account" });
+        } else if (checkContact.id !== req.params.id) {
+            res.status(401).json({ error: "This number is already linked to another account" })
         } else {
-            res.status(200).json(updatedStaff);
+            const updatedStaff = await prisma.staff.update({
+                where: req.params,
+                data: req.body
+            });
+    
+            if (!updatedStaff) {
+                res.status(401).json({ error: "Unable to update user information"});
+            } else {
+                res.status(200).json(updatedStaff);
+            }
         }
     } catch (error) {
         res.status(500).json({ error: error });
