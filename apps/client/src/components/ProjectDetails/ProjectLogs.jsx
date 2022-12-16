@@ -47,7 +47,7 @@ const ProjectLogs = () => {
     if (!editing) {
         return (
             <div id="project-logs" className="w-full p-10 rounded-t-2xl bg-lime-900/40 font-serif flex flex-col gap-5 items-center">
-                <p className="text-stone-50 text-3xl tracking-widest">{project?.title?.toUpperCase()}</p>
+                <p id="project-title" className="text-stone-50 text-3xl tracking-widest">{project?.title?.toUpperCase()}</p>
                 <div className="flex gap-5 justify-center items-center">
                     <table>
                         <tbody>

@@ -42,6 +42,7 @@ const NewProjectForm = () => {
             if (response.ok) {
                 console.log("added new project:", data2);
                 toast.success("New project added!", { toastId: "project-add-msg" });
+                document.getElementById("new-project-form").reset();
             } else {
                 console.log("client error:", data2.error);
                 toast.error("Unable to add project, please try again", { toastId: "project-no-add-msg" });

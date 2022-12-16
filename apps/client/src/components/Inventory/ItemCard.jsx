@@ -131,7 +131,7 @@ const ItemCard = ({ item }) => {
                 <div className="mt-5 flex gap-5">
                     {
                         editing === item?.id ?
-                        <button className="bg-teal-900 px-5 rounded-full text-slate-50 tracking-wider" onClick={editItem}>update item details</button> :
+                        <button className="bg-teal-900 italic hover:bg-teal-800 px-5 rounded-full text-slate-50 tracking-wider" onClick={editItem}>update item details</button> :
                         <>
                             <ion-icon name="create-outline" size="large" style={{ color: "darkGrey", cursor: "pointer" }} onClick={() => setEditing(item?.id)}></ion-icon>
                             <ion-icon name="close" size="large" style={{ color: "darkGrey", cursor: "pointer" }} onClick={() => deleteCheckpoint(checkpoint.id)}></ion-icon>

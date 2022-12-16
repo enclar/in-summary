@@ -48,12 +48,13 @@ const ClientProjects = () => {
     } else {
         return (
             <div id="client-projects" className="py-20 px-10 w-screen min-h-screen flex flex-col items-center gap-10 font-serif">
-                <p className="text-teal-900 font-serif tracking-widest italic font-semibold">click one of your projects to view more details</p>
+                <p id="click-proj-msg" className="text-teal-900 font-serif tracking-widest italic font-semibold">click one of your projects to view more details</p>
                 <div className="flex items-center justify-center gap-5">
                     {
                         clientProjects?.map((project, index) => {
                             return (
                                 <p
+                                    id={`client-proj-${index}`}
                                     key={index}
                                     className="border-stone-600 border-double border-4 px-5 py-3 text-slate-700 tracking-wider hover:bg-orange-50 hover:cursor-pointer"
                                     onClick={() => setCurrProject(project)}
