@@ -50,7 +50,7 @@ router.put("/update/:id", authorization, async (req, res) => {
             where: { email: req.body.email }
         });
 
-        if (checkEmail.id !== req.params.id) {
+        if (checkEmail[0].id !== req.params.id) {
             return res.status(401).json({ error: "This email is already linked to another account" });
         }
 
@@ -58,7 +58,7 @@ router.put("/update/:id", authorization, async (req, res) => {
             where: { contactNum: req.body.contactNum }
         });
 
-        if (checkContact.id !== req.params.id) {
+        if (checkContact[0].id !== req.params.id) {
             return res.status(401).json({ error: "This number is already linked to another account" });
         }
 
