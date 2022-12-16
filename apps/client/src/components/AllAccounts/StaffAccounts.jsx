@@ -6,6 +6,7 @@ import { staffAtom } from "../../pages/NewProject";
 const StaffAccounts = () => {
     const [staff, setStaff] = useAtom(staffAtom);
     const [editing, setEditing] = useState("");
+    const user = JSON.parse(localStorage.getItem("currUser"));
 
     // function to fetch all staff accounts
     useEffect(() => {
@@ -77,7 +78,7 @@ const StaffAccounts = () => {
     }
 
     return (
-        <table id="staff-accounts" className="tracking-wider">
+        <table id="staff-accounts" className="tracking-wider not-italic font-normal">
             <thead>
                 <tr className="text-slate-50 italic">
                     <th className="px-10 py-2 border-r-4 text-center bg-lime-900/40">name</th>
@@ -94,9 +95,14 @@ const StaffAccounts = () => {
                                     <td className="px-10 py-2 border-b-2 border-x-2 text-center border-lime-900/40">{staff?.name}</td>
                                     <td className="px-10 py-2 border-b-2 border-r-2 text-center border-lime-900/40">{staff?.email}</td>
                                     <td className="px-10 py-2 border-b-2 border-r-2 text-center border-lime-900/40">{staff?.contactNum}</td>
-                                    <td className="px-5 flex gap-2 items-center justify-center hover:cursor-pointer">
-                                        <ion-icon name="create-outline" size="small" style={{ color: "darkGrey", marginTop: "10px" }} onClick={() => setEditing(staff?.id)}></ion-icon>
-                                    </td>
+                                    {
+                                        user?.accType === "staff" ?
+                                        <td className="px-5 flex gap-2 items-center justify-center hover:cursor-pointer">
+                                            <ion-icon name="create-outline" size="small" style={{ color: "darkGrey", marginTop: "10px" }} onClick={() => setEditing(staff?.id)}></ion-icon>
+                                        </td>
+                                        :
+                                        <></>
+                                    }
                                 </tr>
                             )
                         } else {

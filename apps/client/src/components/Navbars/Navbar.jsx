@@ -27,7 +27,7 @@ const Navbar = () => {
                     {
                         user?.accType === "staff" ?
                         <Link to="/enquiries" className="font-serif italic text-xl tracking-wider hover:underline">admin</Link> :
-                        <Link className="font-serif italic text-xl tracking-wider hover:underline">account</Link>
+                        <Link to="/client-account" className="font-serif italic text-xl tracking-wider hover:underline">contact us</Link>
                     }
                     
                 </div>

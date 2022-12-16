@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { viewAccAtom } from "../components/AllAccounts/ClientAccounts";
-import AddContact from "../components/AllAccounts/AddContact";
+import { viewAccAtom } from "./ClientAccounts";
+import AddContact from "./AddContact";
 
 const ClientDetails = () => {
     const [details, setDetails] = useAtom(viewAccAtom);
@@ -16,7 +16,7 @@ const ClientDetails = () => {
 
                 {
                     details?.projects?.length === 0 ?
-                    <p className="italic text-slate-50">no projects yet</p> :
+                    <p className="italic text-stone-500">no projects yet</p> :
                     <table>
                         <thead>
                             <tr>

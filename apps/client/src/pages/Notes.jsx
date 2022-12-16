@@ -16,7 +16,7 @@ const Notes = () => {
         return <Navigate replace to="/login" />
     } else {
         return (
-            <div id="notes" className="px-10 py-20 w-full rounded-md flex flex-col items-center font-serif">
+            <div id="notes" className="px-10 py-20 w-full min-h-screen rounded-md flex flex-col items-center font-serif">
                 <p className="w-4/5 p-10 bg-lime-900/40 rounded-t-2xl text-slate-50 text-xl font-bold tracking-widest text-center">{project?.title?.toUpperCase()}: <span className="italic">notes & minutes</span></p>
     
                 {

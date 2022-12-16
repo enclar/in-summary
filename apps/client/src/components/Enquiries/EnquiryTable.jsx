@@ -58,7 +58,7 @@ const EnquiryTable = () => {
                                 {
                                     enquiry?.followUp?
                                     <td className="px-5 py-2 text-center border-r-2 border-lime-900/40">{enquiry?.followUpBy?.name}</td> :
-                                    <td className="px-5 py-2 text-center align-middle border-r-2 border-lime-900/400">
+                                    <td className="px-5 py-2 text-center align-middle border-r-2 border-lime-900/40">
                                         <input type="checkbox" onClick={() => followUp(enquiry?.id)} />
                                     </td>
                                 }

@@ -52,66 +52,66 @@ const NewProjectForm = () => {
     };
 
     return (
-        <form id="new-project-form" className="flex flex-col items-center gap-4" method="post" onSubmit={handleSubmit(addProject)}>
-            <legend className="bg-sky-700 mt-10 mb-5 px-5 py-1 rounded-full text-slate-50 tracking-wider">add a new project</legend>
+        <form id="new-project-form" className="w-1/3 flex flex-col items-center font-serif" method="post" onSubmit={handleSubmit(addProject)}>
+            <legend className="bg-lime-900/40 w-full text-center px-10 py-5 rounded-t-xl italic font-semibold text-slate-50 tracking-wider">add a new project</legend>
 
-            <label className="w-full flex flex-col">
-                project title
-                <input {...register("title")} className="bg-slate-300" required={true} />
-            </label>
-
-            <div className="flex gap-6">
-                <label className="flex flex-col">
-                    start date
-                    <input {...register("startDate")} type="date" className="bg-slate-300" required={true} />
+            <div className="border-4 border-lime-900/40 rounded-b-xl w-full p-10 flex flex-col items-center gap-5 text-stone-500 tracking-wider">
+                <label className="w-4/5 flex flex-col">
+                    project title
+                    <input {...register("title")} className="bg-orange-100" required={true} />
                 </label>
 
-                <label className="flex flex-col">
-                    end date
-                    <input {...register("endDate")} type="date" className="bg-slate-300" required={true} />
+                <div className="flex w-4/5 justify-around">
+                    <label className="flex flex-col">
+                        start date
+                        <input {...register("startDate")} type="date" className="bg-orange-100" required={true} />
+                    </label>
+
+                    <label className="flex flex-col">
+                        end date
+                        <input {...register("endDate")} type="date" className="bg-orange-100" required={true} />
+                    </label>
+
+                    <label className="flex flex-col">
+                        event type
+                        <select {...register("type")} className="bg-orange-100" required={true}>
+                            <option>wedding</option>
+                            <option>corporate</option>
+                            <option>party</option>
+                            <option>styled shoot</option>
+                            <option>others</option>
+                        </select>
+                    </label>
+                </div>
+
+                <label className="w-4/5 flex flex-col">
+                    location
+                    <textarea {...register("location")} className="bg-orange-100" />
                 </label>
+
+                <div className="w-4/5 flex justify-around">
+                    <label className="flex flex-col">
+                        client
+                        <select {...register("clientId")} className="bg-orange-100" required={true}>
+                            { clients?.map((client, index) => <option key={index}>{client.name}</option>) }
+                        </select>
+                    </label>
+                    <label className="w-36 flex flex-col">
+                        budget
+                        <input {...register("budget")} type="number" className="bg-orange-100 pl-1" />
+                    </label>
+
+                    <label className="flex flex-col">
+                        project i/c
+                        <select {...register("inChargeId")} className="pt-1 bg-orange-100">
+                            { staff?.map((staff, index) => <option key={index}>{staff.name}</option>) }
+                        </select>
+                    </label>
+                </div>
+
+                <button className="bg-teal-900 italic hover:bg-teal-800 mt-10 px-5 py-1 rounded-full text-slate-50 tracking-wider">create</button>
             </div>
 
-            <div className="w-full flex gap-6 justify-around">
-                <label className="flex flex-col">
-                    event type
-                    <select {...register("type")} className="bg-slate-300" required={true}>
-                        <option>wedding</option>
-                        <option>corporate</option>
-                        <option>party</option>
-                        <option>styled shoot</option>
-                        <option>others</option>
-                    </select>
-                </label>
-
-                <label className="flex flex-col">
-                    client
-                    <select {...register("clientId")} className="bg-slate-300" required={true}>
-                        { clients?.map((client, index) => <option key={index}>{client.name}</option>) }
-                    </select>
-                </label>
-            </div>
-
-            <label className="w-full flex flex-col">
-                location
-                <textarea {...register("location")} className="bg-slate-300" />
-            </label>
-
-            <div className="w-full flex justify-around">
-                <label className="w-36 flex flex-col">
-                    budget
-                    <input {...register("budget")} type="number" className="bg-slate-300 pl-1" />
-                </label>
-
-                <label className="flex flex-col">
-                    project i/c
-                    <select {...register("inChargeId")} className="pt-1 bg-slate-300">
-                        { staff?.map((staff, index) => <option key={index}>{staff.name}</option>) }
-                    </select>
-                </label>
-            </div>
-
-            <button className="bg-sky-700 mt-10 px-5 py-1 rounded-full text-slate-50 tracking-wider">create</button>
         </form>
     )
 }

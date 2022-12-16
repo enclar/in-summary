@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Enquiries from "./pages/Enquiries";
 import NewAccount from "./pages/NewAccount";
 import AllAccounts from "./pages/AllAccounts";
-import ClientDetails from "./pages/ClientDetails";
+import ClientAccount from "./pages/ClientAccount";
 
 import Projects from "./pages/Projects";
 import NewProject from "./pages/NewProject";
@@ -19,7 +19,6 @@ import Inventory from "./pages/Inventory";
 import NewInventory from "./pages/NewInventory";
 
 import Navbar from "./components/Navbars/Navbar";
-import AdminNavbar from "./components/Navbars/AdminNavbar";
 import Unauthorized from "./pages/Unauthorized";
 
 const App = () => {
@@ -45,7 +44,7 @@ const App = () => {
                         <Route path="/enquiries" element={<Enquiries />} />
                         <Route path="/new-account" element={<NewAccount />} />
                         <Route path="/all-accounts" element={<AllAccounts />} />
-                        <Route path="/clients/:id" element={<ClientDetails />} />
+                        <Route path="/client-account" element={<ClientAccount />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

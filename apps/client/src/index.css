@@ -23,7 +23,7 @@
     background-position: center;
 }
 
-#projects, #client-projects, #project-details, #images, #notes {
+#projects, #client-projects, #project-details, #images, #notes, #new-project {
     background: url(../images/enquiry.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -37,7 +37,7 @@
     background-position: center;
 }
 
-#enquiries, #new-account, #all-accounts {
+#enquiries, #new-account, #all-accounts, #client-account {
     background: url(../images/admin.jpg);
     background-repeat: no-repeat;
     background-size: cover;

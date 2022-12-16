@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { atom, useAtom } from "jotai";
 import { clientAtom } from "../../pages/NewProject";
-import ClientDetails from "../../pages/ClientDetails";
+import ClientDetails from "./ClientDetails";
 
 export const viewAccAtom = atom({});
 

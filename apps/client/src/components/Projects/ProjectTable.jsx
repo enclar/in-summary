@@ -73,7 +73,7 @@ const ProjectTable = () => {
     return (
         <table>
             <thead>
-                <tr className="bg-lime-900/40 text-teal-900 italic tracking-widest font-serif">
+                <tr className="bg-lime-900/40 text-slate-50 italic tracking-widest font-serif">
                     <th className="px-10 py-2 border-r-4">type</th>
                     <th className="px-10 py-2 border-r-4">project</th>
                     <th className="px-10 py-2 border-r-4">date</th>

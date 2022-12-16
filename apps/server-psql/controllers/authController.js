@@ -113,7 +113,11 @@ router.post("/login/staff", validation, async (req, res) => {
 router.post("/login/client", validation, async (req, res) => {
     try {
         const client = await prisma.client.findUnique({
-            where: { email: req.body.email }
+            where: { email: req.body.email },
+            include: {
+                contacts: true,
+                projects: true
+            }
         });
 
         if (!client) {

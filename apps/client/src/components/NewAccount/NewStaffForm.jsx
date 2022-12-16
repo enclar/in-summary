@@ -50,22 +50,22 @@ const NewStaffForm = () => {
         >
             <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 name
-                <input {...register("name")} className="bg-slate-200 px-1" required />
+                <input {...register("name")} className="bg-orange-100 px-1" required />
             </label>
 
             <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 email
-                <input {...register("email")} className="bg-slate-200 px-1" required />
+                <input {...register("email")} className="bg-orange-100 px-1" required />
             </label>
 
             <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 password
-                <input type="password" {...register("password")} className="bg-slate-200 px-1" required />
+                <input type="password" {...register("password")} className="bg-orange-100 px-1" required />
             </label>
 
             <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 contact number
-                <input {...register("contactNum")} className="bg-slate-200 px-1" required />
+                <input {...register("contactNum")} className="bg-orange-100 px-1" required />
             </label>
 
             <label className="flex gap-2 text-slate-700 tracking-wider">
@@ -73,7 +73,7 @@ const NewStaffForm = () => {
                 admin
             </label>
 
-            <button className="bg-teal-900 mt-5 px-5 py-1 rounded-full tracking-widest italic text-slate-50">add new staff</button>
+            <button className="bg-teal-900 hover:bg-teal-800 mt-5 px-5 py-1 rounded-full tracking-widest italic text-slate-50">add new staff</button>
         </form>
     )
 }

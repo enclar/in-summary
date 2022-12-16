@@ -48,7 +48,7 @@ const NewProject = () => {
         return <Navigate replace to="/unauthorized" />
     } else {
         return (
-            <div id="new-project" className="my-12">
+            <div id="new-project" className="px-1- py-20 w-full min-h-screen flex flex-col items-center">
                 <NewProjectForm />
                 <ToastContainer />
             </div>
