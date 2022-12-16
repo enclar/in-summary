@@ -94,7 +94,7 @@ const AlbumContent = () => {
     };
 
     return (
-        <div id="album-content" className="w-full p-10 border-4 border-t-0 flex flex-col items-center justify-center gap-5">
+        <div id="album-content" className="w-full p-10 border-4 border-lime-900/40 rounded-b-2xl border-t-0 flex flex-col items-center justify-center gap-5">
             {
                 !editing ?
                 <div className="flex flex-col gap-2 justify-center items-center">

@@ -1,6 +1,7 @@
 import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
+import AdminNavbar from "../components/Navbars/AdminNavbar";
 import EnquiryTable from "../components/Enquiries/EnquiryTable";
 
 export const enquiriesAtom = atom([]);
@@ -44,8 +45,9 @@ const Enquiries = () => {
         return <Navigate replace to="/unauthorized" />
     } else {
         return (
-            <div id="enquiries" className="mb-20 w-4/5 flex flex-col items-center gap-4">
-                <p className="font-serif text-teal-900 text-lg tracking-wider italic font-bold">enquiries</p>
+            <div id="enquiries" className="px-10 pt-10 pb-20 w-full min-h-screen flex flex-col items-center gap-4">
+                <AdminNavbar />
+                <p className="mt-10 font-serif text-teal-900 text-lg tracking-wider italic font-bold">enquiries</p>
                 <EnquiryTable enquiries={enquiries} />
             </div>
         )

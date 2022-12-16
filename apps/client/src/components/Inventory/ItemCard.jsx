@@ -77,7 +77,7 @@ const ItemCard = ({ item }) => {
     };
 
     return (
-        <div id="item-card" className="border-double border-4 p-10 w-1/4 font-serif flex flex-col items-center gap-5 justify-between">
+        <div id="item-card" className="border-double border-8 rounded-xl border-lime-900/40 p-10 w-1/4 font-serif flex flex-col items-center gap-5 justify-between">
             <div className="flex flex-col gap-3 items-center">
                 <img src={item?.imageUrl} className="w-7/8 max-h-60 object-cover object-center" />
 

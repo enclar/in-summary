@@ -50,13 +50,13 @@ const AddCheckpoint = () => {
             <div className="flex gap-10 items-center">
                 <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     date:
-                    <input type="date" {...register("date")} className="bg-orange-50 text-slate-700 p-1" required={true} />
+                    <input type="date" {...register("date")} className="bg-orange-100 text-slate-700 p-1" required={true} />
                 </label>
                 <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     checkpoint:
-                    <input {...register("details")} className="bg-orange-50 text-slate-700 p-1" required={true} />
+                    <input {...register("details")} className="bg-orange-100 text-slate-700 p-1" required={true} />
                 </label>
-                <button className="bg-teal-900 text-slate-50 ml-2 px-5 rounded-full">add</button>
+                <button className="bg-teal-900 hover:bg-teal-800 text-slate-50 ml-2 px-5 rounded-full italic tracking-wider">add</button>
             </div>
         </form>
     )

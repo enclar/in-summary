@@ -101,10 +101,10 @@ const TaskTable = () => {
         <table id="task-table">
             <thead>
                 <tr className="text-teal-900 italic tracking-wider">
-                    <th className="border-2 py-1">due by</th>
-                    <th className="border-2 py-1">task</th>
-                    <th className="border-2 py-1 px-5">action from</th>
-                    <th className="border-2 py-1 px-5">complete?</th>
+                    <th className="border-2 py-1 border-stone-400/75">due by</th>
+                    <th className="border-2 py-1 border-stone-400/75">task</th>
+                    <th className="border-2 py-1 px-5 border-stone-400/75">action from</th>
+                    <th className="border-2 py-1 px-5 border-stone-400/75">complete?</th>
                 </tr>
             </thead>
             <tbody>
@@ -113,13 +113,13 @@ const TaskTable = () => {
                         if (editing !== task.id) {
                             return (
                                 <tr key={index}>
-                                    <td className="px-5 py-1 border-2 text-center text-slate-700">{task?.dueBy?.slice(0, 10)}</td>
+                                    <td className="px-5 py-1 border-2 text-center text-slate-700 border-stone-400/75">{task?.dueBy?.slice(0, 10)}</td>
 
-                                    <td className="px-5 py-1 border-2 text-slate-700">{task?.description}</td>
+                                    <td className="px-5 py-1 border-2 text-slate-700 border-stone-400/75">{task?.description}</td>
 
-                                    <td className="px-5 py-1 border-2 text-center text-slate-700">{task?.doneBy}</td>
+                                    <td className="px-5 py-1 border-2 text-center text-slate-700 border-stone-400/75">{task?.doneBy}</td>
 
-                                    <td className="px-3 border-2 text-center">
+                                    <td className="px-3 border-2 text-center border-stone-400/75">
                                         <input
                                             type="checkbox"
                                             checked={task?.completed ? true : false }
@@ -140,28 +140,28 @@ const TaskTable = () => {
                         } else {
                             return (
                                 <tr key={index}>
-                                    <td className="p-3 border-2">
-                                        <input type="date" id="task-date" defaultValue={task?.dueBy?.slice(0, 10)} className="bg-orange-50 p-1 text-slate-900" />
+                                    <td className="p-3 border-2 border-stone-400/75">
+                                        <input type="date" id="task-date" defaultValue={task?.dueBy?.slice(0, 10)} className="bg-orange-100 p-1 text-slate-900" />
                                     </td>
 
-                                    <td className="p-3 w-2/5 border-2">
-                                        <input id="task-description" defaultValue={task?.description} className="bg-orange-50 text-slate-900 w-full p-1" />
+                                    <td className="p-3 w-2/5 border-2 border-stone-400/75">
+                                        <input id="task-description" defaultValue={task?.description} className="bg-orange-100 text-slate-900 w-full p-1" />
                                     </td>
 
-                                    <td className="p-3 border-2 text-center">
-                                        <select id="task-person" className="bg-orange-50 p-1 text-slate-900" defaultValue={task?.doneBy}>
+                                    <td className="p-3 border-2 border-stone-400/75 text-center">
+                                        <select id="task-person" className="bg-orange-100 p-1 text-slate-900" defaultValue={task?.doneBy}>
                                             <option>{project?.client?.name}</option>
                                             { staff?.map((staff, index) => <option key={index}>{staff?.name}</option>) }
                                         </select>
                                     </td>
 
-                                    <td className="p-3 border-2 text-center">
+                                    <td className="p-3 border-2 border-stone-400/75 text-center">
                                         <input type="checkbox" defaultChecked={false} disabled={true} />
                                     </td>
                                     
                                     <td className="p-3 text-center">
                                         <button
-                                        className="bg-teal-900 text-slate-50 px-3 tracking-wider rounded-full"
+                                        className="bg-teal-900 hover:bg-teal-800 italic text-slate-50 px-3 tracking-wider rounded-full"
                                             onClick={editTask}
                                         >update</button>
                                     </td>

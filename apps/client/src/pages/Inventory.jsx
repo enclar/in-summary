@@ -42,7 +42,7 @@ const Inventory = () => {
         return <Navigate replace to="/login" />
     } else {
         return (
-            <div id="inventory" className="mt-10 mb-20 w-screen flex flex-col items-center gap-10">
+            <div id="inventory" className="px-10 py-20 w-screen min-h-screen flex flex-col items-center gap-10">
                 {
                     user?.accType === "staff" ?
                     <>

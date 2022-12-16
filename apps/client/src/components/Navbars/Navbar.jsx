@@ -19,9 +19,9 @@ const Navbar = () => {
         <div className="flex flex-col items-center">
             <div
                 id="navbar"
-                className="w-screen h-40 my-10 border-y-8 px-20 py-10 border-double flex justify-evenly items-center"
+                className="w-screen h-40 bg-orange-50 px-20 py-10 flex justify-evenly items-center"
             >
-                <div className="flex gap-16">
+                <div className="flex gap-16 text-teal-900">
                     <Link to="/projects" className="font-serif italic text-xl tracking-wider hover:underline">projects</Link>
                     <Link to="/inventory" className="font-serif italic text-xl tracking-wider hover:underline">inventory</Link>
                     {
@@ -36,7 +36,7 @@ const Navbar = () => {
                     <p className="text-4xl text-teal-900 tracking-widest font-serif">in summary;</p>
                 </div>
 
-                <div className="flex gap-16">
+                <div className="flex gap-16 text-teal-900">
                     <p id="welcome-msg" className="font-serif italic text-xl tracking-wider">welcome, {user?.name?.toLowerCase()}!</p>
                     <p onClick={handleLogout} className="font-serif italic text-xl tracking-wider cursor-pointer hover:underline">logout</p>
                 </div>

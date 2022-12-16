@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import ClientAccounts from "../components/AllAccounts/ClientAccounts";
 import StaffAccounts from "../components/AllAccounts/StaffAccounts";
+import AdminNavbar from "../components/Navbars/AdminNavbar";
 
 const AllAccounts = () => {
     // setting up state
@@ -16,7 +17,8 @@ const AllAccounts = () => {
     };
 
     return (
-        <div id="all-accounts" className="flex flex-col items-center gap-10 font-serif">
+        <div id="all-accounts" className="px-10 pt-10 pb-20 w-full min-h-screen flex flex-col items-center gap-10 font-serif">
+            <AdminNavbar />    
             <label className="flex flex-col items-center italic tracking-wider text-teal-900 font-semibold">
                 view all accounts for:
                 <div className="flex gap-5">

@@ -50,12 +50,12 @@ const NewEnquiry = () => {
         >
             <div
                 id="enquiry-legend-msg"
-                className="flex flex-col gap-2 w-2/5 p-5 border-double border-8 border-stone-600 rounded-t-3xl bg-orange-50/60"
+                className="flex flex-col gap-2 w-2/5 p-5 rounded-t-3xl bg-lime-900/40"
             >
-                <p className="text-teal-900 text-center text-2xl font-bold italic tracking-wider">
+                <p className="text-stone-50 text-center text-2xl font-bold italic tracking-wider">
                     hello!
                 </p>
-                <p className="text-slate-700 text-center italic text-lg tracking-wider">
+                <p className="text-orange-50 text-center italic text-lg tracking-wider">
                     thank you for enquiring with us!<br/>
                     let us know what you're looking for and we'll reach out to arrange a meeting soon!
                 </p>
@@ -63,7 +63,7 @@ const NewEnquiry = () => {
 
             <form
                 id="enquiry-form"
-                className="w-2/5 bg-slate-50/60 p-10 border-4 border-t-0 border-stone-600 flex flex-col items-center justify-center gap-5 rounded-b-3xl"
+                className="w-2/5 bg-slate-50/60 p-10 border-4 border-t-0 border-lime-900/40 flex flex-col items-center justify-center gap-5 rounded-b-3xl"
                 autoComplete="off"
                 method="post"
                 onSubmit={handleSubmit(onSubmit)}

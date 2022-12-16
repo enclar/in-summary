@@ -42,12 +42,10 @@ const App = () => {
                         <Route path="/inventory" element={<Inventory />} />
                         <Route path="/new-inventory" element={<NewInventory />} />
 
-                        <Route path="/" element={<AdminNavbar />}>
-                            <Route path="/enquiries" element={<Enquiries />} />
-                            <Route path="/new-account" element={<NewAccount />} />
-                            <Route path="/all-accounts" element={<AllAccounts />} />
-                            <Route path="/clients/:id" element={<ClientDetails />} />
-                        </Route>
+                        <Route path="/enquiries" element={<Enquiries />} />
+                        <Route path="/new-account" element={<NewAccount />} />
+                        <Route path="/all-accounts" element={<AllAccounts />} />
+                        <Route path="/clients/:id" element={<ClientDetails />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

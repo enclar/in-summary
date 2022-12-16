@@ -40,11 +40,11 @@ const AddAlbum = () => {
             onSubmit={handleSubmit(addAlbum)}
             autoComplete="off"
         >
-            <label className="flex gap-2 text-md items-center tracking-wider">
+            <label className="flex gap-2 text-md items-center tracking-wider text-stone-700">
                 album name:
                 <input {...register("name")} className="bg-orange-100 p-1" />
             </label>
-            <button className="bg-teal-900 text-slate-50 px-4 py-1 rounded-full italic tracking-wider">add album</button>
+            <button className="bg-teal-900 hover:bg-teal-800 text-slate-50 px-4 py-1 rounded-full italic tracking-wider">add album</button>
         </form>
     )
 }

@@ -16,7 +16,7 @@ const Albums = () => {
                         return (
                             <p
                                 key={index}
-                                className="border-double border-4 border-width px-8 py-2 text-teal-900 tracking-wider hover:bg-orange-50 hover:cursor-pointer"
+                                className="border-double border-4 border-width border-stone-400/75 px-8 py-2 text-teal-900 tracking-wider hover:bg-orange-50 hover:cursor-pointer"
                                 onClick={() => setAlbum(album)}
                             >
                                 {album?.name}

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { atom, useAtom } from "jotai";
 import { clientAtom } from "../../pages/NewProject";
+import ClientDetails from "../../pages/ClientDetails";
 
 export const viewAccAtom = atom({});
 
@@ -44,37 +45,40 @@ const ClientAccounts = () => {
     // function to view more details
     const viewDetails = (details) => {
         setViewAcc(details);
-        navigate(`/clients/${details.id}`);
+        // navigate(`/clients/${details.id}`);
     }
 
     return (
-        <table id="client-accounts">
-            <thead>
-                <tr>
-                    <th className="px-5 border-2">name</th>
-                    <th className="px-5 border-2">email</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    clients?.map((client, index) => {
-                        return (
-                            <tr key={index}>
-                                <td className="px-5 border-2 text-center">{client?.name}</td>
-                                <td className="px-5 border-2 text-center">{client?.email}</td>
-                                <td
-                                    className="pl-3 text-teal-800 hover:underline hover:cursor-pointer"
-                                    onClick={() => viewDetails(client)}
-                                >
-                                    view more details
-                                </td>
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </table>
+        <div className="flex gap-20 items-start">
+                <table id="client-accounts" className="not-italic">
+                    <thead>
+                        <tr className="bg-lime-900/40 text-slate-50 italic tracking-wider">
+                            <th className="px-5 py-3 border-r-4">name</th>
+                            <th className="px-5 py-3">email</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            clients?.map((client, index) => {
+                                return (
+                                    <tr key={index} className="hover:bg-orange-50 hover:cursor-pointer text-stone-500">
+                                        <td className="px-5 py-2 border-2 border-lime-900/40 text-center" onClick={() => viewDetails(client)}>{client?.name}</td>
+                                        <td className="px-5 py-2 border-2 border-lime-900/40 text-center">{client?.email}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+
+            {
+                Object.keys(viewAcc).length === 0 ?
+                <></> :
+                <ClientDetails />
+            }
+        </div>
+
     )
 }
 

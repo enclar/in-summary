@@ -41,8 +41,8 @@ const AddNote = () => {
             className="w-full flex flex-col items-center gap-5"
             onSubmit={handleSubmit(addNote)}
         >
-            <textarea {...register("content")} className="bg-orange-50 w-4/5 h-48 p-2 text-sky-900" />
-            <button className="bg-teal-900 text-slate-50 italic tracking-wider px-5 py-1 rounded-full">add a new note</button>
+            <textarea {...register("content")} className="bg-orange-100 w-4/5 h-48 p-2 text-sky-900" />
+            <button className="bg-teal-900 hover:bg-teal-800 text-slate-50 italic tracking-wider px-5 py-1 rounded-full">add a new note</button>
         </form>
     )
 }

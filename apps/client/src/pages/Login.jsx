@@ -57,12 +57,12 @@ const Login = () => {
             >
                 <legend
                     id="login-legend"
-                    className="w-2/5 py-10 rounded-t-3xl text-2xl italic tracking-widest font-bold border-double border-8 text-center border-stone-400 text-teal-900 bg-orange-50/60"
+                    className="w-2/5 py-10 rounded-t-3xl text-2xl italic tracking-widest font-bold text-center text-stone-50 bg-lime-900/40"
                 >
                     welcome to your daily summary
                 </legend>
 
-                <div className="border-4 p-10 rounded-b-3xl border-stone-400 border-t-0 w-2/5 flex flex-col items-center gap-5 bg-slate-50/60">
+                <div className="border-4 p-10 rounded-b-3xl border-lime-900/40 border-t-0 w-2/5 flex flex-col items-center gap-5 bg-slate-50/60">
                     <label className="text-teal-900 w-3/5 text-lg tracking-wider flex flex-col">
                         email
                         <input

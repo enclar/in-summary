@@ -11,7 +11,7 @@ const Projects = () => {
         return <ClientProjects />
     } else if (user?.accType === "staff") {
         return (
-            <div id="projects" className="bg-gradient-to-t from-orange-50 to-white-50 py-10 w-screen min-h-screen h-fit flex flex-col items-center gap-10">
+            <div id="projects" className="px-10 py-20 w-screen min-h-screen h-fit flex flex-col items-center gap-10">
                 <Link
                     className="text-teal-900 font-serif tracking-widest italic font-semibold hover:underline"
                     to="/new-project"

@@ -6,7 +6,7 @@ const InventoryItems = () => {
     const [inventory, setInventory] = useAtom(inventoryAtom);
 
     return (
-        <div id="inventory-items" className="w-4/5 flex gap-10 flex-wrap justify-center">
+        <div id="inventory-items" className="mt-5 w-4/5 flex gap-10 flex-wrap justify-center">
             { 
                 inventory?.map((item, index) => {
                     return (

@@ -53,22 +53,22 @@ const AddTask = () => {
             <div className="flex gap-10 items-center">
                 <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     due by:
-                    <input type="date" {...register("dueBy")} className="bg-orange-50 text-slate-700 p-1" required={true} />
+                    <input type="date" {...register("dueBy")} className="bg-orange-100 text-slate-700 p-1" required={true} />
                 </label>
 
                 <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     task:
-                    <input {...register("description")} className="bg-orange-50 text-slate-700 p-1" required={true} />
+                    <input {...register("description")} className="bg-orange-100 text-slate-700 p-1" required={true} />
                 </label>
 
                 <label className="flex gap-2 items-center text-slate-700 tracking-wider">
                     done by:
-                    <select {...register("doneBy")} className="bg-orange-50 text-slate-700 p-1">
+                    <select {...register("doneBy")} className="bg-orange-100 text-slate-700 p-1">
                         <option>{project?.client?.name}</option>
                         { staff?.map((staff, index) => <option key={index}>{staff?.name}</option>) }
                     </select>
                 </label>
-                <button className="bg-teal-900 text-slate-50 ml-2 px-5 rounded-full">add</button>
+                <button className="bg-teal-900 hover:bg-teal-800 italic text-slate-50 ml-2 px-5 rounded-full">add</button>
             </div>
         </form>
     )

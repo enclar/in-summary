@@ -30,7 +30,7 @@ const UploadInventory = () => {
     return (
         <button
             onClick={() => widgetRef.current.open()}
-            className="mt-5 mb-10 bg-slate-200 text-slate-700 italic tracking-wider px-5 py-1 rounded-full"
+            className="mt-5 mb-10 bg-amber-200 hover:bg-amber-100 text-slate-700 italic tracking-wider px-5 py-1 rounded-full"
         >
             upload item image
         </button>

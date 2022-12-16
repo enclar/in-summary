@@ -3,21 +3,49 @@
 @import "tailwindcss/utilities";
 
 #landing {
-    background: url("https://i.pinimg.com/564x/79/6d/d5/796dd5f75d125d4a524d4ae9aef2c041.jpg");
+    background: url(../images/landing.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
 #enquiry {
-    background: url("https://i.pinimg.com/564x/a3/21/e5/a321e519e329473e6839fd9302d46236.jpg");
+    background: url(../images/enquiry.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
 #login {
-    background: url("https://i.pinimg.com/736x/37/f1/35/37f135ebe90dd586a50904b02e7e463d.jpg");
+    background: url(../images/login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#projects, #client-projects, #project-details, #images, #notes {
+    background: url(../images/enquiry.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#inventory, #new-inventory {
+    background: url(../images/inventory.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#enquiries, #new-account, #all-accounts {
+    background: url(../images/admin.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#unauth {
+    background: url(../images/unauth.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

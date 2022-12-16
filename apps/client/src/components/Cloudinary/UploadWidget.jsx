@@ -58,7 +58,7 @@ const UploadWidget = () => {
     return (
         <button
             onClick={() => widgetRef.current.open()}
-            className="mt-5 bg-teal-900 text-slate-50 px-5 py-1 italic tracking-wider rounded-full"
+            className="my-5 bg-teal-900 text-slate-50 px-5 py-1 italic tracking-wider rounded-full"
         >
             upload image
         </button>

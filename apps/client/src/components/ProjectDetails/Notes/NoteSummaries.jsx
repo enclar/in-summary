@@ -24,7 +24,7 @@ const NoteSummaries = () => {
                         return (
                             <div
                                 key={index}
-                                className="border-double border-4 px-5 py-2 h-fit flex flex-col items-center hover:bg-orange-50 hover:cursor-pointer"
+                                className="border-double border-4 border-stone-400 px-5 py-2 h-fit flex flex-col items-center hover:bg-orange-50 hover:cursor-pointer"
                                 onClick={() => displayNote(note)}
                             >
                                 <p className="text-teal-900 tracking-wider">{note?.date?.slice(0, 10)}</p>

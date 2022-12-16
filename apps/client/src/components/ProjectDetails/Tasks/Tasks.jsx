@@ -9,8 +9,8 @@ const Tasks = () => {
     const user = JSON.parse(localStorage.getItem("currUser"));
 
     return (
-        <div id="tasks" className="p-10 w-full border-4 font-serif flex flex-col gap-5 items-center">
-            <p className=" text-teal-900 text-xl tracking-widest font-bold italic border-double border-4 py-2 px-10">tasks to be done</p>
+        <div id="tasks" className="p-10 w-full border-4 border-lime-900/40 font-serif flex flex-col gap-5 items-center">
+            <p className=" text-teal-900 text-xl tracking-widest font-bold italic border-double border-4 border-stone-400 py-2 px-10">tasks to be done</p>
             {
                 project?.tasks?.length === 0 ?
                 <div className="flex flex-col items-center gap-8">

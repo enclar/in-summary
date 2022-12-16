@@ -11,21 +11,18 @@ const Checkpoints = () => {
     const [project] = useAtom(currProjAtom);
 
     return (
-        <div id="checkpoints" className="p-10 w-full border-x-4 font-serif flex flex-col gap-2 items-center">
-            <p className=" text-teal-900 text-xl tracking-widest font-bold italic border-double border-4 py-2 px-10">project checkpoints</p>
+        <div id="checkpoints" className="p-10 w-full border-x-4 border-lime-900/40 font-serif flex flex-col gap-10 items-center">
+            <p className=" text-teal-900 text-xl tracking-widest font-bold italic border-double border-4 border-stone-400 py-2 px-10">project checkpoints</p>
             {
                 project?.checkpoints?.length === 0 ?
-                <div className="flex flex-col items-center gap-8">
-                    <p className="mt-5 text-stone-600 font-semibold italic tracking-widest">no checkpoints available</p>
+                <div className="flex flex-col items-center gap-10">
+                    <p className="text-stone-600 font-semibold italic tracking-widest">no checkpoints available</p>
                     <AddCheckpoint />
                 </div>
                 
                 :
                 <div className="flex flex-col gap-10 items-center">
-                    <label className="flex flex-col items-center gap-2 text-slate-50 tracking-wider">
-                        project checkpoints
-                        <CheckpointTable />
-                    </label>
+                    <CheckpointTable />
                     <AddCheckpoint />
                 </div>
             }

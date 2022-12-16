@@ -69,21 +69,21 @@ const NoteContent = () => {
     };
 
     return (
-        <div id="note-content" className="w-3/5 flex flex-col items-center" >
-            <p className="text-teal-900 italic font-semibold px-10 py-5 border-double border-4 w-full text-center text-xl tracking-wider">
+        <div id="note-content" className="w-4/5 flex flex-col items-center" >
+            <p className="text-stone-600 italic font-semibold px-10 py-5 bg-orange-100 rounded-t-xl w-full text-center text-xl tracking-widest">
                 {currNote?.date?.slice(0, 10)} meeting notes
             </p>
             {
                 !editing ?
-                <div className="border-4 border-t-0 w-full px-20 py-10 flex flex-col items-center justify-center gap-10">
+                <div className="bg-slate-50 rounded-b-xl w-full px-20 py-10 flex flex-col items-center justify-center gap-10">
                     <pre className="font-serif whitespace-pre-wrap">
-                        <p>{currNote?.content}</p>
+                        <p className="text-stone-600 tracking-wide">{currNote?.content}</p>
                     </pre>
                     
                     {
                         user?.accType === "staff" ?
-                        <div className="flex gap-5 justify-center items-center">
-                            <ion-icon name="create-outline" size="large" style={{ color: "darkGrey"}} onClick={() => setEditing(!editing)}></ion-icon>
+                        <div className="flex gap-5 mt-10 justify-center items-center">
+                            <ion-icon name="create-outline" size="large" style={{ color: "darkGrey", cursor: "pointer" }} onClick={() => setEditing(!editing)}></ion-icon>
                             <ion-icon name="close" size="large" style={{ color: "darkGrey", cursor: "pointer"}} onClick={deleteNote}></ion-icon>
                         </div>
                         :
@@ -92,9 +92,9 @@ const NoteContent = () => {
 
                 </div>
                 :
-                <div className="border-4 border-t-0 w-full px-20 py-10 flex flex-col items-center justify-center gap-5">
+                <div className="bg-stone-50 rounded-b-xl w-full px-20 py-10 flex flex-col items-center justify-center gap-5">
                     <pre className="font-serif w-full flex flex-col items-center">
-                        <textarea id="edited-content" className="bg-orange-50 w-4/5 h-80 p-2 text-lg tracking-wider text-slate-700" defaultValue={currNote?.content} />
+                        <textarea id="edited-content" className="bg-orange-100 w-4/5 h-96 p-2 text-lg tracking-wider text-slate-700" defaultValue={currNote?.content} />
                     </pre>
                     <button
                         className="bg-teal-900 text-slate-50 mt-5 px-5 py-1 rounded-full italic tracking-wider text-lg"

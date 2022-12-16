@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { useAtom } from "jotai";
 import { staffAtom } from "../../pages/NewProject";
 
@@ -65,8 +66,10 @@ const StaffAccounts = () => {
                 updatedStaff[index] = data;
                 setStaff(updatedStaff);
                 setEditing("");
+                toast.success(`Successfully updated contact for ${data?.name}`);
             } else {
                 console.log("server error:", data?.error);
+                toast?.error(data?.error);
             }
         } catch (error) {
             console.log("client error:", error);
@@ -76,11 +79,10 @@ const StaffAccounts = () => {
     return (
         <table id="staff-accounts" className="tracking-wider">
             <thead>
-                <tr className="text-teal-900 italic">
-                    <th className="px-10 py-2 border-y-4 border-r-2 border-double">name</th>
-                    <th className="px-10 py-2 border-y-4 border-r-2  border-double">email</th>
-                    <th className="px-10 py-2 border-y-4 border-double">contact number</th>
-                    <th></th>
+                <tr className="text-slate-50 italic">
+                    <th className="px-10 py-2 border-r-4 text-center bg-lime-900/40">name</th>
+                    <th className="px-10 py-2 border-r-4 text-center bg-lime-900/40">email</th>
+                    <th className="px-10 py-4 text-center bg-lime-900/40">contact number</th>
                 </tr>
             </thead>
             <tbody>
@@ -89,9 +91,9 @@ const StaffAccounts = () => {
                         if (staff?.id !== editing) {
                             return (
                                 <tr key={index} className="text-stone-600">
-                                    <td className="px-10 py-2 border-b-2 border-r-2 text-center">{staff?.name}</td>
-                                    <td className="px-10 py-2 border-b-2 border-r-2 text-center">{staff?.email}</td>
-                                    <td className="px-10 py-2 border-b-2 text-center">{staff?.contactNum}</td>
+                                    <td className="px-10 py-2 border-b-2 border-x-2 text-center border-lime-900/40">{staff?.name}</td>
+                                    <td className="px-10 py-2 border-b-2 border-r-2 text-center border-lime-900/40">{staff?.email}</td>
+                                    <td className="px-10 py-2 border-b-2 border-r-2 text-center border-lime-900/40">{staff?.contactNum}</td>
                                     <td className="px-5 flex gap-2 items-center justify-center hover:cursor-pointer">
                                         <ion-icon name="create-outline" size="small" style={{ color: "darkGrey", marginTop: "10px" }} onClick={() => setEditing(staff?.id)}></ion-icon>
                                     </td>
@@ -100,21 +102,21 @@ const StaffAccounts = () => {
                         } else {
                             return (
                                 <tr key={index} className="text-stone-600">
-                                    <td className="px-10 py-2 border-b-2 border-r-2 text-center">
-                                        <input id="staff-name" defaultValue={staff?.name} required className="bg-orange-50 text-slate-900 w-full p-1" />
+                                    <td className="px-10 py-2 border-b-2 border-x-2 text-center border-lime-900/40">
+                                        <input id="staff-name" defaultValue={staff?.name} required className="bg-orange-100 text-slate-900 w-full p-1" />
                                     </td>
 
-                                    <td className="px-10 py-2 border-b-2 border-r-2 text-center">
-                                        <input id="staff-email" defaultValue={staff?.email} required className="bg-orange-50 text-slate-900 w-full p-1" />
+                                    <td className="px-10 py-2 border-b-2 border-r-2 text-center border-lime-900/40">
+                                        <input id="staff-email" defaultValue={staff?.email} required className="bg-orange-100 text-slate-900 w-full p-1" />
                                     </td>
 
-                                    <td className="px-10 py-2 border-b-2 text-center">
-                                        <input id="staff-num" defaultValue={staff?.contactNum} required className="bg-orange-50 text-slate-900 w-full p-1" />
+                                    <td className="px-10 py-2 border-b-2 border-r-2 text-center border-lime-900/40">
+                                        <input id="staff-num" defaultValue={staff?.contactNum} required className="bg-orange-100 text-slate-900 w-full p-1" />
                                     </td>
 
                                     <td className="px-5 flex gap-2 items-center justify-center hover:cursor-pointer">
                                         <button
-                                            className="bg-teal-900 text-slate-50 mt-2 rounded-full px-5 py-1"
+                                            className="bg-teal-900 text-slate-50 mt-2 rounded-full px-5 py-1 italic hover:bg-teal-800"
                                             onClick={() => updateStaff(staff?.id)}
                                         >update info</button>
                                     </td>

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { atom, useAtom } from "jotai";
 import { toast, ToastContainer } from "react-toastify";
 import NewProjectForm from "../components/NewProject/NewProjectForm";
@@ -8,6 +9,7 @@ export const clientAtom = atom([]);
 
 const NewProject = () => {
     const token = JSON.parse(localStorage.getItem("token"));
+    const user = JSON.parse(localStorage.getItem("currUser"));
 
     // setting up jotai
     const [clients, setClients] = useAtom(clientAtom);
@@ -40,12 +42,18 @@ const NewProject = () => {
         getClients();
     }, []);
 
-    return (
-        <div id="new-project" className="my-12">
-            <NewProjectForm />
-            <ToastContainer />
-        </div>
-    )
+    if (!user) {
+        return <Navigate replace to="/login" />
+    } else if (user?.accType !== "staff") {
+        return <Navigate replace to="/unauthorized" />
+    } else {
+        return (
+            <div id="new-project" className="my-12">
+                <NewProjectForm />
+                <ToastContainer />
+            </div>
+        )
+    }
 }
 
 export default NewProject;

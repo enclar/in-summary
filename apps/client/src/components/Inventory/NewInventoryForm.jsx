@@ -47,23 +47,23 @@ const NewInventoryForm = () => {
     return (
         <form
             id="new-inventory-form"
-            className="flex flex-col items-center gap-5 w-full py-10 px-5 border-4 border-t-0"
+            className="flex flex-col items-center gap-5 w-1/3 py-10 px-5 border-4 border-t-0 border-lime-900/40 rounded-b-xl"
             autoComplete="off"
             onSubmit={handleSubmit(addInventory)}
         >
             <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 name
-                <input {...register("name")} className="bg-slate-200 px-1" required />
+                <input {...register("name")} className="bg-orange-100 px-1" required />
             </label>
 
             <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 description
-                <textarea {...register("description")} className="bg-slate-200 px-1 h-28" />
+                <textarea {...register("description")} className="bg-orange-100 px-1 h-28" />
             </label>
         
             <label className="w-3/5 flex flex-col text-slate-700 tracking-wider">
                 quantity
-                <input type="number" {...register("quantity")} className="bg-slate-200 px-1" required />
+                <input type="number" {...register("quantity")} className="bg-orange-100 px-1" required />
             </label>
 
             {
@@ -81,7 +81,7 @@ const NewInventoryForm = () => {
             }
             
 
-            <button className="bg-teal-900 text-slate-50 italic tracking-wider px-5 py-1 rounded-full">add new item</button>
+            <button className="bg-teal-900 hover:bg-teal-800 text-slate-50 italic tracking-wider px-5 py-1 rounded-full">add new item</button>
         </form>
     )
 }
