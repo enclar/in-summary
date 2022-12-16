@@ -19,5 +19,8 @@
   "homepage": "https://github.com/enclar/capstone#readme",
   "devDependencies": {
     "turbo": "^1.6.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
   }
 }
