@@ -18,7 +18,7 @@ describe('submit new enquiry spec', () => {
     cy.get("#go-to-login").click();
 
     cy.url().should("include", "/login");
-    cy.get("#login-legend").contains("too long; read later");
+    cy.get("#login-legend").contains("in summary;");
   })
 })
 
